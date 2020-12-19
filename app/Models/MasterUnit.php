@@ -4,18 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MasterSupplier extends Model
+class MasterUnit extends Model
 {
-    protected $table = 'master_supplier';
-    protected $allowedFields = ['supplier', 'alamat_supplier', 'telp_supplier', 'ppn'];
-    protected $id = 'id_supplier';
-    protected $primaryKey = 'id_supplier';
+    protected $table = 'master_unit';
+    protected $allowedFields = ['kode_nopol', 'nopol', 'ket_nopol'];
+    protected $id = 'id_nopol';
+    protected $primaryKey = 'id_nopol';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_supplier', 'supplier', 'alamat_supplier', 'telp_supplier');
-    protected $column_search = array('id_supplier', 'supplier', 'alamat_supplier', 'telp_supplier');
-    protected $order = array('supplier' => 'asc');
+    protected $column_order = array('id_nopol', 'nopol', 'kode_nopol', 'ket_nopol');
+    protected $column_search = array('id_nopol', 'nopol', 'kode_nopol', 'ket_nopol');
+    protected $order = array('nopol' => 'asc');
 
     function get_datatables()
     {
@@ -27,7 +27,7 @@ class MasterSupplier extends Model
     }
     private function _get_datatables_query()
     {
-        $this->dt = $this->db->table('master_supplier');
+        $this->dt = $this->db->table('master_unit');
         $this->dt->where('deleted_at', null);
         $i = 0;
         foreach ($this->column_search as $item) {

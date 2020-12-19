@@ -52,5 +52,8 @@ class BaseController extends Controller
 
 		$this->mastersupplier				= new \App\Models\MasterSupplier;
 		$this->masterbarang					= new \App\Models\MasterBarang;
+		$this->masterunit					= new \App\Models\MasterUnit;
+
+		$this->pembeliankredit				= new \App\Models\PembelianKredit;
 	}
 }

@@ -4,18 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MasterSupplier extends Model
+class PembelianKredit extends Model
 {
-    protected $table = 'master_supplier';
-    protected $allowedFields = ['supplier', 'alamat_supplier', 'telp_supplier', 'ppn'];
-    protected $id = 'id_supplier';
-    protected $primaryKey = 'id_supplier';
+    protected $table = 'pemnelian_kredit';
+    protected $allowedFields = ['tgl_nota', 'supplier_id', 'brand_id', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc'];
+    protected $id = 'id_kredit';
+    protected $primaryKey = 'id_kredit';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_supplier', 'supplier', 'alamat_supplier', 'telp_supplier');
-    protected $column_search = array('id_supplier', 'supplier', 'alamat_supplier', 'telp_supplier');
-    protected $order = array('supplier' => 'asc');
+    protected $column_order = array('id_kredit', 'tgl_nota', 'supplier_id', 'brand', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc');
+    protected $column_search = array('id_kredit', 'tgl_nota', 'supplier_id', 'brand', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc');
+    protected $order = array('tgl_nota' => 'desc');
 
     function get_datatables()
     {
@@ -27,8 +27,12 @@ class MasterSupplier extends Model
     }
     private function _get_datatables_query()
     {
-        $this->dt = $this->db->table('master_supplier');
-        $this->dt->where('deleted_at', null);
+        $this->dt = $this->db->table('pembelian_kredit')
+            ->join('master_brand', 'master_brand.id_brand=pembelian_kredit.brand_id', 'left')
+            ->join('master_supplier', 'master_supplier.id_supplier=pembelian_kredit.supplier_id', 'left')
+            ->join('master_unit', 'master_unit.id_nopol=pembelian_kredit.nopol_id', 'left')
+            ->join('master_barang', 'master_barang.id_barang=pembelian_kredit.barang_id', 'left');
+        $this->dt->where('pembelian_kredit.deleted_at', null);
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {

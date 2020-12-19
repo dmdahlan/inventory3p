@@ -83,6 +83,10 @@ class Master_barang extends BaseController
             echo json_encode(['status' => FALSE]);
         }
     }
+    public function getbarang()
+    {
+        echo json_encode($this->masterbarang->orderBy('nama_barang', 'ASC')->findAll());
+    }
     public function _validate($method)
     {
         if (!$this->validate($this->_getRulesValidation($method))) {

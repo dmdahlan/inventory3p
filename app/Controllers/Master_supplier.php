@@ -42,22 +42,11 @@ class Master_supplier extends BaseController
     public function save()
     {
         $this->_validate('save');
-        if (!empty($_POST['ppn1'])) {
-            $ppn1 = $this->request->getVar('ppn1');
-        } else {
-            $ppn1 = 0;
-        }
-        if (!empty($_POST['ppn10'])) {
-            $ppn10 = $this->request->getVar('ppn10');
-        } else {
-            $ppn10 = 0;
-        }
         $data = [
             'supplier'            => $this->request->getPost('supplier'),
             'alamat_supplier'     => $this->request->getPost('alamat_suplier'),
             'telp_supplier'       => $this->request->getPost('telp_supplier'),
-            'ppn1'                => $ppn1,
-            'ppn10'               => $ppn10
+            'ppn'                 => $this->request->getPost('ppn')
         ];
 
         if ($this->mastersupplier->save($data)) {
@@ -73,23 +62,12 @@ class Master_supplier extends BaseController
     public function update()
     {
         $this->_validate('update');
-        if (!empty($_POST['ppn1'])) {
-            $ppn1 = $this->request->getVar('ppn1');
-        } else {
-            $ppn1 = 0;
-        }
-        if (!empty($_POST['ppn10'])) {
-            $ppn10 = $this->request->getVar('ppn10');
-        } else {
-            $ppn10 = 0;
-        }
         $data = [
             'id_supplier'         => $this->request->getPost('id'),
             'supplier'            => $this->request->getPost('supplier'),
             'alamat_supplier'     => $this->request->getPost('alamat_suplier'),
             'telp_supplier'       => $this->request->getPost('telp_supplier'),
-            'ppn1'                => $ppn1,
-            'ppn10'               => $ppn10
+            'ppn'                 => $this->request->getPost('ppn')
         ];
 
         if ($this->mastersupplier->save($data)) {
@@ -105,6 +83,10 @@ class Master_supplier extends BaseController
         } else {
             echo json_encode(['status' => FALSE]);
         }
+    }
+    public function getsupplier()
+    {
+        echo json_encode($this->mastersupplier->orderBy('supplier', 'ASC')->findAll());
     }
     public function _validate($method)
     {

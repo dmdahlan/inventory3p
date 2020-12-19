@@ -6,13 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="text-dark">Data Supplier</h5>
+                    <h5 class="text-dark">Data Unit</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-                        <li class="breadcrumb-item active">Data Supplier</li>
+                        <li class="breadcrumb-item active">Data unit</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -35,13 +35,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table table-responsive table-sm" style="font-size: 14px;">
-                            <table id="tb_supplier" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
+                            <table id="tb_unit" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>NAMA SUPPLIER</th>
-                                        <th>ALAMAT</th>
-                                        <th>TELP</th>
+                                        <th>NOPOL</th>
+                                        <th>KODE NOPOL</th>
+                                        <th>KETERANGAN</th>
                                         <th>OPSI</th>
                                     </tr>
                                 </thead>
@@ -59,7 +59,7 @@
     </section>
     <!-- /.content -->
 </section>
-<div class="modal fade" id="md-form-supplier">
+<div class="modal fade" id="md-form-unit">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,39 +70,28 @@
             </div>
             <div class="modal-body form">
                 <div class="form-group">
-                    <form id="frm-modal-supplier">
+                    <form id="frm-modal-unit">
                         <?= csrf_field(); ?>
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="hidden" id="id" name="id">
-                                    <label class="form-label">Nama supplier</label>
-                                    <input id="supplier" name="supplier" class="form-control" placeholder="Nama supplier" type="text">
+                                    <label class="form-label">Nopol</label>
+                                    <input id="nopol" name="nopol" class="form-control" placeholder="Nopol" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">No Telp</label>
-                                    <input id="telp_supplier" name="telp_supplier" class="form-control" placeholder="No Telp" type="text">
+                                    <label class="form-label">Kode Nopol</label>
+                                    <input id="kode_nopol" name="kode_nopol" class="form-control" placeholder="Kode nopol" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Alamat</label>
-                                    <input id="alamat_supplier" name="alamat_supplier" class="form-control" placeholder="Alamat" type="text">
-                                    <span class="help-block text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="form-label">Ppn</label>
-                                    <select id="ppn" name="ppn" class="form-control">
-                                        <option value="">Pilih</option>
-                                        <option value="1">1%</option>
-                                        <option value="10">10%</option>
-                                    </select>
+                                    <label class="form-label">Keterangan</label>
+                                    <input id="ket_nopol" name="ket_nopol" class="form-control" placeholder="Keteangan" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -111,7 +100,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id='btnSavesupplier' class="btn btn-primary btn-sm float-right" onclick="simpan()">Simpan</button>
+                <button id='btnSaveunit' class="btn btn-primary btn-sm float-right" onclick="simpan()">Simpan</button>
                 <button onclick='batal()' type='button' class="btn btn-warning btn-sm float-right">Close</button>
             </div>
         </div>
@@ -122,7 +111,7 @@
 <script type="text/javascript">
     var table;
     $(document).ready(function() {
-        table = $('#tb_supplier').DataTable({
+        table = $('#tb_unit').DataTable({
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
@@ -130,15 +119,15 @@
             "ordering": true,
 
             ajax: {
-                "url": "master_supplier/datasupplier",
+                "url": "master_unit/dataunit",
                 "type": "POST",
             }
         });
     });
 
     function batal() {
-        $('#frm-modal-supplier')[0].reset();
-        $('#md-form-supplier').modal('hide');
+        $('#frm-modal-unit')[0].reset();
+        $('#md-form-unit').modal('hide');
         $('.help-block').empty();
         $('.is-invalid').removeClass('is-invalid');
     }
@@ -153,30 +142,30 @@
 
     function tambah() {
         method = 'save';
-        $('#md-form-supplier').modal('show');
-        $('#modal-title').text('Tambah Supplier');
-        $('#btnSavesupplier').text('Save');
+        $('#md-form-unit').modal('show');
+        $('#modal-title').text('Tambah Nopol');
+        $('#btnSaveunit').text('Save');
     }
 
     function simpan() {
         if (method == 'save') {
-            url = '<?= site_url('master_supplier/save') ?>';
+            url = '<?= site_url('master_unit/save') ?>';
         } else {
-            url = '<?= site_url('master_supplier/update') ?>';
+            url = '<?= site_url('master_unit/update') ?>';
         }
         $.ajax({
             url: url,
             type: 'POST',
-            data: new FormData($('#frm-modal-supplier')[0]),
+            data: new FormData($('#frm-modal-unit')[0]),
             dataType: 'JSON',
             contentType: false,
             processData: false,
             success: function(data) {
                 if (data.status) {
                     $('.help-block').empty();
-                    $('#frm-modal-supplier')[0].reset();
+                    $('#frm-modal-unit')[0].reset();
                     $('.is-invalid').removeClass('is-invalid');
-                    $('#md-form-supplier').modal('hide');
+                    $('#md-form-unit').modal('hide');
                     alertsukses();
                     reload_table();
                 } else {
@@ -194,22 +183,46 @@
         });
     }
 
-    function edit_supplier(id) {
+    function alertsukses() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        if (method == 'save') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Data berhasil disimpan'
+            })
+        } else {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Data berhasil di ubah'
+            })
+        }
+    }
+
+    function edit_nopol(id) {
         method = 'update';
-        $('#btnSavesupplier').text('Update');
+        $('#btnSaveunit').text('Update');
         $.ajax({
-            url: '<?= site_url('master_supplier/edit/') ?>' + id,
+            url: '<?= site_url('master_unit/edit/') ?>' + id,
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
-                $('#id').val(data.id_supplier);
-                $('#supplier').val(data.supplier);
-                $('#alamat_supplier').val(data.alamat_supplier);
-                $('#telp_supplier').val(data.telp_supplier);
-                $('#ppn').val(data.ppn).change();
+                $('#id').val(data.id_nopol);
+                $('#nopol').val(data.nopol);
+                $('#kode_nopol').val(data.kode_nopol);
+                $('#ket_nopol').val(data.ket_nopol);
 
-                $('#md-form-supplier').modal('show');
-                $('#modal-title').text('Edit supplier');
+                $('#md-form-unit').modal('show');
+                $('#modal-title').text('Edit Nopol');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error!');
@@ -217,7 +230,7 @@
         });
     }
 
-    function hapus_supplier(id) {
+    function hapus_nopol(id) {
         swal.fire({
             title: 'Apakah Anda Yakin ?',
             text: 'Anda Tidak Akan Bisa Merecover Kembali Data Yang Sudah Anda Hapus !',
@@ -231,7 +244,7 @@
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: "<?php echo site_url('master_supplier/delete') ?>/" + id,
+                    url: "<?php echo site_url('master_unit/delete') ?>/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function(data) {
@@ -246,31 +259,6 @@
                 swal.fire("Batal", "Data Anda Tidak Jadi Dihapus", "warning");
             }
         });
-
-        function alertsukses() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                onOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-            if (method == 'save') {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Data berhasil disimpan'
-                })
-            } else {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'Data berhasil di ubah'
-                })
-            }
-        }
     }
 </script>
 <?= $this->endSection('content') ?>
