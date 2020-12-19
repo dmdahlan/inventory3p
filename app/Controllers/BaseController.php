@@ -49,5 +49,8 @@ class BaseController extends Controller
 		$this->adminrole 					= new \App\Models\AdminRole;
 		$this->adminuser 					= new \App\Models\AdminUser;
 		$this->adminlog 					= new \App\Models\AdminLog;
+
+		$this->mastersupplier				= new \App\Models\MasterSupplier;
+		$this->masterbarang					= new \App\Models\MasterBarang;
 	}
 }
