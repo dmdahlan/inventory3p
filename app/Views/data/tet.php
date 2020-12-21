@@ -91,7 +91,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="form-label">SUPPLIER</label>
-                                    <select id="supplier_id" name="supplier_id" class="form-control select2" onchange="hitung()">
+                                    <select id="supplier_id" name="supplier_id" class="form-control select2">
                                     </select>
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -139,8 +139,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">QTY</label>
-                                    <input id="qtyy" name="qtyy" class="form-control" placeholder="QTY" type="text" onkeyup="hitung()">
-                                    <input type="hidden" name="qty" id="qty">
+                                    <input id="qty" name="qty" class="form-control" placeholder="QTY" type="text" onkeyup="hitung()">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -148,15 +147,13 @@
                                 <div class="form-group">
                                     <label class="form-label">HARGA</label>
                                     <input id="hargaa" name="hargaa" class="form-control" placeholder="HARGA" type="text" onkeyup="hitung()">
-                                    <input type="hidden" name="harga" id="harga">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">DISKON</label>
-                                    <input id="discc" name="discc" class="form-control" placeholder="DISKON" type="text" onkeyup="hitung()">
-                                    <input type="hidden" name="disc" id="disc">
+                                    <input id="discc" name="discc" class="form-control" placeholder="DISKON" type="text" value="0">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -171,7 +168,6 @@
                                 <div class="form-group">
                                     <label class="form-label">TOTAL</label>
                                     <input id="totall" name="totall" class="form-control" type="text">
-                                    <input type="hidden" name="total" id="total">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -189,70 +185,28 @@
     <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
-    var textqtyy = document.getElementById('qtyy');
-    var textqty = document.getElementById('qty');
-    var texthargaa = document.getElementById('hargaa');
-    var textharga = document.getElementById('harga');
-    var textdiscc = document.getElementById('discc');
-    var textdisc = document.getElementById('disc');
-    textqtyy.addEventListener('keyup', function(e) {
-        textqtyy.value = currencyIDR(this.value);
-        textqty.value = this.value.replace(/\./g, '');
-    });
-    texthargaa.addEventListener('keyup', function(e) {
-        texthargaa.value = currencyIDR(this.value);
-        textharga.value = this.value.replace(/\./g, '');
-    });
-    textdiscc.addEventListener('keyup', function(e) {
-        textdiscc.value = currencyIDR(this.value);
-        textdisc.value = this.value.replace(/\./g, '');
-    });
-
     function currencyIDR(angka, prefix) {
-        if (prefix != "") {
-            var num_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = num_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        var num_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = num_string.split('.'),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
-        } else {
-            var num_string = angka.toString(),
-                sisa = num_string.length % 3,
-                rupiah = num_string.substr(0, sisa),
-                ribuan = num_string.substr(sisa).match(/\d{3}/g);
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-            return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join
         }
-    }
+    };
 
     function hitung() {
-        var getqty = document.getElementById('qtyy').value;
-        var getharga = document.getElementById('hargaa').value;
-        var getdisc = document.getElementById('discc').value;
-        var getppn = document.getElementById('ppn').value;
-        var qtyy = getqty.split(".").join("");
-        var harga = getharga.split(".").join("");
-        var disc = getdisc.split(".").join("");
+        var qty = Number(document.getElementById('qty').value);
+        var harga = Number(document.getElementById('hargaa').value);
 
-        var total = qtyy * harga - disc;
-        var ppn = total * getppn / 100;
-        var grand = total + ppn;
-
-        var currencytotal = currencyIDR(grand, '');
-        document.getElementById('totall').value = currencytotal;
-        document.getElementById('total').value = grand;
+        var total = qty * harga;
+        document.getElementById('totall').value = total;
     }
-
+    var texhargaa = document.getElementById('hargaa');
+    texthargaa.addEventListener('keyup', function(e) {});
     var table;
     $(document).ready(function() {
         table = $('#tb_kredit').DataTable({
