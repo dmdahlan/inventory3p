@@ -9,7 +9,8 @@ class Pemakaian_barang extends BaseController
     public function index()
     {
         $data = [
-            'title'     => 'Pemakaian | Barang'
+            'title'     => 'Pemakaian | Barang',
+            'user'      => $this->pemakaianbarang->inputby()
         ];
         return view('data/vw_pemakaianbarang', $data);
     }

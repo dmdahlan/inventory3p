@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <a href="" class="btn btn-info btn-sm" data-toggle="modal" onclick="tambah()">Tambah</a>
                                 </div>
                                 <div class="col-md-2">
@@ -36,12 +36,20 @@
                                 <div class="col-md-2">
                                     <input id="tglakhir" placeholder="tgl akhir" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <select id="brandd" class="form-control form-control-sm">
                                         <option value="">Pilih Brand</option>
                                         <option value="1">Perdana</option>
                                         <option value="2">Paramita</option>
                                         <option value="3">Pai</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="user" class="form-control form-control-sm">
+                                        <option value="">Pilih Nama</option>
+                                        <?php foreach ($user as $u) : ?>
+                                            <option value="<?= $u['id'] ?>"><?= $u['username'] ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
                                 <div class="col-md">
@@ -189,6 +197,7 @@
                     data.tgl_awal = $('#tglawal').val();
                     data.tgl_akhir = $('#tglakhir').val();
                     data.brandd = $('#brandd').val();
+                    data.user = $('#user').val();
                 },
             }
         });
@@ -198,6 +207,9 @@
         table.ajax.reload(); //just reload table
     });
     $('#brandd').change(function() {
+        table.ajax.reload();
+    });
+    $('#user').change(function() {
         table.ajax.reload();
     });
 
@@ -212,6 +224,7 @@
         document.getElementById("tglawal").value = "";
         document.getElementById("tglakhir").value = "";
         document.getElementById("brandd").value = "";
+        document.getElementById("user").value = "";
         reload_table();
     }
 

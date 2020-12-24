@@ -32,6 +32,10 @@ class PemakaianBarang extends Model
             ->join('master_barang', 'master_barang.id_barang=pemakaian_barang.barang_id', 'left')
             ->join('master_unit', 'master_unit.id_nopol=pemakaian_barang.nopol_id', 'left');
         $this->dt->where('pemakaian_barang.deleted_at', null);
+        $request = \Config\Services::request();
+        if ($request->getPost('user')) {
+            $this->dt->like('id', $request->getPost('user'));
+        }
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {
@@ -63,5 +67,12 @@ class PemakaianBarang extends Model
     {
         $query = $this->dt->where('pemakaian_barang.deleted_at', null);
         return $query->countAllResults();
+    }
+    public function inputby()
+    {
+        return $this->db->table('pemakaian_barang')
+            ->join('users', 'users.id=pemakaian_barang.user_id', 'left')
+            ->groupBy('username')
+            ->get()->getResultArray();
     }
 }
