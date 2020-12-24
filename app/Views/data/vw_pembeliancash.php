@@ -6,13 +6,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="text-dark">Pembelian Kredit</h5>
+                    <h5 class="text-dark">Pembelian Cash</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pembelian</a></li>
-                        <li class="breadcrumb-item active">Pembelian Kredit</li>
+                        <li class="breadcrumb-item active">Pembelian Cash</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,20 +27,37 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <a href="" class="btn btn-info btn-sm" data-toggle="modal" onclick="tambah()">Tambah</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tglawal" placeholder="tgl awal" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tglakhir" placeholder="tgl akhir" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="brandd" class="form-control form-control-sm">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="1">Perdana</option>
+                                        <option value="2">Paramita</option>
+                                        <option value="3">Pai</option>
+                                    </select>
+                                </div>
+                                <div class="col-md">
+                                    <button type="button" id="btn-filter" class="btn btn-info btn-sm">Cari</button>
                                     <button class="btn btn-info btn-sm" onclick="refresh()"> <span>Refresh</span></button>
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table table-responsive table-sm" style="font-size: 14px;">
-                            <table id="tb_kredit" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
+                            <table id="tb_cash" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
                                         <th>TGL NOTA</th>
-                                        <th>SUPPLIER</th>
+                                        <th>driver</th>
                                         <th>BRAND</th>
                                         <th>NOPOL</th>
                                         <th>NOTA SUPP</th>
@@ -48,7 +65,7 @@
                                         <th>NAMA BARANG</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>
-                                        <th>DISC</th>
+                                        <th>TOTAL</th>
                                         <th>OPSI</th>
                                     </tr>
                                 </thead>
@@ -66,7 +83,7 @@
     </section>
     <!-- /.content -->
 </section>
-<div class="modal fade" id="md-form-kredit">
+<div class="modal fade" id="md-form-cash">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -77,7 +94,7 @@
             </div>
             <div class="modal-body form">
                 <div class="form-group">
-                    <form id="frm-modal-kredit">
+                    <form id="frm-modal-cash">
                         <?= csrf_field(); ?>
                         <div class="row">
                             <div class="col-md-3">
@@ -90,9 +107,8 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="form-label">SUPPLIER</label>
-                                    <select id="supplier_id" name="supplier_id" class="form-control select2">
-                                    </select>
+                                    <label class="form-label">NAMA TOKO</label>
+                                    <input id="nama_toko" name="nama_toko" class="form-control" placeholder="Nama Toko" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -103,6 +119,7 @@
                                         <option value="">Pilih</option>
                                         <option value="1">Perdana</option>
                                         <option value="2">Paramita</option>
+                                        <option value="3">Pai</option>
                                     </select>
                                 </div>
                             </div>
@@ -116,8 +133,9 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">NOTA SUPP</label>
-                                    <input id="nota_supp" name="nota_supp" class="form-control" placeholder="Nota Supp" type="text">
+                                    <label class="form-label">DRIVER</label>
+                                    <select id="driver_id" name="driver_id" class="form-control select2">
+                                    </select>
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -139,46 +157,25 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">QTY</label>
-                                    <input id="qty" name="qty" class="form-control" placeholder="QTY" type="text">
+                                    <input id="qtyy" name="qtyy" class="form-control" placeholder="QTY" type="text" onkeyup="hitung()">
+                                    <input type="hidden" name="qty" id="qty">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">HARGA</label>
-                                    <input id="hargaa" name="hargaa" class="form-control uang" placeholder="HARGA" type="text">
-                                    <input type="hidden" id="harga" name="harga">
-                                    <span class="help-block text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="form-label">DISKON</label>
-                                    <input id="discc" name="discc" class="form-control uang" placeholder="DISKON" type="text" value="0">
-                                    <input type="hidden" id="disc" name="disc" value="0">
-                                    <span class="help-block text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="form-label">PPN</label>
-                                    <input id="ppn" name="ppn" class="form-control" placeholder="PPN" type="text">
+                                    <input id="hargaa" name="hargaa" class="form-control" placeholder="HARGA" type="text" onkeyup="hitung()">
+                                    <input type="hidden" name="harga" id="harga">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">TOTAL</label>
-                                    <input id="totall" name="totall" class="form-control uang" type="text">
-                                    <input type="hidden" id="total" name="total">
+                                    <input id="totall" name="totall" class="form-control" type="text" placeholder="Total">
+                                    <input type="hidden" name="total" id="total">
                                     <span class="help-block text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label class="form-label">Hitung</label>
-                                    <span class="help-block text-danger"></span>
-                                    <button type="button" onclick="hitung()" class="btn btn-info">Hitung</i></button>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +183,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id='btnSavekredit' class="btn btn-primary btn-sm float-right" onclick="simpan()">Simpan</button>
+                <button id='btnSavecash' class="btn btn-primary btn-sm float-right" onclick="simpan()">Simpan</button>
                 <button onclick='batal()' type='button' class="btn btn-warning btn-sm float-right">Close</button>
             </div>
         </div>
@@ -195,19 +192,9 @@
     <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
-    function hitung() {
-        var qty = $('#qty').val();
-        var harga = $('#harga').val();
-        var disc = $('#disc').val();
-        var ppn = $('#ppn').val();
-        var total = parseInt(qty) * parseInt(harga) - parseInt(disc);
-        var ppn = parseInt(total) * parseInt(ppn) / 100;
-        var grand = parseInt(total) + parseInt(ppn);
-        $('#totall').val(grand);
-    };
     var table;
     $(document).ready(function() {
-        table = $('#tb_kredit').DataTable({
+        table = $('#tb_cash').DataTable({
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
@@ -215,33 +202,47 @@
             "ordering": true,
 
             ajax: {
-                "url": "pembelian_kredit/datakredit",
+                "url": "<?= base_url('pembelian_cash/datacash') ?>",
                 "type": "POST",
+                "data": function(data) {
+                    data.tgl_awal = $('#tglawal').val();
+                    data.tgl_akhir = $('#tglakhir').val();
+                    data.brandd = $('#brandd').val();
+                },
             }
         });
         init_select();
     });
+    $('#btn-filter').click(function() { //button filter event click
+        table.ajax.reload(); //just reload table
+    });
+    $('#brandd').change(function() {
+        table.ajax.reload();
+    });
 
     function batal() {
-        $('#frm-modal-kredit')[0].reset();
-        $('#md-form-kredit').modal('hide');
+        $('#frm-modal-cash')[0].reset();
+        $('#md-form-cash').modal('hide');
         $('.help-block').empty();
         $('.is-invalid').removeClass('is-invalid');
     }
 
     function refresh() {
+        document.getElementById("tglawal").value = "";
+        document.getElementById("tglakhir").value = "";
+        document.getElementById("brandd").value = "";
         reload_table();
     }
 
     function reload_table() {
-        table.ajax.reload(null, false).page("last").draw("page");
+        table.ajax.reload(null, false);
     }
 
     function tambah() {
         method = 'save';
-        $('#md-form-kredit').modal('show');
-        $('#modal-title').text('Tambah pembelian kredit');
-        $('#btnSavekredit').text('Save');
+        $('#md-form-cash').modal('show');
+        $('#modal-title').text('Tambah pembelian cash');
+        $('#btnSavecash').text('Save');
         $(".select2").select2({
             theme: "bootstrap4"
         });
@@ -249,23 +250,23 @@
 
     function simpan() {
         if (method == 'save') {
-            url = '<?= site_url('master_kredit/save') ?>';
+            url = '<?= site_url('pembelian_cash/save') ?>';
         } else {
-            url = '<?= site_url('master_kredit/update') ?>';
+            url = '<?= site_url('pembelian_cash/update') ?>';
         }
         $.ajax({
             url: url,
             type: 'POST',
-            data: new FormData($('#frm-modal-kredit')[0]),
+            data: new FormData($('#frm-modal-cash')[0]),
             dataType: 'JSON',
             contentType: false,
             processData: false,
             success: function(data) {
                 if (data.status) {
                     $('.help-block').empty();
-                    $('#frm-modal-kredit')[0].reset();
+                    $('#frm-modal-cash')[0].reset();
                     $('.is-invalid').removeClass('is-invalid');
-                    $('#md-form-kredit').modal('hide');
+                    $('#md-form-cash').modal('hide');
                     alertsukses();
                     reload_table();
                 } else {
@@ -283,22 +284,35 @@
         });
     }
 
-
-    function edit_kredit(id) {
+    function edit_cash(id) {
         method = 'update';
-        $('#btnSavekredit').text('Update');
+        $('#btnSavecash').text('Update');
+        $(".select2").select2({
+            theme: "bootstrap4"
+        });
         $.ajax({
-            url: '<?= site_url('master_kredit/edit/') ?>' + id,
+            url: '<?= site_url('pembelian_cash/edit/') ?>' + id,
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
-                $('#id').val(data.id_kredit);
-                $('#nama_kredit').val(data.nama_kredit);
-                $('#kode_kredit').val(data.kode_kredit);
-                $('#ket_kredit').val(data.ket_kredit);
+                $('#id').val(data.id_cash);
+                $('#tgl_nota').val(data.tgl_nota);
+                $('#nama_toko').val(data.nama_toko);
+                $('#brand_id').val(data.brand_id).change();
+                $('#driver_id').val(data.driver_id).change();
+                $('#nopol_id').val(data.nopol_id).change();
+                $('#driver_id').val(data.driver_id).change();
+                $('#nota_order').val(data.nota_order);
+                $('#barang_id').val(data.barang_id).change();
+                $('#qty').val(data.qty);
+                $('#qtyy').val(data.qty);
+                $('#harga').val(data.harga);
+                $('#hargaa').val(data.harga);
+                $('#total').val(data.total);
+                $('#totall').val(data.total);
 
-                $('#md-form-kredit').modal('show');
-                $('#modal-title').text('Edit kredit');
+                $('#md-form-cash').modal('show');
+                $('#modal-title').text('Edit pembelian cash');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error!');
@@ -306,7 +320,7 @@
         });
     }
 
-    function hapus_kredit(id) {
+    function hapus_cash(id) {
         swal.fire({
             title: 'Apakah Anda Yakin ?',
             text: 'Anda Tidak Akan Bisa Merecover Kembali Data Yang Sudah Anda Hapus !',
@@ -320,7 +334,7 @@
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: "<?php echo site_url('master_kredit/delete') ?>/" + id,
+                    url: "<?php echo site_url('pembelian_cash/delete') ?>/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function(data) {
@@ -336,44 +350,17 @@
             }
         });
     }
-    $('#supplier_id').change(function() {
-        var data = $('#supplier_id').val();
-        $.ajax({
-            url: '<?= site_url('master_supplier/edit/') ?>' + data,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function(data) {
-                $('#ppn').val(data.ppn);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('Error!');
-            }
-        });
-    });
-    $('.uang').mask('000.000.000.000', {
-        reverse: true
-    });
-    var hargaa = document.querySelector('input[name="hargaa"]');
-    var harga = document.querySelector('input[name="harga"]');
-    hargaa.onkeyup = function() {
-        harga.value = this.value.replace(/\./g, '');
-    }
-    var discc = document.querySelector('input[name="discc"]');
-    var disc = document.querySelector('input[name="disc"]');
-    discc.onkeyup = function() {
-        disc.value = this.value.replace(/\./g, '');
-    }
 
     function init_select() {
-        let dropdown_supplier = $('#supplier_id');
-        dropdown_supplier.empty();
-        dropdown_supplier.append('<option value="">Pilih supplier</option>');
-        dropdown_supplier.prop('selectedIndex', 0);
-        const url_supplier = '<?= base_url('master_supplier/getsupplier/') ?>';
+        let dropdown_driver = $('#driver_id');
+        dropdown_driver.empty();
+        dropdown_driver.append('<option value="">Pilih driver</option>');
+        dropdown_driver.prop('selectedIndex', 0);
+        const url_driver = '<?= base_url('master_driver/getdriver/') ?>';
         // Populate dropdown with list
-        $.getJSON(url_supplier, function(data) {
+        $.getJSON(url_driver, function(data) {
             $.each(data, function(key, entry) {
-                dropdown_supplier.append($('<option></option>').attr('value', entry.id_supplier).text(entry.supplier));
+                dropdown_driver.append($('<option></option>').attr('value', entry.id_driver).text(entry.nama));
             })
         });
         let dropdown_nopol = $('#nopol_id');
@@ -399,11 +386,66 @@
             })
         });
     }
+    var textqtyy = document.getElementById('qtyy');
+    var textqty = document.getElementById('qty');
+    var texthargaa = document.getElementById('hargaa');
+    var textharga = document.getElementById('harga');
+
+    textqtyy.addEventListener('keyup', function(e) {
+        textqtyy.value = currencyIDR(this.value);
+        textqty.value = this.value.replace(/\./g, '');
+    });
+    texthargaa.addEventListener('keyup', function(e) {
+        texthargaa.value = currencyIDR(this.value);
+        textharga.value = this.value.replace(/\./g, '');
+    });
+
+    function currencyIDR(angka, prefix) {
+        if (prefix != "") {
+            var num_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = num_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+        } else {
+            var num_string = angka.toString(),
+                sisa = num_string.length % 3,
+                rupiah = num_string.substr(0, sisa),
+                ribuan = num_string.substr(sisa).match(/\d{3}/g);
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+            return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+        }
+    }
+
+    function hitung() {
+        var getqty = document.getElementById('qtyy').value;
+        var getharga = document.getElementById('hargaa').value;
+
+        var qtyy = getqty.split(".").join("");
+        var harga = getharga.split(".").join("");
+
+        var grand = qtyy * harga;
+
+        var currencytotal = currencyIDR(grand, '');
+        document.getElementById('totall').value = currencytotal;
+        document.getElementById('total').value = grand;
+    }
     $('.tanggal').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: "dd-mm-yyyy"
     });
+
 
     function alertsukses() {
         const Toast = Swal.mixin({

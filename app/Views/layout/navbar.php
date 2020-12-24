@@ -3,7 +3,7 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white fixed-top">
         <div class="container-fluid">
             <a href="<?= base_url(''); ?>" class="navbar-brand">
-                <img src="<?= base_url(''); ?>/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="<?= base_url(''); ?>/img/logotitle.png" alt="AdminLTE Logo" class="brand-image">
             </a>
 
             <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,7 @@
                         <a href="<?= base_url(''); ?>" class="nav-link">Home</a>
                     </li>
                     <?php
+
                     $db = \Config\Database::connect();
                     $request = \Config\Services::request();
                     $menuaktif = explode('_', $request->uri->getSegment(1))[0];
@@ -59,10 +60,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <span class="badge badge-warning navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
+                        <span class="dropdown-header"></span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-envelope mr-2"></i> 4 new messages
@@ -84,7 +85,7 @@
                             <img src="/assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                             <p>
                                 <?= user()->username; ?>
-                                <small>Member since aaaa</small>
+                                <small><?= date('d F Y', strtotime(user()->created_at)) ?></small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -106,7 +107,7 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white fixed-top">
         <div class="container-fluid">
             <a href="<?= base_url(''); ?>" class="navbar-brand">
-                <img src="<?= base_url(''); ?>/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="<?= base_url(''); ?>/img/logotitle.png" alt="AdminLTE Logo" class="brand-image">
             </a>
 
             <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

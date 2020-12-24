@@ -53,7 +53,24 @@ class BaseController extends Controller
 		$this->mastersupplier				= new \App\Models\MasterSupplier;
 		$this->masterbarang					= new \App\Models\MasterBarang;
 		$this->masterunit					= new \App\Models\MasterUnit;
+		$this->masterdriver 				= new \App\Models\MasterDriver;
 
 		$this->pembeliankredit				= new \App\Models\PembelianKredit;
+		$this->bayarkredit					= new \App\Models\PembelianBayarkredit;
+		$this->pembeliancash				= new \App\Models\PembelianCash;
+		$this->bayarcash					= new \App\Models\PembelianBayarcash;
+
+		$this->printpokredit				= new \App\Models\PrintPokredit;
+		$this->printpocash					= new \App\Models\PrintPocash;
+
+		$this->rekapkredit					= new \App\Models\RekapPembeliankredit;
+		$this->rekapcash					= new \App\Models\RekapPembeliancash();
+
+		$this->pemakaianbarang				= new \App\Models\PemakaianBarang();
+	}
+	function rupiah($angka)
+	{
+		$hasil_rupiah = number_format($angka, 0, ',', '.');
+		return $hasil_rupiah;
 	}
 }

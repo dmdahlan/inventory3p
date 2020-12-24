@@ -41,6 +41,7 @@
                                         <th>NO</th>
                                         <th>NOPOL</th>
                                         <th>KODE NOPOL</th>
+                                        <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                         <th>OPSI</th>
                                     </tr>
@@ -88,7 +89,18 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Brand</label>
+                                    <select id="brand" name="brand" class="form-control">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Keterangan</label>
                                     <input id="ket_nopol" name="ket_nopol" class="form-control" placeholder="Keteangan" type="text">
@@ -137,7 +149,7 @@
     }
 
     function reload_table() {
-        table.ajax.reload(null, false).page("last").draw("page");
+        table.ajax.reload(null, false);
     }
 
     function tambah() {
@@ -219,6 +231,7 @@
                 $('#id').val(data.id_nopol);
                 $('#nopol').val(data.nopol);
                 $('#kode_nopol').val(data.kode_nopol);
+                $('#brand').val(data.brand);
                 $('#ket_nopol').val(data.ket_nopol);
 
                 $('#md-form-unit').modal('show');

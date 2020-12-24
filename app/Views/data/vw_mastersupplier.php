@@ -148,7 +148,7 @@
     }
 
     function reload_table() {
-        table.ajax.reload(null, false).page("last").draw("page");
+        table.ajax.reload(null, false);
     }
 
     function tambah() {
@@ -192,6 +192,31 @@
                 alert('Error!');
             }
         });
+    }
+
+    function alertsukses() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        if (method == 'save') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Data berhasil disimpan'
+            })
+        } else {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Data berhasil di ubah'
+            })
+        }
     }
 
     function edit_supplier(id) {
@@ -246,31 +271,6 @@
                 swal.fire("Batal", "Data Anda Tidak Jadi Dihapus", "warning");
             }
         });
-
-        function alertsukses() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                onOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-            if (method == 'save') {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Data berhasil disimpan'
-                })
-            } else {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'Data berhasil di ubah'
-                })
-            }
-        }
     }
 </script>
 <?= $this->endSection('content') ?>

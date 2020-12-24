@@ -137,7 +137,7 @@
     }
 
     function reload_table() {
-        table.ajax.reload(null, false).page("last").draw("page");
+        table.ajax.reload(null, false);
     }
 
     function tambah() {

@@ -6,15 +6,15 @@ use CodeIgniter\Model;
 
 class PembelianKredit extends Model
 {
-    protected $table = 'pemnelian_kredit';
-    protected $allowedFields = ['tgl_nota', 'supplier_id', 'brand_id', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc'];
+    protected $table = 'pembelian_kredit';
+    protected $allowedFields = ['tgl_nota', 'supplier_id', 'brand_id', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc', 'pembelianppn', 'total'];
     protected $id = 'id_kredit';
     protected $primaryKey = 'id_kredit';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_kredit', 'tgl_nota', 'supplier_id', 'brand', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc');
-    protected $column_search = array('id_kredit', 'tgl_nota', 'supplier_id', 'brand', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc');
+    protected $column_order = array('id_kredit', 'tgl_nota', 'supplier', 'brand', 'nopol', 'nota_supp', 'nota_order', 'nama_barang', 'qty', 'harga', 'disc', 'pembelianppn', 'total');
+    protected $column_search = array('id_kredit', 'tgl_nota', 'supplier', 'brand', 'nopol', 'nota_supp', 'nota_order', 'nama_barang', 'qty', 'harga', 'disc', 'pembelianppn', 'total');
     protected $order = array('tgl_nota' => 'desc');
 
     function get_datatables()
@@ -33,6 +33,13 @@ class PembelianKredit extends Model
             ->join('master_unit', 'master_unit.id_nopol=pembelian_kredit.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_kredit.barang_id', 'left');
         $this->dt->where('pembelian_kredit.deleted_at', null);
+        $request = \Config\Services::request();
+        if ($request->getPost('brandd')) {
+            $this->dt->like('brand_id', $request->getPost('brandd'));
+        }
+        if ($request->getPost('tgl_awal') && $request->getPost('tgl_akhir')) {
+            $this->dt->where('tgl_nota BETWEEN "' . date('Y-m-d', strtotime($request->getPost('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getPost('tgl_akhir'))) . '"');
+        }
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {

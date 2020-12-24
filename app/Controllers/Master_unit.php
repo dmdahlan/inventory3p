@@ -23,6 +23,7 @@ class Master_unit extends BaseController
             $row[] = $no;
             $row[] = $r->nopol;
             $row[] = $r->kode_nopol;
+            $row[] = $r->brand;
             $row[] = $r->ket_nopol;
             $row[] = '
                     <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_nopol(' . "'" . $r->id_nopol . "'" . ')">Edit</a>
@@ -45,6 +46,7 @@ class Master_unit extends BaseController
         $data = [
             'nopol'            => $this->request->getPost('nopol'),
             'kode_nopol'       => $this->request->getPost('kode_nopol'),
+            'brand'            => $this->request->getPost('brand'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
         ];
 
@@ -66,6 +68,7 @@ class Master_unit extends BaseController
             'id_nopol'         => $this->request->getPost('id'),
             'nopol'            => $this->request->getPost('nopol'),
             'kode_nopol'       => $this->request->getPost('kode_nopol'),
+            'brand'            => $this->request->getPost('brand'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
         ];
 

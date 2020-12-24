@@ -13,6 +13,7 @@ class Migratebrand extends Migration
 			'brand'    	  	    => ['type' => 'VARCHAR', 'constraint' => 100],
 			'brand_ket'  	    => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
 			'brand_alamat'      => ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
+			'brand_img'      	=> ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
 			'created_at' 	    => ['type' => 'DATETIME', 'null' => true],
 			'updated_at' 	    => ['type' => 'DATETIME', 'null' => true],
 			'deleted_at' 	    => ['type' => 'DATETIME', 'null' => true],

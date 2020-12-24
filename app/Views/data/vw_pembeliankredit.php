@@ -27,8 +27,25 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <a href="" class="btn btn-info btn-sm" data-toggle="modal" onclick="tambah()">Tambah</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tglawal" placeholder="tgl awal" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tglakhir" placeholder="tgl akhir" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="brandd" class="form-control form-control-sm">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="1">Perdana</option>
+                                        <option value="2">Paramita</option>
+                                        <option value="3">Pai</option>
+                                    </select>
+                                </div>
+                                <div class="col-md">
+                                    <button type="button" id="btn-filter" class="btn btn-info btn-sm">Cari</button>
                                     <button class="btn btn-info btn-sm" onclick="refresh()"> <span>Refresh</span></button>
                                 </div>
                             </div>
@@ -49,6 +66,8 @@
                                         <th>QTY</th>
                                         <th>HARGA</th>
                                         <th>DISC</th>
+                                        <th>PPN</th>
+                                        <th>TOTAL</th>
                                         <th>OPSI</th>
                                     </tr>
                                 </thead>
@@ -91,7 +110,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="form-label">SUPPLIER</label>
-                                    <select id="supplier_id" name="supplier_id" class="form-control select2" onchange="hitung()">
+                                    <select id="supplier_id" name="supplier_id" class="form-control select2">
                                     </select>
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -103,6 +122,7 @@
                                         <option value="">Pilih</option>
                                         <option value="1">Perdana</option>
                                         <option value="2">Paramita</option>
+                                        <option value="3">Pai</option>
                                     </select>
                                 </div>
                             </div>
@@ -163,7 +183,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">PPN</label>
-                                    <input id="ppn" name="ppn" class="form-control" placeholder="PPN" type="text">
+                                    <input id="ppnn" name="ppnn" class="form-control" placeholder="PPN" type="text">
+                                    <input type="hidden" name="ppn" id="ppn">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -172,6 +193,13 @@
                                     <label class="form-label">TOTAL</label>
                                     <input id="totall" name="totall" class="form-control" type="text">
                                     <input type="hidden" name="total" id="total">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Tax</label>
+                                    <input id="tax" name="tax" class="form-control" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -239,20 +267,22 @@
         var getqty = document.getElementById('qtyy').value;
         var getharga = document.getElementById('hargaa').value;
         var getdisc = document.getElementById('discc').value;
-        var getppn = document.getElementById('ppn').value;
+        var tax = $('#tax').val();
         var qtyy = getqty.split(".").join("");
         var harga = getharga.split(".").join("");
         var disc = getdisc.split(".").join("");
 
         var total = qtyy * harga - disc;
-        var ppn = total * getppn / 100;
-        var grand = total + ppn;
+        var ppnx = total * tax / 100;
+        var grand = total + ppnx;
 
         var currencytotal = currencyIDR(grand, '');
+        var currencyppn = currencyIDR(ppnx, '');
         document.getElementById('totall').value = currencytotal;
         document.getElementById('total').value = grand;
+        document.getElementById('ppnn').value = currencyppn;
+        document.getElementById('ppn').value = ppnx;
     }
-
     var table;
     $(document).ready(function() {
         table = $('#tb_kredit').DataTable({
@@ -263,11 +293,22 @@
             "ordering": true,
 
             ajax: {
-                "url": "pembelian_kredit/datakredit",
+                "url": "<?= base_url('pembelian_kredit/datakredit') ?>",
                 "type": "POST",
+                "data": function(data) {
+                    data.tgl_awal = $('#tglawal').val();
+                    data.tgl_akhir = $('#tglakhir').val();
+                    data.brandd = $('#brandd').val();
+                },
             }
         });
         init_select();
+    });
+    $('#btn-filter').click(function() { //button filter event click
+        table.ajax.reload(); //just reload table
+    });
+    $('#brandd').change(function() {
+        table.ajax.reload();
     });
 
     function batal() {
@@ -278,11 +319,14 @@
     }
 
     function refresh() {
+        document.getElementById("tglawal").value = "";
+        document.getElementById("tglakhir").value = "";
+        document.getElementById("brandd").value = "";
         reload_table();
     }
 
     function reload_table() {
-        table.ajax.reload(null, false).page("last").draw("page");
+        table.ajax.reload(null, false);
     }
 
     function tambah() {
@@ -297,9 +341,9 @@
 
     function simpan() {
         if (method == 'save') {
-            url = '<?= site_url('master_kredit/save') ?>';
+            url = '<?= site_url('pembelian_kredit/save') ?>';
         } else {
-            url = '<?= site_url('master_kredit/update') ?>';
+            url = '<?= site_url('pembelian_kredit/update') ?>';
         }
         $.ajax({
             url: url,
@@ -331,22 +375,39 @@
         });
     }
 
-
     function edit_kredit(id) {
         method = 'update';
         $('#btnSavekredit').text('Update');
+        $(".select2").select2({
+            theme: "bootstrap4"
+        });
         $.ajax({
-            url: '<?= site_url('master_kredit/edit/') ?>' + id,
+            url: '<?= site_url('pembelian_kredit/edit/') ?>' + id,
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
                 $('#id').val(data.id_kredit);
-                $('#nama_kredit').val(data.nama_kredit);
-                $('#kode_kredit').val(data.kode_kredit);
-                $('#ket_kredit').val(data.ket_kredit);
+                $('#tgl_nota').val(data.tgl_nota);
+                $('#supplier_id').val(data.supplier_id).change();
+                $('#nopol_id').val(data.nopol_id).change();
+                $('#brand_id').val(data.brand_id).change();
+                $('#nota_supp').val(data.nota_supp);
+                $('#nota_order').val(data.nota_order);
+                $('#barang_id').val(data.barang_id).change();
+                $('#qty').val(data.qty);
+                $('#qtyy').val(data.qty);
+                $('#harga').val(data.harga);
+                $('#hargaa').val(data.harga);
+                $('#disc').val(data.disc);
+                $('#discc').val(data.disc);
+                $('#ppn').val(data.pembelianppn);
+                $('#ppnn').val(data.pembelianppn);
+                // $('#ppnnn').val(data.pembelianppn);
+                $('#total').val(data.total);
+                $('#totall').val(data.total);
 
                 $('#md-form-kredit').modal('show');
-                $('#modal-title').text('Edit kredit');
+                $('#modal-title').text('Edit pembelian kredit');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error!');
@@ -368,7 +429,7 @@
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: "<?php echo site_url('master_kredit/delete') ?>/" + id,
+                    url: "<?php echo site_url('pembelian_kredit/delete') ?>/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function(data) {
@@ -391,7 +452,8 @@
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
-                $('#ppn').val(data.ppn);
+                $('#tax').val(data.ppn);
+                hitung();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error!');
@@ -434,11 +496,15 @@
             })
         });
     }
+
+
+
     $('.tanggal').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: "dd-mm-yyyy"
     });
+
 
     function alertsukses() {
         const Toast = Swal.mixin({

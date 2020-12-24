@@ -18,6 +18,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url(''); ?>/assets/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- style -->
+    <link href="<?= base_url(''); ?>/img/logotitle.png" rel="shorcut icon">
+    <link rel="stylesheet" href="<?= base_url(''); ?>/assets/style.css">
     <?= $this->rendersection('css') ?>
 
     <!-- REQUIRED SCRIPTS -->
