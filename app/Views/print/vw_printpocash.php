@@ -58,7 +58,7 @@
                                         <address>
                                             NO PO <br>
                                             ORDER TO <br>
-                                            BY <br>
+                                            ORDER BY <br>
                                         </address>
                                     </div>
                                     <div class="col-sm-1 invoice-col">
