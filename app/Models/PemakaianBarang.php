@@ -13,8 +13,8 @@ class PemakaianBarang extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_pakai', 'tgl_pakai', 'brand', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
-    protected $column_search = array('id_pakai', 'tgl_pakai', 'brand', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
+    protected $column_order = array('id_pakai', 'tgl_pakai', 'brand_name', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
+    protected $column_search = array('id_pakai', 'tgl_pakai', 'brand_name', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
     protected $order = array('tgl_pakai' => 'desc');
 
     function get_datatables()

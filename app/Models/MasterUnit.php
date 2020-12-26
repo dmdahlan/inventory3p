@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class MasterUnit extends Model
 {
     protected $table = 'master_unit';
-    protected $allowedFields = ['kode_nopol', 'nopol', 'brand', 'ket_nopol'];
+    protected $allowedFields = ['kode_nopol', 'nopol', 'brand_name', 'ket_nopol'];
     protected $id = 'id_nopol';
     protected $primaryKey = 'id_nopol';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'brand', 'ket_nopol');
-    protected $column_search = array('id_nopol', 'nopol', 'brand', 'kode_nopol', 'ket_nopol');
+    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'brand_name', 'ket_nopol');
+    protected $column_search = array('id_nopol', 'nopol', 'brand_name', 'kode_nopol', 'ket_nopol');
     protected $order = array('nopol' => 'asc');
 
     function get_datatables()

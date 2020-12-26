@@ -25,7 +25,7 @@ class Pemakaian_barang extends BaseController
             $row = array();
             $row[] = $no;
             $row[] = Time::parse($r->tgl_pakai)->toLocalizedString('dd-MMM-YY');
-            $row[] = $r->brand;
+            $row[] = $r->brand_name;
             $row[] = $r->no_perbaikan;
             $row[] = $r->nopol;
             $row[] = $r->keluhan_perbaikan;

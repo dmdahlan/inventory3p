@@ -92,7 +92,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Brand</label>
-                                    <select id="brand" name="brand" class="form-control">
+                                    <select id="brand_name" name="brand_name" class="form-control">
                                         <option value="">Pilih Brand</option>
                                         <option value="perdana">Perdana</option>
                                         <option value="paramita">Paramita</option>
@@ -231,7 +231,7 @@
                 $('#id').val(data.id_nopol);
                 $('#nopol').val(data.nopol);
                 $('#kode_nopol').val(data.kode_nopol);
-                $('#brand').val(data.brand);
+                $('#brand_name').val(data.brand_name);
                 $('#ket_nopol').val(data.ket_nopol);
 
                 $('#md-form-unit').modal('show');
