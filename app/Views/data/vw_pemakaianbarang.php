@@ -219,11 +219,7 @@
         $('.help-block').empty();
         $('.is-invalid').removeClass('is-invalid');
         $("input[type=hidden]").val('');
-        $("input").prop('disabled', false);
-        $(".select2").select2({
-            disabled: false,
-            theme: "bootstrap4"
-        });
+        $("input").prop('readonly', false);
     }
 
     function refresh() {
@@ -267,11 +263,7 @@
                     $('#frm-modal-pakai')[0].reset();
                     $('.is-invalid').removeClass('is-invalid');
                     $("input[type=hidden]").val('');
-                    $("input").prop('disabled', false);
-                    $(".select2").select2({
-                        disabled: false,
-                        theme: "bootstrap4"
-                    });
+                    $("input").prop('readonly', false);
                     $('#md-form-pakai').modal('hide');
                     alertsukses();
                     reload_table();
@@ -294,7 +286,7 @@
         method = 'update';
         $('#btnSavepakai').text('Update');
         $(".select2").select2({
-            theme: "bootstrap4"
+            theme: "bootstrap4",
         });
         $.ajax({
             url: '<?= site_url('pemakaian_barang/edit/') ?>' + id,
@@ -315,18 +307,13 @@
                     $('#keluhan_perbaikan').val(data.keluhan_perbaikan);
                     $('#barang_id').val(data.barang_id).change();
                 } else {
-                    $('#tgl_pakai').val(data.tgl_pakai).prop('disabled', true);
-                    $('#no_perbaikan').val(data.no_perbaikan).prop('disabled', true);
-                    $('#nopol_id').val(data.nopol_id).change().select2(({
-                        disabled: true,
-                        theme: "bootstrap4"
-                    }));
-                    $('#keluhan_perbaikan').val(data.keluhan_perbaikan).prop('disabled', true);
-                    $('#barang_id').val(data.barang_id).change().select2(({
-                        disabled: true,
-                        theme: "bootstrap4"
-                    }));
+                    $('#tgl_pakai').val(data.tgl_pakai).prop('readonly', true);
+                    $('#no_perbaikan').val(data.no_perbaikan).prop('readonly', true);
+                    $('#nopol_id').val(data.nopol_id).change().select2('destroy').attr("readonly", true);
+                    $('#keluhan_perbaikan').val(data.keluhan_perbaikan).prop('readonly', true);
+                    $('#barang_id').val(data.barang_id).change().select2('destroy').attr("readonly", true);
                 }
+
 
                 $('#md-form-pakai').modal('show');
                 $('#modal-title').text('Edit pemakaian');
