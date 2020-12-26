@@ -218,6 +218,12 @@
         $('#md-form-pakai').modal('hide');
         $('.help-block').empty();
         $('.is-invalid').removeClass('is-invalid');
+        $("input[type=hidden]").val('');
+        $("input").prop('disabled', false);
+        $(".select2").select2({
+            disabled: false,
+            theme: "bootstrap4"
+        });
     }
 
     function refresh() {
@@ -260,6 +266,12 @@
                     $('.help-block').empty();
                     $('#frm-modal-pakai')[0].reset();
                     $('.is-invalid').removeClass('is-invalid');
+                    $("input[type=hidden]").val('');
+                    $("input").prop('disabled', false);
+                    $(".select2").select2({
+                        disabled: false,
+                        theme: "bootstrap4"
+                    });
                     $('#md-form-pakai').modal('hide');
                     alertsukses();
                     reload_table();
@@ -290,17 +302,31 @@
             dataType: 'JSON',
             success: function(data) {
                 $('#id').val(data.id_pakai);
-                $('#tgl_pakai').val(data.tgl_pakai);
-                $('#no_perbaikan').val(data.no_perbaikan);
-                $('#nopol_id').val(data.nopol_id).change();
-                $('#keluhan_perbaikan').val(data.keluhan_perbaikan);
-                $('#barang_id').val(data.barang_id).change();
                 $('#qty').val(data.qty);
                 $('#qtyy').val(data.qty);
                 $('#harga').val(data.harga);
                 $('#hargaa').val(data.harga);
                 $('#total').val(data.total);
                 $('#totall').val(data.total);
+                if (data.user_id == <?= user()->id; ?>) {
+                    $('#tgl_pakai').val(data.tgl_pakai);
+                    $('#no_perbaikan').val(data.no_perbaikan);
+                    $('#nopol_id').val(data.nopol_id).change();
+                    $('#keluhan_perbaikan').val(data.keluhan_perbaikan);
+                    $('#barang_id').val(data.barang_id).change();
+                } else {
+                    $('#tgl_pakai').val(data.tgl_pakai).prop('disabled', true);
+                    $('#no_perbaikan').val(data.no_perbaikan).prop('disabled', true);
+                    $('#nopol_id').val(data.nopol_id).change().select2(({
+                        disabled: true,
+                        theme: "bootstrap4"
+                    }));
+                    $('#keluhan_perbaikan').val(data.keluhan_perbaikan).prop('disabled', true);
+                    $('#barang_id').val(data.barang_id).change().select2(({
+                        disabled: true,
+                        theme: "bootstrap4"
+                    }));
+                }
 
                 $('#md-form-pakai').modal('show');
                 $('#modal-title').text('Edit pemakaian');

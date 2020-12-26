@@ -276,6 +276,7 @@
         $('#md-form-cash').modal('hide');
         $('.help-block').empty();
         $('.is-invalid').removeClass('is-invalid');
+        $("input[type=hidden]").val('');
     }
 
     function refresh() {
@@ -330,6 +331,7 @@
                     $('.help-block').empty();
                     $('#frm-modal-cash')[0].reset();
                     $('.is-invalid').removeClass('is-invalid');
+                    $("input[type=hidden]").val('');
                     $('#md-form-cash').modal('hide');
                     alertsukses();
                     reload_table();

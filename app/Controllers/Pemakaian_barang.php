@@ -19,6 +19,7 @@ class Pemakaian_barang extends BaseController
         $list = $this->pemakaianbarang->get_datatables();
         $data = array();
         $no = @$_POST['start'];
+        $user = user()->id;
 
         foreach ($list as $r) {
             $no++;
@@ -34,10 +35,18 @@ class Pemakaian_barang extends BaseController
             $row[] = $this->rupiah($r->harga);
             $row[] = $this->rupiah($r->total);
             $row[] = $r->username;
-            $row[] = '
-                    <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_pakai(' . "'" . $r->id_pakai . "'" . ')">Edit</a>
-                    <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_pakai(' . "'" . $r->id_pakai . "'" . ')">Hapus</a>
-                    ';
+            if ($r->user_id == $user) {
+                $row[] = '
+                <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_pakai(' . "'" . $r->id_pakai . "'" . ')">Edit</a>
+                <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_pakai(' . "'" . $r->id_pakai . "'" . ')">Hapus</a>
+                ';
+            } else {
+                $row[] = '
+                <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_pakai(' . "'" . $r->id_pakai . "'" . ')">Edit</a>
+                <a class="btn btn-danger btn-xs disabled" href="javascript:void(0)" title="Hapus" onclick="hapus_pakai(' . "'" . $r->id_pakai . "'" . ')">Hapus</a>
+                ';
+            };
+
             $data[] = $row;
         }
         $output = array(
