@@ -72,7 +72,7 @@
                                         <address>
                                             <?= $ket['nota_order']; ?> <br>
                                             <?= $ket['nama']; ?><br>
-                                            <?= $ket['brand']; ?><br>
+                                            <?= $ket['brand_ket']; ?><br>
                                         </address>
                                     </div>
                                     <div class="col-sm-2 float-right">
@@ -133,6 +133,21 @@
                                         </div>
                                         <div class="col-md-3">
                                             MENGETAHUI
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" class="">
+                                    <div class="container mt-5">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

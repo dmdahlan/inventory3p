@@ -72,7 +72,7 @@
                                         <address>
                                             <?= $ket['nota_order']; ?> <br>
                                             <?= $ket['supplier']; ?><br>
-                                            <?= $ket['brand']; ?><br>
+                                            <?= $ket['brand_ket']; ?><br>
                                         </address>
                                     </div>
                                     <div class="col-sm-2 float-right">
@@ -123,16 +123,34 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="container mt-5">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-3">
-                                            MENYUTUJUI
+                                <div class="row">
+                                    <div class="container mt-5 mb-5">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-3">
+                                                MENYUTUJUI
+                                            </div>
+                                            <div class="col-md-3">
+                                                LOGISTIK
+                                            </div>
+                                            <div class="col-md-3">
+                                                MENGETAHUI
+                                            </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            LOGISTIK
-                                        </div>
-                                        <div class="col-md-3">
-                                            MENGETAHUI
+
+                                    </div>
+                                </div>
+                                <div class="row" class="">
+                                    <div class="container mt-5">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <hr class="border">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
