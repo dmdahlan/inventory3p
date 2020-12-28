@@ -19,7 +19,7 @@ class Home extends BaseController
 		$data = [
 			'title'         => '404'
 		];
-		return view('auth/vw_error', $data);
+		return view('errors/vw_error', $data);
 	}
 	//--------------------------------------------------------------------
 
