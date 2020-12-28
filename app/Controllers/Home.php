@@ -8,7 +8,9 @@ class Home extends BaseController
 	{
 
 		$data = [
-			'title'			=> 'Home'
+			'title'			=> 'Home',
+			'totalstnk'			=> $this->masterunit->totalexpstnk()->getRowArray(),
+			'totalkir'			=> $this->masterunit->totalexpkir()->getRowArray()
 		];
 		return view('welcome_message', $data);
 	}

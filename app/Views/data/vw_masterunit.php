@@ -41,6 +41,8 @@
                                         <th>NO</th>
                                         <th>NOPOL</th>
                                         <th>KODE NOPOL</th>
+                                        <th>EXP STNK</th>
+                                        <th>EXP KIR</th>
                                         <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                         <th>OPSI</th>
@@ -61,7 +63,7 @@
     <!-- /.content -->
 </section>
 <div class="modal fade" id="md-form-unit">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title"></h5>
@@ -72,9 +74,9 @@
             <div class="modal-body form">
                 <div class="form-group">
                     <form id="frm-modal-unit">
-                        <?= csrf_field(); ?>
+                        <?= csrf_field() ?>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <input type="hidden" id="id" name="id">
                                     <label class="form-label">Nopol</label>
@@ -82,10 +84,24 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Kode Nopol</label>
                                     <input id="kode_nopol" name="kode_nopol" class="form-control" placeholder="Kode nopol" type="text">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">EXP STNK</label>
+                                    <input id="exp_stnk" name="exp_stnk" class="form-control tanggal" placeholder="Exp STNK">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">EXP STNK</label>
+                                    <input id="exp_kir" name="exp_kir" class="form-control tanggal" placeholder="Exp KIR">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -231,6 +247,8 @@
                 $('#id').val(data.id_nopol);
                 $('#nopol').val(data.nopol);
                 $('#kode_nopol').val(data.kode_nopol);
+                $('#exp_stnk').val(data.exp_stnk);
+                $('#exp_kir').val(data.exp_kir);
                 $('#brand_name').val(data.brand_name);
                 $('#ket_nopol').val(data.ket_nopol);
 
@@ -273,6 +291,11 @@
             }
         });
     }
+    $('.tanggal').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "dd-mm-yyyy"
+    });
 </script>
 <?= $this->endSection('content') ?>
 
@@ -282,6 +305,8 @@
 <link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
 <!-- SweetAlert2 -->
 <link rel="stylesheet" href="<?= base_url(''); ?>/assets/tambahan/sweetalert2/dist/sweetalert2.min.css">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/tambahan/datepicker/dist/css/bootstrap-datepicker.min.css">
 <?= $this->endSection('css') ?>
 
 <?= $this->section('js') ?>
@@ -292,4 +317,6 @@
 <script src="<?= base_url(''); ?>/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?= base_url(''); ?>/assets/tambahan/sweetalert2/dist/sweetalert2.min.js"></script>
+<!-- date-picker -->
+<script src="<?= base_url(''); ?>/assets/tambahan/datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <?= $this->endSection('js') ?>

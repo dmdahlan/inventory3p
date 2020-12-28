@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class MasterUnit extends Model
 {
     protected $table = 'master_unit';
-    protected $allowedFields = ['kode_nopol', 'nopol', 'brand_name', 'ket_nopol'];
+    protected $allowedFields = ['kode_nopol', 'nopol', 'exp_stnk', 'exp_kir', 'brand_name', 'ket_nopol'];
     protected $id = 'id_nopol';
     protected $primaryKey = 'id_nopol';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'brand_name', 'ket_nopol');
-    protected $column_search = array('id_nopol', 'nopol', 'brand_name', 'kode_nopol', 'ket_nopol');
+    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'exp_stnk', 'exp_kir', 'brand_name', 'ket_nopol');
+    protected $column_search = array('id_nopol', 'nopol', 'brand_name', 'exp_stnk', 'exp_kir', 'kode_nopol', 'ket_nopol');
     protected $order = array('nopol' => 'asc');
 
     function get_datatables()
@@ -60,5 +60,45 @@ class MasterUnit extends Model
     {
         $query = $this->dt->where('deleted_at', null);
         return $query->countAllResults();
+    }
+    public function expstnk()
+    {
+        $sql = "SELECT
+        master_unit.nopol AS nopol,
+        master_unit.exp_stnk as exp_stnk,
+        master_unit.brand_name as brand_name
+        FROM master_unit
+        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
+        $query = $this->db->query($sql, array());
+        return $query;
+    }
+    public function totalexpstnk()
+    {
+        $sql = "SELECT
+        COUNT(*) AS total
+        FROM master_unit
+        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
+        $query = $this->db->query($sql, array());
+        return $query;
+    }
+    public function expkir()
+    {
+        $sql = "SELECT
+        master_unit.nopol AS nopol,
+        master_unit.exp_kir as exp_kir,
+        master_unit.brand_name as brand_name
+        FROM master_unit
+        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
+        $query = $this->db->query($sql, array());
+        return $query;
+    }
+    public function totalexpkir()
+    {
+        $sql = "SELECT
+        COUNT(*) AS total
+        FROM master_unit
+        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
+        $query = $this->db->query($sql, array());
+        return $query;
     }
 }

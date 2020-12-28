@@ -22,8 +22,8 @@ class Filters extends BaseConfig
 		'before' => [
 			'honeypot',
 			'login' => ['except' => [
-				'/', 'home/*',
-				'home', 'home/*',
+				// '/', 'home/*',
+				// 'home', 'home/*',
 				'login', 'login/*',
 				'register', 'register/*',
 				'forgot', 'forgot/*',
