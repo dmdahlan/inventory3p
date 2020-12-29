@@ -23,7 +23,7 @@ class Pembelian_kredit extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-YY');
+            $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->supplier;
             $row[] = $r->brand;
             $row[] = $r->nopol;

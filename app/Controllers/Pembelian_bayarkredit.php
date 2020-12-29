@@ -25,14 +25,14 @@ class Pembelian_bayarkredit extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-YY');
+            $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->supplier;
             $row[] = $r->nota_order;
             $row[] = $this->rupiah($r->total);
             if ($r->tgl_bayar1 == null) {
                 $row[] = '';
             } else {
-                $row[] = Time::parse($r->tgl_bayar1)->toLocalizedString('dd-MMM-YY');
+                $row[] = Time::parse($r->tgl_bayar1)->toLocalizedString('dd-MMM-yy');
             }
             $row[] = $r->bank1;
             $row[] = $r->via1;
@@ -40,7 +40,7 @@ class Pembelian_bayarkredit extends BaseController
             if ($r->tgl_bayar2 == null) {
                 $row[] = '';
             } else {
-                $row[] = Time::parse($r->tgl_bayar2)->toLocalizedString('dd-MMM-YY');
+                $row[] = Time::parse($r->tgl_bayar2)->toLocalizedString('dd-MMM-yy');
             }
             $row[] = $r->bank2;
             $row[] = $r->via2;

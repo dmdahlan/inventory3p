@@ -222,7 +222,7 @@ class Master_unit extends BaseController
             if ($r->exp_kir == null) {
                 $row[] = '';
             } else {
-                $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-YY');
+                $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-yy');
             }
             $row[] = $r->brand_name;
             $data[] = $row;
