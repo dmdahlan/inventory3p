@@ -71,7 +71,7 @@
 					<div class="small-box bg-warning">
 						<div class="inner">
 							<h3>0</h3>
-							<p>Kendaraan Rusak</p>
+							<p>Kendaraan Perbaikan</p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-pie-graph"></i>
