@@ -501,7 +501,6 @@
 <script src="<?= base_url(''); ?>/assets/tambahan/datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Select2 -->
 <script src="<?= base_url(''); ?>/assets/plugins/select2/js/select2.full.min.js"></script>
-in.js"></script>
 <!-- angka -->
 <script src="<?= base_url(''); ?>/assets/tambahan/angka/dist/jquery.mask.js"></script>
 <script src="<?= base_url(''); ?>/assets/tambahan/angka/dist/jquery.mask.min.js"></script>
