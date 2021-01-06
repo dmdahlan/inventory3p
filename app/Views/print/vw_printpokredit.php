@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <form action="" method="POST">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control form-control-sm" name="keyword" placeholder="no invoice">
+                                            <input type="text" class="form-control form-control-sm" name="keyword" placeholder="no po">
                                             <div class="input-group-append">
                                                 <button class="btn btn-default btn-sm" type="submit">cari</button>
                                                 <a onclick="window.print()" class="btn btn-default btn-sm"><i class="fas fa-print"></i> Print</a>
