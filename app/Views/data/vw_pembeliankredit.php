@@ -61,7 +61,7 @@
                                         <th>BRAND</th>
                                         <th>NOPOL</th>
                                         <th>NOTA SUPP</th>
-                                        <th>NOTA ORDER</th>
+                                        <th>NO ORDER</th>
                                         <th>NAMA BARANG</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>

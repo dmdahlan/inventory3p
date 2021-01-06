@@ -22,12 +22,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4>Print PO Cash</h4>
+                        <h4>PRINT REIMBURSEMENT</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Print PO cash</li>
+                            <li class="breadcrumb-item active">PRINT REIMBURSEMENT</li>
                         </ol>
                     </div>
                 </div>
@@ -52,18 +52,23 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div class="row justify-content-center">
+                                    <div class="text-center">
+                                        <address>
+                                            <b>FORM REIMBURSEMENT</b>
+                                        </address>
+                                    </div>
+                                </div>
                                 <div class="row invoice-info">
                                     <!-- /.col -->
                                     <div class="col-sm-2 invoice-col">
                                         <address>
-                                            NO PO <br>
-                                            ORDER TO <br>
+                                            NO REIMBURSEMENT <br>
                                             ORDER BY <br>
                                         </address>
                                     </div>
                                     <div class="col-sm-1 invoice-col">
                                         <address>
-                                            : <br>
                                             : <br>
                                             : <br>
                                         </address>
@@ -72,7 +77,6 @@
                                         <address>
                                             <?= $ket['nota_order']; ?> <br>
                                             <?= $ket['nama']; ?><br>
-                                            <?= $ket['brand_ket']; ?><br>
                                         </address>
                                     </div>
                                     <div class="col-sm-2 float-right">

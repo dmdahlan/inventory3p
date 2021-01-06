@@ -52,6 +52,13 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div class="row justify-content-center">
+                                    <div class="text-center">
+                                        <address>
+                                            <b>NOTA ORDER</b>
+                                        </address>
+                                    </div>
+                                </div>
                                 <div class="row invoice-info">
                                     <!-- /.col -->
                                     <div class="col-sm-2 invoice-col">
