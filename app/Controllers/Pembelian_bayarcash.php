@@ -133,4 +133,43 @@ class Pembelian_bayarcash extends BaseController
             echo json_encode(['status' => FALSE]);
         }
     }
+    public function _validate($method)
+    {
+        if (!$this->validate($this->_getRulesValidation($method))) {
+            $validation = \Config\Services::validation();
+
+            $data = [];
+            $data['error_string'] = [];
+            $data['inputerror'] = [];
+            $data['status'] = TRUE;
+
+            if ($validation->hasError('cash_id')) {
+                $data['inputerror'][] = 'cash_id';
+                $data['error_string'][] = $validation->getError('cash_id');
+                $data['status'] = FALSE;
+            }
+            if ($data['status'] === FALSE) {
+                echo json_encode($data);
+                exit();
+            }
+        }
+    }
+    public function _getRulesValidation($method = null)
+    {
+        if ($method == 'save') {
+            $cash_id          = 'required|is_unique[pembayaran_cash.cash_id]';
+        } else {
+            $cash_id          = 'required|is_unique[pembayaran_cash.cash_id,id_bayarcash,{id}]';
+        }
+        $rulesValidation = [
+            'cash_id' => [
+                'rules' => $cash_id,
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'is_unique' => '{field} sudah ada'
+                ]
+            ]
+        ];
+        return $rulesValidation;
+    }
 }

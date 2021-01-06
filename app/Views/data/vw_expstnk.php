@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="text-dark">Data Exxpired Stnk</h5>
+                    <h5 class="text-dark">Data Expired Stnk</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

@@ -78,6 +78,7 @@ class Pembelian_bayarkredit extends BaseController
             $tgl_bayar2 = time::parse($this->request->getPost('tgl_bayar2'));
         else
             $tgl_bayar2 = null;
+        $this->_validate('save');
         $data = [
             'kredit_id'       => $this->request->getVar('kredit_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
@@ -106,6 +107,7 @@ class Pembelian_bayarkredit extends BaseController
             $tgl_bayar2 = time::parse($this->request->getPost('tgl_bayar2'));
         else
             $tgl_bayar2 = null;
+        $this->_validate('update');
         $data = [
             'id_bayarkredit'  => $this->request->getVar('id'),
             'kredit_id'       => $this->request->getVar('kredit_id'),
@@ -132,5 +134,44 @@ class Pembelian_bayarkredit extends BaseController
         } else {
             echo json_encode(['status' => FALSE]);
         }
+    }
+    public function _validate($method)
+    {
+        if (!$this->validate($this->_getRulesValidation($method))) {
+            $validation = \Config\Services::validation();
+
+            $data = [];
+            $data['error_string'] = [];
+            $data['inputerror'] = [];
+            $data['status'] = TRUE;
+
+            if ($validation->hasError('kredit_id')) {
+                $data['inputerror'][] = 'kredit_id';
+                $data['error_string'][] = $validation->getError('kredit_id');
+                $data['status'] = FALSE;
+            }
+            if ($data['status'] === FALSE) {
+                echo json_encode($data);
+                exit();
+            }
+        }
+    }
+    public function _getRulesValidation($method = null)
+    {
+        if ($method == 'save') {
+            $kredit_id          = 'required|is_unique[pembayaran_kredit.kredit_id]';
+        } else {
+            $kredit_id          = 'required|is_unique[pembayaran_kredit.kredit_id,id_bayarkredit,{id}]';
+        }
+        $rulesValidation = [
+            'kredit_id' => [
+                'rules' => $kredit_id,
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'is_unique' => '{field} sudah ada'
+                ]
+            ]
+        ];
+        return $rulesValidation;
     }
 }
