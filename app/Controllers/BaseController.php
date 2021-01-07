@@ -64,9 +64,11 @@ class BaseController extends Controller
 		$this->printpocash					= new \App\Models\PrintPocash;
 
 		$this->rekapkredit					= new \App\Models\RekapPembeliankredit;
-		$this->rekapcash					= new \App\Models\RekapPembeliancash();
+		$this->rekapcash					= new \App\Models\RekapPembeliancash;
 
-		$this->pemakaianbarang				= new \App\Models\PemakaianBarang();
+		$this->pemakaianbarang				= new \App\Models\PemakaianBarang;
+
+		$this->rekappakai					= new \App\Models\RekapPemakaian;
 	}
 	function rupiah($angka)
 	{

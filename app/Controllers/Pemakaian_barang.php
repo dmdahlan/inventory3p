@@ -20,7 +20,9 @@ class Pemakaian_barang extends BaseController
         $data = array();
         $no = @$_POST['start'];
         $user = user()->id;
-
+        $total_qty = 0;
+        $total_harga = 0;
+        $total_beli = 0;
         foreach ($list as $r) {
             $no++;
             $row = array();
@@ -46,9 +48,14 @@ class Pemakaian_barang extends BaseController
                 <a class="btn btn-danger btn-xs disabled" href="javascript:void(0)" title="Hapus" onclick="hapus_pakai(' . "'" . $r->id_pakai . "'" . ')">Hapus</a>
                 ';
             };
-
+            $total_qty  += $r->qty;
+            $total_harga  += $r->harga;
+            $total_beli  += $r->total;
             $data[] = $row;
         }
+        $data[] = array(
+            '', '', '', '', '', '', 'TOTAL', $this->rupiah($total_qty), $this->rupiah($total_harga), $this->rupiah($total_beli), '', ''
+        );
         $output = array(
             "draw" => @$_POST['draw'],
             "recordsTotal" => $this->pemakaianbarang->count_all(),
