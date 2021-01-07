@@ -36,6 +36,9 @@ class PemakaianBarang extends Model
         if ($request->getPost('user')) {
             $this->dt->like('id', $request->getPost('user'));
         }
+        if ($request->getPost('brandd')) {
+            $this->dt->like('brand_name', $request->getPost('brandd'));
+        }
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {
