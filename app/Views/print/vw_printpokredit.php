@@ -55,7 +55,7 @@
                                 <div class="row justify-content-center">
                                     <div class="text-center">
                                         <address>
-                                            <b>NOTA ORDER</b>
+                                            <b>PURCHASE ORDER</b>
                                         </address>
                                     </div>
                                 </div>
@@ -134,13 +134,13 @@
                                     <div class="container mt-5 mb-5">
                                         <div class="row justify-content-center">
                                             <div class="col-md-3">
-                                                MENYUTUJUI
-                                            </div>
-                                            <div class="col-md-3">
                                                 LOGISTIK
                                             </div>
                                             <div class="col-md-3">
-                                                MENGETAHUI
+                                                APPROVAL1
+                                            </div>
+                                            <div class="col-md-3">
+                                                APPROVAL2
                                             </div>
                                         </div>
 
