@@ -16,6 +16,7 @@ class PrintPocash extends Model
             ->join('master_unit', 'master_unit.id_nopol=pembelian_cash.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left')
             ->where('nota_order', $keyword)
+            ->where('pembelian_cash.deleted_at', null)
             ->get()->getResultArray();
     }
     public function ket($keyword)
@@ -26,6 +27,7 @@ class PrintPocash extends Model
             ->join('master_unit', 'master_unit.id_nopol=pembelian_cash.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left')
             ->where('nota_order', $keyword)
+            ->where('pembelian_cash.deleted_at', null)
             ->get()->getRowArray();
     }
     public function max()
