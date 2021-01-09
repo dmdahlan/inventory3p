@@ -161,6 +161,7 @@
                                         <option value="mandiri">MANDIRI</option>
                                         <option value="bni">BNI</option>
                                         <option value="danamon-bca">Danamon-BCA</option>
+                                        <option value="kas">KAS</option>
                                     </select>
                                     <span class="help-block text-danger"></span>
                                 </div>
