@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <a href="" class="btn btn-info btn-sm" data-toggle="modal" onclick="tambah()">Tambah</a>
                                 </div>
                                 <div class="col-md-2">
@@ -51,6 +51,9 @@
                                             <option value="<?= $u['id'] ?>"><?= $u['username'] ?></option>
                                         <?php endforeach ?>
                                     </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="nopoll" placeholder="Nopol" class="form-control form-control-sm" type="text" autocomplete="off">
                                 </div>
                                 <div class="col-md">
                                     <button type="button" id="btn-filter" class="btn btn-info btn-sm">Cari</button>
@@ -198,6 +201,7 @@
                     data.tgl_akhir = $('#tglakhir').val();
                     data.brandd = $('#brandd').val();
                     data.user = $('#user').val();
+                    data.nopol = $('#nopoll').val();
                 },
             }
         });
@@ -210,6 +214,9 @@
         table.ajax.reload();
     });
     $('#user').change(function() {
+        table.ajax.reload();
+    });
+    $('#nopoll').keyup(function() {
         table.ajax.reload();
     });
 
@@ -227,6 +234,7 @@
         document.getElementById("tglakhir").value = "";
         document.getElementById("brandd").value = "";
         document.getElementById("user").value = "";
+        document.getElementById("nopoll").value = "";
         reload_table();
     }
 

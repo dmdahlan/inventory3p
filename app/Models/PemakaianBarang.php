@@ -39,6 +39,9 @@ class PemakaianBarang extends Model
         if ($request->getPost('brandd')) {
             $this->dt->like('brand_name', $request->getPost('brandd'));
         }
+        if ($request->getVar('nopol')) {
+            $this->dt->like('nopol', $request->getVar('nopol'));
+        }
         if ($request->getVar('tgl_awal') && $request->getVar('tgl_akhir')) {
             $this->dt->where('tgl_pakai BETWEEN "' . date('Y-m-d', strtotime($request->getVar('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getVar('tgl_akhir'))) . '"');
         }
