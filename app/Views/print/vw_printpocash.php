@@ -65,10 +65,12 @@
                                         <address>
                                             NO REIMBURSEMENT <br>
                                             ORDER BY <br>
+                                            TANGGAL CETAK <br>
                                         </address>
                                     </div>
                                     <div class="col-sm-1 invoice-col">
                                         <address>
+                                            : <br>
                                             : <br>
                                             : <br>
                                         </address>
@@ -77,6 +79,7 @@
                                         <address>
                                             <?= $ket['nota_order']; ?> <br>
                                             <?= $ket['nama']; ?><br>
+                                            <?= date('l, d-m-Y h:i a') ?>
                                         </address>
                                     </div>
                                     <div class="col-sm-2 float-right">
