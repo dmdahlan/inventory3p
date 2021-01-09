@@ -26,10 +26,7 @@ class PembelianBayarkredit extends Model
     }
     private function _get_datatables_query()
     {
-        $this->dt = $this->db->table('pembelian_kredit')
-            ->join('master_supplier', 'master_supplier.id_supplier=pembelian_kredit.supplier_id', 'left')
-            ->join('pembayaran_kredit', 'pembayaran_kredit.kredit_id=pembelian_kredit.id_kredit', 'left');
-        $this->dt->where('pembelian_kredit.deleted_at', null);
+        $this->dt = $this->db->table('vw_pembelian_kredit');
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
             $this->dt->like('brand_id', $request->getPost('brandd'));
@@ -80,10 +77,7 @@ class PembelianBayarkredit extends Model
     }
     public function getdata($id)
     {
-        $this->di = $this->db->table('pembelian_kredit')
-            ->join('master_supplier', 'master_supplier.id_supplier=pembelian_kredit.supplier_id', 'left')
-            ->join('pembayaran_kredit', 'pembayaran_kredit.kredit_id=pembelian_kredit.id_kredit', 'left');
-        $this->di->where('pembelian_kredit.deleted_at', null);
+        $this->di = $this->db->table('vw_pembelian_kredit');
         return $this->di->getWhere(['id_kredit' => $id])->getRowArray();
     }
 }
