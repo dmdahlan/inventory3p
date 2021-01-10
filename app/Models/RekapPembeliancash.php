@@ -11,14 +11,14 @@ class RekapPembeliancash extends Model
         $sql = "SELECT
         master_driver.nama,
         SUM(pembelian_cash.total) AS pembelian,
-        SUM(pembayaran_cash.nominal1)+SUM(pembayaran_cash.nominal2) AS pembayaran,
-        if(pembelian_cash.id_cash=pembayaran_cash.cash_id,SUM(pembelian_cash.total)-SUM(pembayaran_cash.nominal1)-SUM(pembayaran_cash.nominal2),SUM(pembelian_cash.total))AS sisa
+        SUM(vw_pembelian_cash.nominal1)+SUM(vw_pembelian_cash.nominal2) AS pembayaran,
+        if(pembelian_cash.nota_order=vw_pembelian_cash.notaorder_id,SUM(pembelian_cash.total)-vw_pembelian_cash.nominal1-vw_pembelian_cash.nominal2,SUM(pembelian_cash.total))AS sisa
 
         FROM pembelian_cash
         LEFT JOIN master_driver ON pembelian_cash.driver_id=master_driver.id_driver
-        LEFT JOIN pembayaran_cash ON pembelian_cash.id_cash=pembayaran_cash.cash_id
+		LEFT JOIN vw_pembelian_cash ON pembelian_cash.nota_order=vw_pembelian_cash.notaorder_id
 
-        WHERE pembelian_cash.deleted_at is null && tgl_nota BETWEEN ? AND ?
+        WHERE pembelian_cash.deleted_at is null && pembelian_cash.tgl_nota BETWEEN ? AND ?
         AND pembelian_cash.brand_id = ?
 
         GROUP BY master_driver.nama
