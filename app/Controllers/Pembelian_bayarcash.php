@@ -80,6 +80,7 @@ class Pembelian_bayarcash extends BaseController
             $tgl_bayar2 = null;
         $data = [
             'cash_id'       => $this->request->getVar('cash_id'),
+            'notaorder_id'    => $this->request->getVar('notaorder_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
             'bank1'           => $this->request->getVar('bank1'),
             'via1'            => $this->request->getVar('via1'),
@@ -107,8 +108,9 @@ class Pembelian_bayarcash extends BaseController
         else
             $tgl_bayar2 = null;
         $data = [
-            'id_bayarcash'  => $this->request->getVar('id'),
-            'cash_id'       => $this->request->getVar('cash_id'),
+            'id_bayarcash'    => $this->request->getVar('id'),
+            'cash_id'         => $this->request->getVar('cash_id'),
+            'notaorder_id'    => $this->request->getVar('notaorder_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
             'bank1'           => $this->request->getVar('bank1'),
             'via1'            => $this->request->getVar('via1'),
@@ -148,6 +150,11 @@ class Pembelian_bayarcash extends BaseController
                 $data['error_string'][] = $validation->getError('cash_id');
                 $data['status'] = FALSE;
             }
+            if ($validation->hasError('notaorder_id')) {
+                $data['inputerror'][] = 'notaorder_id';
+                $data['error_string'][] = $validation->getError('notaorder_id');
+                $data['status'] = FALSE;
+            }
             if ($data['status'] === FALSE) {
                 echo json_encode($data);
                 exit();
@@ -158,12 +165,21 @@ class Pembelian_bayarcash extends BaseController
     {
         if ($method == 'save') {
             $cash_id          = 'required|is_unique[pembayaran_cash.cash_id]';
+            $notaorder_id     = 'required|is_unique[pembayaran_cash.notaorder_id]';
         } else {
             $cash_id          = 'required|is_unique[pembayaran_cash.cash_id,id_bayarcash,{id}]';
+            $notaorder_id     = 'required|is_unique[pembayaran_cash.notaorder_id,id_bayarcash,{id}]';
         }
         $rulesValidation = [
             'cash_id' => [
                 'rules' => $cash_id,
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'is_unique' => '{field} sudah ada'
+                ]
+            ],
+            'notaorder_id' => [
+                'rules' => $notaorder_id,
                 'errors' => [
                     'required' => '{field} harus diisi',
                     'is_unique' => '{field} sudah ada'

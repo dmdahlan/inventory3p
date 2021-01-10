@@ -110,6 +110,7 @@
                                     <label class="form-label">SUPPLIER</label>
                                     <input type="hidden" id="id" name="id">
                                     <input type="hidden" id="cash_id" name="cash_id">
+                                    <input type="hidden" id="notaorder_id" name="notaorder_id">
                                     <input type="text" id="driver" name="driver" class="form-control" readonly>
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -305,6 +306,7 @@
             dataType: 'JSON',
             success: function(data) {
                 $('#cash_id').val(data.id_cash);
+                $('#notaorder_id').val(data.nota_order);
                 $('#driver').val(data.nama);
                 $('#nota_order').val(data.nota_order);
                 $('#totall').val(data.total);
@@ -362,6 +364,7 @@
             success: function(data) {
                 $('#id').val(data.id_bayarcash);
                 $('#cash_id').val(data.id_cash);
+                $('#notaorder_id').val(data.notaorder_id);
                 $('#nama').val(data.nama);
                 $('#nota_order').val(data.nota_order);
                 $('#totall').val(data.total);

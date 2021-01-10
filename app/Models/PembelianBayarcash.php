@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class PembelianBayarcash extends Model
 {
     protected $table = 'pembayaran_cash';
-    protected $allowedFields = ['cash_id', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2', 'sisa_hutang'];
+    protected $allowedFields = ['cash_id', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2', 'sisa_hutang', 'notaorder_id'];
     protected $id = 'id_bayarcash';
     protected $primaryKey = 'id_bayarcash';
     protected $useTimestamps = true;
 
-    protected $column_order = array('id_cash', 'tgl_nota', 'supplier', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
+    protected $column_order = array('id_cash', 'tgl_nota', 'nama', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
     protected $column_search = array('id_cash', 'supplier', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
     protected $order = array('tgl_nota' => 'desc');
 
@@ -26,10 +26,8 @@ class PembelianBayarcash extends Model
     }
     private function _get_datatables_query()
     {
-        $this->dt = $this->db->table('pembelian_cash')
-            ->join('master_driver', 'master_driver.id_driver=pembelian_cash.driver_id', 'left')
-            ->join('pembayaran_cash', 'pembayaran_cash.cash_id=pembelian_cash.id_cash', 'left');
-        $this->dt->where('pembelian_cash.deleted_at', null);
+        $this->dt = $this->db->table('vw_pembelian_cash');
+        $this->dt->where('vw_pembelian_cash.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
             $this->dt->like('brand_id', $request->getPost('brandd'));
@@ -80,10 +78,8 @@ class PembelianBayarcash extends Model
     }
     public function getdata($id)
     {
-        $this->di = $this->db->table('pembelian_cash')
-            ->join('master_driver', 'master_driver.id_driver=pembelian_cash.driver_id', 'left')
-            ->join('pembayaran_cash', 'pembayaran_cash.cash_id=pembelian_cash.id_cash', 'left');
-        $this->di->where('pembelian_cash.deleted_at', null);
+        $this->di = $this->db->table('vw_pembelian_cash');
+        $this->di->where('vw_pembelian_cash.deleted_at', null);
         return $this->di->getWhere(['id_cash' => $id])->getRowArray();
     }
 }

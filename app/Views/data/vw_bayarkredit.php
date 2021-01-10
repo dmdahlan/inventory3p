@@ -44,9 +44,8 @@
                                 <div class="col-md-2">
                                     <select id="ketlunas" class="form-control form-control-sm">
                                         <option value="">Ket Lunas</option>
-                                        <option value="lunas">Lunas</option>
-                                        <option value="blmbayar">Belum Bayar</option>
-                                        <option value="blmlunas">Belum Lunas</option>
+                                        <option value="Lunas">Lunas</option>
+                                        <option value="Belum Lunas">Belum Lunas</option>
                                     </select>
                                 </div>
                                 <div class="col-md">
@@ -110,6 +109,7 @@
                                     <label class="form-label">SUPPLIER</label>
                                     <input type="hidden" id="id" name="id">
                                     <input type="hidden" id="kredit_id" name="kredit_id">
+                                    <input type="hidden" id="notaorder_id" name="notaorder_id">
                                     <input type="text" id="supplier_id" name="supplier_id" class="form-control" readonly>
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -305,6 +305,7 @@
             dataType: 'JSON',
             success: function(data) {
                 $('#kredit_id').val(data.id_kredit);
+                $('#notaorder_id').val(data.nota_order);
                 $('#supplier_id').val(data.supplier);
                 $('#nota_order').val(data.nota_order);
                 $('#totall').val(data.total);
@@ -362,6 +363,7 @@
             success: function(data) {
                 $('#id').val(data.id_bayarkredit);
                 $('#kredit_id').val(data.id_kredit);
+                $('#notaorder_id').val(data.notaorder_id);
                 $('#supplier_id').val(data.supplier);
                 $('#nota_order').val(data.nota_order);
                 $('#totall').val(data.total);

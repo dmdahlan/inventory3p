@@ -81,6 +81,7 @@ class Pembelian_bayarkredit extends BaseController
         $this->_validate('save');
         $data = [
             'kredit_id'       => $this->request->getVar('kredit_id'),
+            'notaorder_id'    => $this->request->getVar('notaorder_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
             'bank1'           => $this->request->getVar('bank1'),
             'via1'            => $this->request->getVar('via1'),
@@ -111,6 +112,7 @@ class Pembelian_bayarkredit extends BaseController
         $data = [
             'id_bayarkredit'  => $this->request->getVar('id'),
             'kredit_id'       => $this->request->getVar('kredit_id'),
+            'notaorder_id'    => $this->request->getVar('notaorder_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
             'bank1'           => $this->request->getVar('bank1'),
             'via1'            => $this->request->getVar('via1'),
@@ -150,6 +152,11 @@ class Pembelian_bayarkredit extends BaseController
                 $data['error_string'][] = $validation->getError('kredit_id');
                 $data['status'] = FALSE;
             }
+            if ($validation->hasError('notaorder_id')) {
+                $data['inputerror'][] = 'notaorder_id';
+                $data['error_string'][] = $validation->getError('notaorder_id');
+                $data['status'] = FALSE;
+            }
             if ($data['status'] === FALSE) {
                 echo json_encode($data);
                 exit();
@@ -160,12 +167,21 @@ class Pembelian_bayarkredit extends BaseController
     {
         if ($method == 'save') {
             $kredit_id          = 'required|is_unique[pembayaran_kredit.kredit_id]';
+            $notaorder_id       = 'required|is_unique[pembayaran_kredit.notaorder_id]';
         } else {
             $kredit_id          = 'required|is_unique[pembayaran_kredit.kredit_id,id_bayarkredit,{id}]';
+            $notaorder_id       = 'required|is_unique[pembayaran_kredit.notaorder_id,id_bayarkredit,{id}]';
         }
         $rulesValidation = [
             'kredit_id' => [
                 'rules' => $kredit_id,
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'is_unique' => '{field} sudah ada'
+                ]
+            ],
+            'notaorder_id' => [
+                'rules' => $notaorder_id,
                 'errors' => [
                     'required' => '{field} harus diisi',
                     'is_unique' => '{field} sudah ada'

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PembelianBayarkredit extends Model
 {
     protected $table = 'pembayaran_kredit';
-    protected $allowedFields = ['kredit_id', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2', 'sisa_hutang'];
+    protected $allowedFields = ['kredit_id', 'nota_order', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2', 'sisa_hutang', 'notaorder_id'];
     protected $id = 'id_bayarkredit';
     protected $primaryKey = 'id_bayarkredit';
     protected $useTimestamps = true;
@@ -31,17 +31,11 @@ class PembelianBayarkredit extends Model
         if ($request->getPost('brandd')) {
             $this->dt->like('brand_id', $request->getPost('brandd'));
         }
+        if ($request->getPost('ketlunas')) {
+            $this->dt->where('ket_lunas', $request->getPost('ketlunas'));
+        }
         if ($request->getPost('tgl_awal') && $request->getPost('tgl_akhir')) {
             $this->dt->where('tgl_nota BETWEEN "' . date('Y-m-d', strtotime($request->getPost('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getPost('tgl_akhir'))) . '"');
-        }
-        if ($request->getPost('ketlunas') == 'lunas') {
-            $this->dt->where('sisa_hutang', 0);
-        }
-        if ($request->getPost('ketlunas') == 'blmbayar') {
-            $this->dt->where('sisa_hutang ', null);
-        }
-        if ($request->getPost('ketlunas') == 'blmlunas') {
-            $this->dt->where('sisa_hutang !=', 0);
         }
         $i = 0;
         foreach ($this->column_search as $item) {

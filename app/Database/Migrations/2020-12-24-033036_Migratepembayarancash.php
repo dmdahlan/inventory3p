@@ -11,6 +11,7 @@ class Migratepembayarancash extends Migration
 		$this->forge->addField([
 			'id_bayarcash'  	=> ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
 			'cash_id'   		=> ['type' => 'INT', 'constraint' => 11, 'null' => true],
+			'notaorder_id'   	=> ['type' => 'VARCHAR', 'constraint' => 50, 'null' => true],
 			'tgl_bayar1'    	=> ['type' => 'DATE', 'null' => true],
 			'bank1' 	  		=> ['type' => 'VARCHAR', 'constraint' => 50, 'null' => true],
 			'via1' 		  		=> ['type' => 'VARCHAR', 'constraint' => 50, 'null' => true],
