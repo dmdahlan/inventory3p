@@ -60,8 +60,8 @@
                                         <th>NAMA TOKO</th>
                                         <th>BRAND</th>
                                         <th>NOPOL</th>
-                                        <th>NOTA SUPP</th>
                                         <th>DRIVER</th>
+                                        <th>NOTA ORDER</th>
                                         <th>NAMA BARANG</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>
