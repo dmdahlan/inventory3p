@@ -23,6 +23,7 @@ class Pembelian_cash extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
+            $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama_toko;
             $row[] = $r->brand;

@@ -61,6 +61,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
+                                        <th>TGL INPUT</th>
                                         <th>TGL NOTA</th>
                                         <th>DRIVER</th>
                                         <th>NOTA ORDER</th>

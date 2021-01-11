@@ -25,6 +25,7 @@ class Pembelian_bayarcash extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
+            $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama;
             $row[] = $r->nota_order;
@@ -61,7 +62,7 @@ class Pembelian_bayarcash extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', '', '', '', $this->rupiah($hutang), ''
+            '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', '', '', '', $this->rupiah($hutang), ''
         );
         $output = array(
             "draw" => @$_POST['draw'],

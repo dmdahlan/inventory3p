@@ -13,7 +13,7 @@ class PembelianCash extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_cash', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
+    protected $column_order = array('id_cash', 'created_at', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
     protected $column_search = array('id_cash', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
     protected $order = array('tgl_nota' => 'desc');
 
@@ -31,7 +31,8 @@ class PembelianCash extends Model
             ->join('master_brand', 'master_brand.id_brand=pembelian_cash.brand_id', 'left')
             ->join('master_driver', 'master_driver.id_driver=pembelian_cash.driver_id', 'left')
             ->join('master_unit', 'master_unit.id_nopol=pembelian_cash.nopol_id', 'left')
-            ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left');
+            ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left')
+            ->select('pembelian_cash.*,pembelian_cash.created_at,master_brand.brand,master_driver.nama,master_unit.nopol,master_barang.nama_barang');
         $this->dt->where('pembelian_cash.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {

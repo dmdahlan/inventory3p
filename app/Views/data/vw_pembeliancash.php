@@ -56,12 +56,13 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
+                                        <th>TGL INPUT</th>
                                         <th>TGL NOTA</th>
                                         <th>NAMA TOKO</th>
                                         <th>BRAND</th>
                                         <th>NOPOL</th>
                                         <th>DRIVER</th>
-                                        <th>NOTA ORDER</th>
+                                        <th>REIMBURSEMENT</th>
                                         <th>NAMA BARANG</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>
