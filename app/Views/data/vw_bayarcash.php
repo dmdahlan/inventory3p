@@ -36,17 +36,16 @@
                                 <div class="col-md-2">
                                     <select id="brandd" class="form-control form-control-sm">
                                         <option value="">Pilih Brand</option>
-                                        <option value="1">Perdana</option>
-                                        <option value="2">Paramita</option>
-                                        <option value="3">Pai</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
                                     <select id="ketlunas" class="form-control form-control-sm">
                                         <option value="">Ket Lunas</option>
                                         <option value="lunas">Lunas</option>
-                                        <option value="blmbayar">Belum Bayar</option>
-                                        <option value="blmlunas">Belum Lunas</option>
+                                        <option value="belum lunas">Belum Lunas</option>
                                     </select>
                                 </div>
                                 <div class="col-md">

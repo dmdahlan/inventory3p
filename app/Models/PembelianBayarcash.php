@@ -30,19 +30,13 @@ class PembelianBayarcash extends Model
         $this->dt->where('vw_pembelian_cash.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
-            $this->dt->like('brand_id', $request->getPost('brandd'));
+            $this->dt->like('brand_name', $request->getPost('brandd'));
         }
         if ($request->getPost('tgl_awal') && $request->getPost('tgl_akhir')) {
             $this->dt->where('tgl_nota BETWEEN "' . date('Y-m-d', strtotime($request->getPost('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getPost('tgl_akhir'))) . '"');
         }
-        if ($request->getPost('ketlunas') == 'lunas') {
-            $this->dt->where('sisa_hutang', 0);
-        }
-        if ($request->getPost('ketlunas') == 'blmbayar') {
-            $this->dt->where('sisa_hutang ', null);
-        }
-        if ($request->getPost('ketlunas') == 'blmlunas') {
-            $this->dt->where('sisa_hutang !=', 0);
+        if ($request->getPost('ketlunas')) {
+            $this->dt->where('ket_lunas', $request->getPost('ketlunas'));
         }
         $i = 0;
         foreach ($this->column_search as $item) {
