@@ -13,7 +13,7 @@ class PembelianBayarcash extends Model
     protected $useTimestamps = true;
 
     protected $column_order = array('id_cash', 'created_at', 'tgl_nota', 'nama', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
-    protected $column_search = array('id_cash', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
+    protected $column_search = array('id_cash', 'nota_order', 'nama', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
     protected $order = array('tgl_nota' => 'desc');
 
     function get_datatables()
