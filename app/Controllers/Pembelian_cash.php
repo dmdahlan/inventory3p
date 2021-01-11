@@ -34,7 +34,7 @@ class Pembelian_cash extends BaseController
             $row[] = $r->qty;
             $row[] = $this->rupiah($r->harga);
             $row[] = $this->rupiah($r->total);
-            if ($r->cash_id != null) {
+            if ($r->notaorder_id != null) {
                 $row[] = '';
             } else {
                 $row[] = '

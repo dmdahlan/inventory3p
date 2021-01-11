@@ -32,8 +32,8 @@ class PembelianCash extends Model
             ->join('master_driver', 'master_driver.id_driver=pembelian_cash.driver_id', 'left')
             ->join('master_unit', 'master_unit.id_nopol=pembelian_cash.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left')
-            ->join('vw_pembelian_cash', 'vw_pembelian_cash.cash_id=pembelian_cash.id_cash', 'left')
-            ->select('pembelian_cash.*,pembelian_cash.created_at,master_brand.brand,master_driver.nama,master_unit.nopol,master_barang.nama_barang,vw_pembelian_cash.cash_id');
+            ->join('vw_pembelian_cash', 'vw_pembelian_cash.notaorder_id=pembelian_cash.nota_order', 'left')
+            ->select('pembelian_cash.*,pembelian_cash.created_at,master_brand.brand,master_driver.nama,master_unit.nopol,master_barang.nama_barang,vw_pembelian_cash.notaorder_id');
         $this->dt->where('pembelian_cash.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
