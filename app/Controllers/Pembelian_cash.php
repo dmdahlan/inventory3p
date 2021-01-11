@@ -34,10 +34,14 @@ class Pembelian_cash extends BaseController
             $row[] = $r->qty;
             $row[] = $this->rupiah($r->harga);
             $row[] = $this->rupiah($r->total);
-            $row[] = '
+            if ($r->cash_id != null) {
+                $row[] = '';
+            } else {
+                $row[] = '
                     <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_cash(' . "'" . $r->id_cash . "'" . ')">Edit</a>
                     <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_cash(' . "'" . $r->id_cash . "'" . ')">Hapus</a>
                     ';
+            }
             $data[] = $row;
         }
         $output = array(

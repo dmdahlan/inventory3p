@@ -64,7 +64,7 @@
                                         <th>TGL INPUT</th>
                                         <th>TGL NOTA</th>
                                         <th>DRIVER</th>
-                                        <th>NOTA ORDER</th>
+                                        <th>REIMBURSEMENT</th>
                                         <th>TOTAL</th>
                                         <th>TGL BAYAR</th>
                                         <th>BANK</th>
@@ -118,8 +118,8 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">NO ORDER (PO)</label>
-                                    <input id="nota_order" name="nota_order" class="form-control" placeholder="NO PO" type="text" readonly>
+                                    <label class="form-label">REIMBURSEMENT</label>
+                                    <input id="nota_order" name="nota_order" class="form-control" placeholder="REIMBURSEMENT" type="text" readonly>
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
