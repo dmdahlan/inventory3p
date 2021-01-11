@@ -18,6 +18,8 @@ class Pembelian_bayarcash extends BaseController
         $list = $this->bayarcash->get_datatables();
         $data = array();
         $no = @$_POST['start'];
+        $total1 = 0;
+        $total2 = 0;
         $total = 0;
         $hutang = 0;
 
@@ -58,11 +60,14 @@ class Pembelian_bayarcash extends BaseController
                     ';
             }
             $total += $r->total;
+            $total1 += $r->nominal1;
+            $total2 += $r->nominal2;
+
             $hutang += $r->total - $r->nominal1 - $r->nominal2;
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', '', '', '', $this->rupiah($hutang), ''
+            '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', $this->rupiah($total1), '', '', '', $this->rupiah($total2), $this->rupiah($hutang), ''
         );
         $output = array(
             "draw" => @$_POST['draw'],

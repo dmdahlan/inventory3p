@@ -18,7 +18,9 @@ class Pembelian_cash extends BaseController
         $list = $this->pembeliancash->get_datatables();
         $data = array();
         $no = @$_POST['start'];
-
+        $qty = 0;
+        $harga = 0;
+        $total = 0;
         foreach ($list as $r) {
             $no++;
             $row = array();
@@ -26,7 +28,7 @@ class Pembelian_cash extends BaseController
             $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama_toko;
-            $row[] = $r->brand;
+            $row[] = $r->brand_name;
             $row[] = $r->nopol;
             $row[] = $r->nama;
             $row[] = $r->nota_order;
@@ -42,8 +44,14 @@ class Pembelian_cash extends BaseController
                     <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_cash(' . "'" . $r->id_cash . "'" . ')">Hapus</a>
                     ';
             }
+            $qty += $r->qty;
+            $harga += $r->harga;
+            $total += $r->total;
             $data[] = $row;
         }
+        $data[] = array(
+            '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), $this->rupiah($total), ''
+        );
         $output = array(
             "draw" => @$_POST['draw'],
             "recordsTotal" => $this->pembeliancash->count_all(),
@@ -59,7 +67,6 @@ class Pembelian_cash extends BaseController
         $data = [
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'nama_toko'             => $this->request->getPost('nama_toko'),
-            'brand_id'              => $this->request->getPost('brand_id'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
             'driver_id'             => $this->request->getPost('driver_id'),
             'nota_order'            => $this->request->getPost('nota_order'),
@@ -86,7 +93,6 @@ class Pembelian_cash extends BaseController
             'id_cash'             => $this->request->getPost('id'),
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'nama_toko'             => $this->request->getPost('nama_toko'),
-            'brand_id'              => $this->request->getPost('brand_id'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
             'driver_id'             => $this->request->getPost('driver_id'),
             'nota_order'            => $this->request->getPost('nota_order'),
