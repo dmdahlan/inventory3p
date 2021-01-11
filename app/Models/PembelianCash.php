@@ -13,8 +13,8 @@ class PembelianCash extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_kredit', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
-    protected $column_search = array('id_kredit', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
+    protected $column_order = array('id_cash', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
+    protected $column_search = array('id_cash', 'tgl_nota', 'nama_toko', 'brand', 'nopol', 'nama', 'nota_order', 'nama_barang', 'qty', 'harga', 'total');
     protected $order = array('tgl_nota' => 'desc');
 
     function get_datatables()
