@@ -81,7 +81,7 @@
                                         <address>
                                             <?= $ket['nota_order']; ?> <br>
                                             <?= $ket['supplier']; ?><br>
-                                            <?= $ket['brand_ket']; ?><br>
+                                            <?= $ket['brand_name']; ?><br>
                                             <?= date('l, d-m-Y h:i a') ?>
                                         </address>
                                     </div>
