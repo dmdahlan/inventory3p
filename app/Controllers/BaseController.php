@@ -59,6 +59,7 @@ class BaseController extends Controller
 		$this->bayarkredit					= new \App\Models\PembelianBayarkredit;
 		$this->pembeliancash				= new \App\Models\PembelianCash;
 		$this->bayarcash					= new \App\Models\PembelianBayarcash;
+		$this->pembayaranstnk				= new \App\Models\PembayaranStnk;
 
 		$this->printpokredit				= new \App\Models\PrintPokredit;
 		$this->printpocash					= new \App\Models\PrintPocash;
