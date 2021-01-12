@@ -71,7 +71,7 @@
             'info': false,
 
             ajax: {
-                "url": "<?= base_url('master_unit/datakir') ?>",
+                "url": "<?= base_url('exp_kir/datakir') ?>",
                 "type": "POST",
             }
         });

@@ -72,7 +72,7 @@
             'info': false,
 
             ajax: {
-                "url": "<?= base_url('master_unit/datastnk') ?>",
+                "url": "<?= base_url('exp_stnk/datastnk') ?>",
                 "type": "POST",
             }
         });

@@ -34,7 +34,7 @@
 						<div class="icon">
 							<i class="ion ion-android-car"></i>
 						</div>
-						<a href="<?= base_url('master_unit/exp_stnk'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="<?= base_url('exp_stnk'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
@@ -48,7 +48,7 @@
 						<div class="icon">
 							<i class="ion ion-android-car"></i>
 						</div>
-						<a href="<?= base_url('master_unit/exp_kir'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="<?= base_url('exp_kir'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
