@@ -358,7 +358,7 @@
         dropdown_nopol.empty();
         dropdown_nopol.append('<option value="">Pilih Nopol</option>');
         dropdown_nopol.prop('selectedIndex', 0);
-        const url_nopol = '<?= base_url('master_unit/getnopol/') ?>';
+        const url_nopol = '<?= base_url('pembelian_cash/getnopol/') ?>';
         // Populate dropdown with list
         $.getJSON(url_nopol, function(data) {
             $.each(data, function(key, entry) {

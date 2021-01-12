@@ -116,6 +116,10 @@ class Pembelian_cash extends BaseController
             echo json_encode(['status' => FALSE]);
         }
     }
+    public function getnopol()
+    {
+        echo json_encode($this->masterunit->orderBy('nopol', 'ASC')->findAll());
+    }
     public function _validate($method)
     {
         if (!$this->validate($this->_getRulesValidation($method))) {

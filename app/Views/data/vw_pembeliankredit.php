@@ -457,7 +457,7 @@
         dropdown_supplier.empty();
         dropdown_supplier.append('<option value="">Pilih supplier</option>');
         dropdown_supplier.prop('selectedIndex', 0);
-        const url_supplier = '<?= base_url('master_supplier/getsupplier/') ?>';
+        const url_supplier = '<?= base_url('pembelian_kredit/getsupplier/') ?>';
         // Populate dropdown with list
         $.getJSON(url_supplier, function(data) {
             $.each(data, function(key, entry) {
@@ -468,7 +468,7 @@
         dropdown_nopol.empty();
         dropdown_nopol.append('<option value="">Pilih Nopol</option>');
         dropdown_nopol.prop('selectedIndex', 0);
-        const url_nopol = '<?= base_url('master_unit/getnopol/') ?>';
+        const url_nopol = '<?= base_url('pembelian_kredit/getnopol/') ?>';
         // Populate dropdown with list
         $.getJSON(url_nopol, function(data) {
             $.each(data, function(key, entry) {

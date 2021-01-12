@@ -368,7 +368,7 @@
         dropdown_nopol.empty();
         dropdown_nopol.append('<option value="">Pilih Nopol</option>');
         dropdown_nopol.prop('selectedIndex', 0);
-        const url_nopol = '<?= base_url('master_unit/getnopol/') ?>';
+        const url_nopol = '<?= base_url('pemakaian_barang/getnopol/') ?>';
         // Populate dropdown with list
         $.getJSON(url_nopol, function(data) {
             $.each(data, function(key, entry) {
@@ -379,7 +379,7 @@
         dropdown_barang.empty();
         dropdown_barang.append('<option value="">Pilih barang</option>');
         dropdown_barang.prop('selectedIndex', 0);
-        const url_barang = '<?= base_url('master_barang/getbarang/') ?>';
+        const url_barang = '<?= base_url('pemakaian_barang/getbarang/') ?>';
         // Populate dropdown with list
         $.getJSON(url_barang, function(data) {
             $.each(data, function(key, entry) {

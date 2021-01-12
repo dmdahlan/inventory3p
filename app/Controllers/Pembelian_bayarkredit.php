@@ -137,6 +137,7 @@ class Pembelian_bayarkredit extends BaseController
             echo json_encode(['status' => FALSE]);
         }
     }
+
     public function _validate($method)
     {
         if (!$this->validate($this->_getRulesValidation($method))) {
