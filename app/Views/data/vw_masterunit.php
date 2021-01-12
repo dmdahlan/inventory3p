@@ -42,8 +42,8 @@
                                         <th>NOPOL</th>
                                         <th>A/N NAMA</th>
                                         <th>EXP STNK</th>
-                                        <th>EXP KIR</th>
                                         <th>EXP 5 TAHUN</th>
+                                        <th>EXP KIR</th>
                                         <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                         <th>OPSI</th>
@@ -101,15 +101,15 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">EXP KIR</label>
-                                    <input id="exp_kir" name="exp_kir" class="form-control tanggal" placeholder="Exp KIR">
+                                    <label class="form-label">STNK 5 TAHUN</label>
+                                    <input id="exp_stnk_tahun" name="exp_stnk_tahun" class="form-control tanggal" placeholder="Exp STNK">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">STNK 5 TAHUN</label>
-                                    <input id="exp_stnk_tahun" name="exp_stnk_tahun" class="form-control tanggal" placeholder="Exp STNK">
+                                    <label class="form-label">EXP KIR</label>
+                                    <input id="exp_kir" name="exp_kir" class="form-control tanggal" placeholder="Exp KIR">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>

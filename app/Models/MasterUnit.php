@@ -13,7 +13,7 @@ class MasterUnit extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'exp_stnk', 'exp_kir', 'exp_stnk_tahun', 'brand_name', 'ket_nopol');
+    protected $column_order = array('id_nopol', 'nopol',  'kode_nopol', 'exp_stnk', 'exp_stnk_tahun', 'exp_kir', 'brand_name', 'ket_nopol');
     protected $column_search = array('id_nopol', 'nopol', 'brand_name', 'exp_stnk', 'exp_kir', 'exp_stnk_tahun', 'kode_nopol', 'ket_nopol');
     protected $order = array('nopol' => 'asc');
 

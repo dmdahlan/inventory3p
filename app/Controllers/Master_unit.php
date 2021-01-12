@@ -30,16 +30,17 @@ class Master_unit extends BaseController
             } else {
                 $row[] = Time::parse($r->exp_stnk)->toLocalizedString('dd-MMM-YY');
             }
-            if ($r->exp_kir == null) {
-                $row[] = '';
-            } else {
-                $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-YY');
-            }
             if ($r->exp_stnk_tahun == null) {
                 $row[] = '';
             } else {
                 $row[] = Time::parse($r->exp_stnk_tahun)->toLocalizedString('dd-MMM-YY');
             }
+            if ($r->exp_kir == null) {
+                $row[] = '';
+            } else {
+                $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-YY');
+            }
+
             $row[] = $r->brand_name;
             $row[] = $r->ket_nopol;
             $row[] = '
