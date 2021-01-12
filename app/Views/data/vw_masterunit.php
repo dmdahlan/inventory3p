@@ -40,9 +40,10 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>NOPOL</th>
-                                        <th>KODE NOPOL</th>
+                                        <th>A/N NAMA</th>
                                         <th>EXP STNK</th>
                                         <th>EXP KIR</th>
+                                        <th>EXP 5 TAHUN</th>
                                         <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                         <th>OPSI</th>
@@ -86,7 +87,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Kode Nopol</label>
+                                    <label class="form-label">A/N NAMA</label>
                                     <input id="kode_nopol" name="kode_nopol" class="form-control" placeholder="Kode nopol" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -100,12 +101,19 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">EXP STNK</label>
+                                    <label class="form-label">EXP KIR</label>
                                     <input id="exp_kir" name="exp_kir" class="form-control tanggal" placeholder="Exp KIR">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">STNK 5 TAHUN</label>
+                                    <input id="exp_stnk_tahun" name="exp_stnk_tahun" class="form-control tanggal" placeholder="Exp STNK">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">Brand</label>
                                     <select id="brand_name" name="brand_name" class="form-control">
@@ -249,6 +257,7 @@
                 $('#kode_nopol').val(data.kode_nopol);
                 $('#exp_stnk').val(data.exp_stnk);
                 $('#exp_kir').val(data.exp_kir);
+                $('#exp_stnk_tahun').val(data.exp_stnk_tahun);
                 $('#brand_name').val(data.brand_name);
                 $('#ket_nopol').val(data.ket_nopol);
 

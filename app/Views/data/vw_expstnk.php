@@ -40,6 +40,7 @@
                                         <th>NO</th>
                                         <th>NOPOL</th>
                                         <th>EXP STNK</th>
+                                        <th>EXP STNK 5 TAHUN</th>
                                         <th>BRAND</th>
                                     </tr>
                                 </thead>

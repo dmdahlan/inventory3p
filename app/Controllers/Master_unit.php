@@ -35,6 +35,11 @@ class Master_unit extends BaseController
             } else {
                 $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-YY');
             }
+            if ($r->exp_stnk_tahun == null) {
+                $row[] = '';
+            } else {
+                $row[] = Time::parse($r->exp_stnk_tahun)->toLocalizedString('dd-MMM-YY');
+            }
             $row[] = $r->brand_name;
             $row[] = $r->ket_nopol;
             $row[] = '
@@ -65,11 +70,17 @@ class Master_unit extends BaseController
         } else {
             $exp_kir = null;
         }
+        if (!empty($_POST['exp_stnk_tahun'])) {
+            $exp_stnk_tahun = time::parse($this->request->getPost('exp_stnk_tahun'));
+        } else {
+            $exp_stnk_tahun = null;
+        }
         $data = [
             'nopol'            => $this->request->getPost('nopol'),
             'kode_nopol'       => $this->request->getPost('kode_nopol'),
             'exp_stnk'         => $exp_stnk,
             'exp_kir'          => $exp_kir,
+            'exp_stnk_tahun'   => $exp_stnk_tahun,
             'brand_name'       => $this->request->getPost('brand_name'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
         ];
@@ -97,12 +108,18 @@ class Master_unit extends BaseController
         } else {
             $exp_kir = null;
         }
+        if (!empty($_POST['exp_stnk_tahun'])) {
+            $exp_stnk_tahun = time::parse($this->request->getPost('exp_stnk_tahun'));
+        } else {
+            $exp_stnk_tahun = null;
+        }
         $data = [
             'id_nopol'         => $this->request->getPost('id'),
             'nopol'            => $this->request->getPost('nopol'),
             'kode_nopol'       => $this->request->getPost('kode_nopol'),
             'exp_stnk'         => $exp_stnk,
             'exp_kir'          => $exp_kir,
+            'exp_stnk_tahun'   => $exp_stnk_tahun,
             'brand_name'       => $this->request->getPost('brand_name'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
         ];
@@ -188,6 +205,11 @@ class Master_unit extends BaseController
             } else {
                 $row[] = Time::parse($r->exp_stnk)->toLocalizedString('dd-MMM-YY');
             }
+            if ($r->exp_stnk_tahun == null) {
+                $row[] = '';
+            } else {
+                $row[] = Time::parse($r->exp_stnk_tahun)->toLocalizedString('dd-MMM-YY');
+            }
             $row[] = $r->brand_name;
             $data[] = $row;
         }
@@ -209,7 +231,6 @@ class Master_unit extends BaseController
     }
     public function datakir()
     {
-
         $stnk = $this->masterunit->expkir()->getResult();
         $data = array();
         $no = @$_POST['start'];
