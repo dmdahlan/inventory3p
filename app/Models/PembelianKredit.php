@@ -32,7 +32,7 @@ class PembelianKredit extends Model
             ->join('master_unit', 'master_unit.id_nopol=pembelian_kredit.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_kredit.barang_id', 'left')
             ->join('vw_pembelian_kredit', 'vw_pembelian_kredit.notaorder_id=pembelian_kredit.nota_order', 'left')
-            ->select('pembelian_kredit.*,pembelian_kredit.created_at,master_supplier.supplier,master_unit.nopol,master_unit.brand_name,master_barang.nama_barang,vw_pembelian_kredit.notaorder_id');
+            ->select('pembelian_kredit.*,pembelian_kredit.id_kredit,pembelian_kredit.created_at,master_supplier.supplier,master_unit.nopol,master_unit.brand_name,master_barang.nama_barang,vw_pembelian_kredit.notaorder_id');
         $this->dt->where('pembelian_kredit.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
