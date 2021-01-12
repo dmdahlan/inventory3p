@@ -83,7 +83,7 @@
                                         </address>
                                     </div>
                                     <div class="col-sm-2 float-right">
-                                        <img src="<?= base_url(''); ?>/img/<?= $ket['brand_name']; ?>.jpg" width="200px" alt="">
+                                        <img src="<?= base_url(''); ?>/img/<?= $ket['brand_name']; ?>.png" width="200px" alt="">
                                     </div>
                                     <!-- /.col -->
                                 </div>
