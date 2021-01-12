@@ -15,7 +15,7 @@ class PembelianCash extends Model
 
     protected $column_order = array('pembelian_cash.id_cash', 'created_at', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang', 'qty', 'harga', 'total');
     protected $column_search = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang');
-    protected $order = array('tgl_nota' => 'desc');
+    protected $order = array('pembelian_cash.tgl_nota' => 'desc');
 
     function get_datatables()
     {

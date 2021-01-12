@@ -39,9 +39,9 @@
                                 <div class="col-md-2">
                                     <select id="brandd" class="form-control form-control-sm">
                                         <option value="">Pilih Brand</option>
-                                        <option value="1">Perdana</option>
-                                        <option value="2">Paramita</option>
-                                        <option value="3">Pai</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
                                     </select>
                                 </div>
                                 <div class="col-md">
@@ -56,6 +56,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
+                                        <th>TGL INPUT</th>
                                         <th>TGL NOTA</th>
                                         <th>SUPPLIER</th>
                                         <th>BRAND</th>
@@ -115,18 +116,7 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label class="form-label">BRAND</label>
-                                    <select id="brand_id" name="brand_id" class="form-control">
-                                        <option value="">Pilih</option>
-                                        <option value="1">Perdana</option>
-                                        <option value="2">Paramita</option>
-                                        <option value="3">Pai</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">NOPOL</label>
                                     <select id="nopol_id" name="nopol_id" class="form-control select2">
@@ -392,7 +382,6 @@
                 $('#tgl_nota').val(data.tgl_nota);
                 $('#supplier_id').val(data.supplier_id).change();
                 $('#nopol_id').val(data.nopol_id).change();
-                $('#brand_id').val(data.brand_id).change();
                 $('#nota_supp').val(data.nota_supp);
                 $('#nota_order').val(data.nota_order);
                 $('#barang_id').val(data.barang_id).change();

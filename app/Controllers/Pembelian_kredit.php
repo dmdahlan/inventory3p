@@ -18,14 +18,18 @@ class Pembelian_kredit extends BaseController
         $list = $this->pembeliankredit->get_datatables();
         $data = array();
         $no = @$_POST['start'];
+        $qty = 0;
+        $harga = 0;
+        $total = 0;
 
         foreach ($list as $r) {
             $no++;
             $row = array();
             $row[] = $no;
+            $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->supplier;
-            $row[] = $r->brand;
+            $row[] = $r->brand_name;
             $row[] = $r->nopol;
             $row[] = $r->nota_supp;
             $row[] = $r->nota_order;
@@ -35,12 +39,22 @@ class Pembelian_kredit extends BaseController
             $row[] = $this->rupiah($r->disc);
             $row[] = $this->rupiah($r->pembelianppn);
             $row[] = $this->rupiah($r->total);
-            $row[] = '
+            if ($r->notaorder_id != null) {
+                $row[] = '';
+            } else {
+                $row[] = '
                     <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_kredit(' . "'" . $r->id_kredit . "'" . ')">Edit</a>
                     <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_kredit(' . "'" . $r->id_kredit . "'" . ')">Hapus</a>
                     ';
+            }
+            $qty += $r->qty;
+            $harga += $r->harga;
+            $total += $r->total;
             $data[] = $row;
         }
+        $data[] = array(
+            '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), '', '', $this->rupiah($total), ''
+        );
         $output = array(
             "draw" => @$_POST['draw'],
             "recordsTotal" => $this->pembeliankredit->count_all(),
@@ -56,7 +70,6 @@ class Pembelian_kredit extends BaseController
         $data = [
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'supplier_id'           => $this->request->getPost('supplier_id'),
-            'brand_id'              => $this->request->getPost('brand_id'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
             'nota_supp'             => $this->request->getPost('nota_supp'),
             'nota_order'            => $this->request->getPost('nota_order'),
@@ -85,7 +98,6 @@ class Pembelian_kredit extends BaseController
             'id_kredit'             => $this->request->getPost('id'),
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'supplier_id'           => $this->request->getPost('supplier_id'),
-            'brand_id'              => $this->request->getPost('brand_id'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
             'nota_supp'             => $this->request->getPost('nota_supp'),
             'nota_order'            => $this->request->getPost('nota_order'),
