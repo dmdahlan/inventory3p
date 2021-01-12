@@ -63,6 +63,7 @@
                                         <th>TGL INPUT</th>
                                         <th>TGL NOTA</th>
                                         <th>DRIVER</th>
+                                        <th>BRAND</th>
                                         <th>REIMBURSEMENT</th>
                                         <th>TOTAL</th>
                                         <th>TGL BAYAR</th>
