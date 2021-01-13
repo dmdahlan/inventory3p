@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-class Rekap_pembeliancash extends BaseController
+class Rekap_hutangcash extends BaseController
 {
     public function index()
     {
         $data = [
-            'title'  => 'Rekap | Pembelian Cash'
+            'title'  => 'Rekap | Hutang Cash'
         ];
-        return view('data/vw_rekappembeliancash', $data);
+        return view('data/vw_rekaphutangcash', $data);
     }
     public function list()
     {
@@ -22,7 +22,7 @@ class Rekap_pembeliancash extends BaseController
         $data = array();
         foreach ($report as $r) {
             $row = array();
-            $row[] = 'TOTAL PEMBELIAN CASH';
+            $row[] = 'TOTAL HUTANG CASH';
             $row[] = $this->rupiah($r->jan);
             $row[] = $this->rupiah($r->feb);
             $row[] = $this->rupiah($r->mar);

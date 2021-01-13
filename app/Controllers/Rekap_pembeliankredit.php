@@ -7,7 +7,7 @@ class Rekap_pembeliankredit extends BaseController
     public function index()
     {
         $data = [
-            'title'  => 'Rekap | Hutang Kredit'
+            'title'  => 'Rekap | Pembelian Kredit'
         ];
         return view('data/vw_rekappembeliankredit', $data);
     }

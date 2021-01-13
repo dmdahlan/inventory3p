@@ -3,16 +3,16 @@
 <section class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="m-0 text-dark">Rekap Hutang Kredit</h5>
+                    <h5 class="m-0 text-dark">Rekap Pembelian Cash</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Rekap</a></li>
-                        <li class="breadcrumb-item active">Rekap Hutang Kredit</li>
+                        <li class="breadcrumb-item active">Rekap Pembelian Cash</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,13 +21,14 @@
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-4">
+
                                 </div>
                                 <div class="col-md-2">
                                     <input id="tgl_awal" placeholder="tgl awal" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
@@ -54,7 +55,6 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>SUPPLIER</th>
                                         <th>JAN</th>
                                         <th>FEB</th>
                                         <th>MAR</th>
@@ -105,18 +105,15 @@
             info: false,
             // Load data for the table's content from an Ajax source
             ajax: {
-                "url": "<?php echo site_url('rekap_hutangkredit/list') ?>",
+                "url": "<?php echo site_url('rekap_hutangcash/list') ?>",
                 "type": "POST",
                 "data": function(data) {
                     data.tgl_awal = tgl_awal;
                     data.tgl_akhir = tgl_akhir;
                     data.brand = brand;
+
                 }
             },
-            "columnDefs": [{
-                "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-                "className": 'text-right'
-            }]
         });
         $('#tabel-div').prop('hidden', false);
     }
