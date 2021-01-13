@@ -23,14 +23,14 @@ class Pembayaran_stnk extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = Time::parse($r->tgl_bayar)->toLocalizedString('dd-MMM-YY');
+            $row[] = Time::parse($r->tgl_bayar)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nopol;
             $row[] = $r->brand_name;
             $row[] = $r->stnk_kir;
             if ($r->expired == null) {
                 $row[] = '';
             } else {
-                $row[] = Time::parse($r->expired)->toLocalizedString('dd-MMM-YY');
+                $row[] = Time::parse($r->expired)->toLocalizedString('dd-MMM-yy');
             }
             $row[] = $this->rupiah($r->nominal_bayar);
             $row[] = $r->via;

@@ -55,10 +55,19 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>SUPPLIER</th>
-                                        <th>PEMBELIAN</th>
-                                        <th>PEMBAYARAN</th>
-                                        <th>HUTANG</th>
+                                        <th>JAN</th>
+                                        <th>FEB</th>
+                                        <th>MAR</th>
+                                        <th>APR</th>
+                                        <th>MEI</th>
+                                        <th>JUN</th>
+                                        <th>JUL</th>
+                                        <th>AGT</th>
+                                        <th>SEP</th>
+                                        <th>OKT</th>
+                                        <th>NOP</th>
+                                        <th>DES</th>
+                                        <th>TOTAL</th>
                                     </tr>
                                 </thead>
                             </table>
