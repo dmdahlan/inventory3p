@@ -3,7 +3,7 @@
 <section class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
                     <h5 class="m-0 text-dark">Rekap Hutang Kredit</h5>
@@ -21,7 +21,7 @@
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -56,9 +56,19 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>SUPPLIER</th>
-                                        <th>PEMBELIAN</th>
-                                        <th>PEMBAYARAN</th>
-                                        <th>HUTANG</th>
+                                        <th>JAN</th>
+                                        <th>FEB</th>
+                                        <th>MAR</th>
+                                        <th>APR</th>
+                                        <th>MEI</th>
+                                        <th>JUN</th>
+                                        <th>JUL</th>
+                                        <th>AGT</th>
+                                        <th>SEP</th>
+                                        <th>OKT</th>
+                                        <th>NOP</th>
+                                        <th>DES</th>
+                                        <th>TOTAL</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -102,9 +112,12 @@
                     data.tgl_awal = tgl_awal;
                     data.tgl_akhir = tgl_akhir;
                     data.brand = brand;
-
                 }
             },
+            "columnDefs": [{
+                "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+                "className": 'text-right'
+            }]
         });
         $('#tabel-div').prop('hidden', false);
     }
