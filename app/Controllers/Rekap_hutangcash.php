@@ -17,7 +17,7 @@ class Rekap_hutangcash extends BaseController
         $tgl_akhir = $this->request->getPost('tgl_akhir');
         $brand = $this->request->getPost('brand');
 
-        $report = $this->rekapcash->rekaphutang($tgl_awal, $tgl_akhir, $brand)->getResult();
+        $report = $this->rekaphutangcash->rekaphutang($tgl_awal, $tgl_akhir, $brand)->getResult();
 
         $data = array();
         foreach ($report as $r) {

@@ -6,13 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="m-0 text-dark">Rekap Pembelian Cash</h5>
+                    <h5 class="m-0 text-dark">Rekap Hutang Cash</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Rekap</a></li>
-                        <li class="breadcrumb-item active">Rekap Pembelian Cash</li>
+                        <li class="breadcrumb-item active">Rekap Hutang Cash</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

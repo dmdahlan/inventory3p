@@ -67,6 +67,7 @@ class BaseController extends Controller
 		$this->rekapkredit					= new \App\Models\RekapPembeliankredit;
 		$this->rekapcash					= new \App\Models\RekapPembeliancash;
 		$this->rekaphutangkredit			= new \App\Models\RekapHutangkredit;
+		$this->rekaphutangcash				= new \App\Models\RekapHutangcash;
 
 		$this->pemakaianbarang				= new \App\Models\PemakaianBarang;
 
