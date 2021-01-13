@@ -10,6 +10,7 @@ class Migratepembeliancash extends Migration
 	{
 		$this->forge->addField([
 			'id_cash' 			=> ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+			'tgl_reimburst'    	=> ['type' => 'DATE', 'null' => true],
 			'tgl_nota'    		=> ['type' => 'DATE'],
 			'nama_toko'  	 	=> ['type' => 'VARCHAR', 'constraint' => 100, 'null' => true],
 			'brand_id'   		=> ['type' => 'INT', 'constraint' => 11, 'null' => true],

@@ -56,7 +56,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>TGL INPUT</th>
+                                        <th>TGL REIMBURS</th>
                                         <th>TGL NOTA</th>
                                         <th>NAMA TOKO</th>
                                         <th>NAMA BARANG</th>
@@ -107,7 +107,14 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">TGL REIMBURS</label>
+                                    <input id="tgl_reimburst" name="tgl_reimburst" class="form-control tanggal" placeholder="Tanggal" type="text" autocomplete="off">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">NAMA TOKO</label>
                                     <input id="nama_toko" name="nama_toko" class="form-control" placeholder="Nama Toko" type="text">
@@ -289,6 +296,7 @@
             dataType: 'JSON',
             success: function(data) {
                 $('#id').val(data.id_cash);
+                $('#tgl_reimburst').val(data.tgl_reimburst);
                 $('#tgl_nota').val(data.tgl_nota);
                 $('#nama_toko').val(data.nama_toko);
                 $('#driver_id').val(data.driver_id).change();

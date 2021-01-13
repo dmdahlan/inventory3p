@@ -25,7 +25,11 @@ class Pembelian_cash extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
+            if ($r->tgl_reimburst == null) {
+                $row[] = '';
+            } else {
+                $row[] = Time::parse($r->tgl_reimburst)->toLocalizedString('dd-MMM-yy');
+            }
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama_toko;
             $row[] = $r->nama_barang;
@@ -65,7 +69,13 @@ class Pembelian_cash extends BaseController
     public function save()
     {
         $this->_validate('save');
+        if (!empty($_POST['tgl_reimburst'])) {
+            $tgl_reimburst = time::parse($this->request->getPost('tgl_reimburst'));
+        } else {
+            $tgl_reimburst = null;
+        }
         $data = [
+            'tgl_reimburst'         => $tgl_reimburst,
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'nama_toko'             => $this->request->getPost('nama_toko'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
@@ -89,9 +99,14 @@ class Pembelian_cash extends BaseController
     public function update()
     {
         $this->_validate('update');
-
+        if (!empty($_POST['tgl_reimburst'])) {
+            $tgl_reimburst = time::parse($this->request->getPost('tgl_reimburst'));
+        } else {
+            $tgl_reimburst = null;
+        }
         $data = [
             'id_cash'             => $this->request->getPost('id'),
+            'tgl_reimburst'         => $tgl_reimburst,
             'tgl_nota'              => time::parse($this->request->getPost('tgl_nota')),
             'nama_toko'             => $this->request->getPost('nama_toko'),
             'nopol_id'              => $this->request->getPost('nopol_id'),
