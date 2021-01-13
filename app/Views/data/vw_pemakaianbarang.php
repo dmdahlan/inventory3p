@@ -67,6 +67,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
+                                        <th>TGL INPUT</th>
                                         <th>TGL PERBAIKAN</th>
                                         <th>BRAND</th>
                                         <th>NO PERBAIKAN</th>

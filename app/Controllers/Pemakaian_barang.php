@@ -27,6 +27,7 @@ class Pemakaian_barang extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
+            $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
             $row[] = Time::parse($r->tgl_pakai)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->brand_name;
             $row[] = $r->no_perbaikan;
@@ -54,7 +55,7 @@ class Pemakaian_barang extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', '', 'TOTAL', $this->rupiah($total_qty), $this->rupiah($total_harga), $this->rupiah($total_beli), '', ''
+            '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($total_qty), $this->rupiah($total_harga), $this->rupiah($total_beli), '', ''
         );
         $output = array(
             "draw" => @$_POST['draw'],

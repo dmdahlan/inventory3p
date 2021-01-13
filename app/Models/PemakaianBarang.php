@@ -13,7 +13,7 @@ class PemakaianBarang extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_pakai', 'tgl_pakai', 'brand_name', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
+    protected $column_order = array('id_pakai', 'pemakaian_barang.created_at', 'tgl_pakai', 'brand_name', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
     protected $column_search = array('id_pakai', 'tgl_pakai', 'brand_name', 'no_perbaikan', 'nopol', 'keluhan_perbaikan', 'nama_barang', 'qty', 'harga', 'total', 'username');
     protected $order = array('tgl_pakai' => 'desc');
 
@@ -30,7 +30,8 @@ class PemakaianBarang extends Model
         $this->dt = $this->db->table('pemakaian_barang')
             ->join('users', 'users.id=pemakaian_barang.user_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pemakaian_barang.barang_id', 'left')
-            ->join('master_unit', 'master_unit.id_nopol=pemakaian_barang.nopol_id', 'left');
+            ->join('master_unit', 'master_unit.id_nopol=pemakaian_barang.nopol_id', 'left')
+            ->select('pemakaian_barang .*,pemakaian_barang.created_at,master_unit.brand_name,master_unit.nopol,master_barang.nama_barang,users.username');
         $this->dt->where('pemakaian_barang.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('user')) {

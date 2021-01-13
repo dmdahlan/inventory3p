@@ -61,6 +61,7 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>TGL INPUT</th>
+                                        <th>TGL REIMBURS</th>
                                         <th>TGL NOTA</th>
                                         <th>DRIVER</th>
                                         <th>BRAND</th>

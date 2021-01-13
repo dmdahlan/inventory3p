@@ -12,7 +12,7 @@ class PembelianBayarcash extends Model
     protected $primaryKey = 'id_bayarcash';
     protected $useTimestamps = true;
 
-    protected $column_order = array('id_cash', 'created_at', 'tgl_nota', 'nama', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
+    protected $column_order = array('id_cash', 'created_at', 'tgl_reimburst', 'tgl_nota', 'nama', 'nota_order', 'total', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
     protected $column_search = array('id_cash', 'nota_order', 'nama', 'tgl_bayar1', 'bank1', 'via1', 'nominal1', 'tgl_bayar2', 'bank2', 'via2', 'nominal2');
     protected $order = array('tgl_nota' => 'desc');
 
@@ -33,7 +33,7 @@ class PembelianBayarcash extends Model
             $this->dt->like('brand_name', $request->getPost('brandd'));
         }
         if ($request->getPost('tgl_awal') && $request->getPost('tgl_akhir')) {
-            $this->dt->where('tgl_nota BETWEEN "' . date('Y-m-d', strtotime($request->getPost('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getPost('tgl_akhir'))) . '"');
+            $this->dt->where('tgl_reimburst BETWEEN "' . date('Y-m-d', strtotime($request->getPost('tgl_awal'))) . '" AND "' . date('Y-m-d', strtotime($request->getPost('tgl_akhir'))) . '"');
         }
         if ($request->getPost('ketlunas')) {
             $this->dt->where('ket_lunas', $request->getPost('ketlunas'));
