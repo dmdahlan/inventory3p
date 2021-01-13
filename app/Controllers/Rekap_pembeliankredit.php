@@ -9,7 +9,7 @@ class Rekap_pembeliankredit extends BaseController
         $data = [
             'title'  => 'Rekap | Hutang Kredit'
         ];
-        return view('data/vw_rekaphutangkredit', $data);
+        return view('data/vw_rekappembeliankredit', $data);
     }
     public function list()
     {

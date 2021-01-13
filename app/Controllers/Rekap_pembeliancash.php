@@ -9,7 +9,7 @@ class Rekap_pembeliancash extends BaseController
         $data = [
             'title'  => 'Rekap | Hutang Cash'
         ];
-        return view('data/vw_rekaphutangcash', $data);
+        return view('data/vw_rekappembeliancash', $data);
     }
     public function list()
     {
