@@ -1,18 +1,18 @@
-<?= $this->extend('layout/template') ?>
-<?= $this->section('content') ?>
+<?= $this->extend('layout/template'); ?>
+<?= $this->section('content'); ?>
 <section class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="text-dark">Data Pemakaian Barang</h5>
+                    <h5 class="m-0 text-dark">Rekap Pemakaian</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Rekap</a></li>
-                        <li class="breadcrumb-item active">Data Pemakaian Barang</li>
+                        <li class="breadcrumb-item active">Rekap Pemakaian</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,39 +21,55 @@
     <!-- /.content-header -->
     <!-- Main content -->
     <section class="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tgl_awal" placeholder="tgl awal" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="tgl_akhir" placeholder="tgl akhir" class="form-control tanggal form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <select id="brand" class="form-control form-control-sm">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
+                                    </select>
+                                </div>
+                                <div class="col-md">
+                                    <button type="button" id="btn-filter" onclick="report()" class="btn btn-info btn-sm">Tampilkan</button>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body table table-responsive table-sm" style="font-size: 14px;">
-                            <table class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
+                        <div id="tabel-div" hidden class="card-body table table-responsive table-sm" style="font-size: 14px;">
+                            <table id="tabel" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
                                         <th>NOPOL</th>
-                                        <th>NAMA BARANG</th>
-                                        <th>QTY</th>
-                                        <th>HARGA</th>
+                                        <th>JAN</th>
+                                        <th>FEB</th>
+                                        <th>MAR</th>
+                                        <th>APR</th>
+                                        <th>MEI</th>
+                                        <th>JUN</th>
+                                        <th>JUL</th>
+                                        <th>AGT</th>
+                                        <th>SEP</th>
+                                        <th>OKT</th>
+                                        <th>NOP</th>
+                                        <th>DES</th>
                                         <th>TOTAL</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($rekap as $r) : ?>
-                                        <tr>
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $r['nopol'] ?></td>
-                                            <td><?= $r['nama_barang'] ?></td>
-                                            <td><?= count([$r['nama_barang']]) ?></td>
-                                            <td><?= $r['harga'] ?></td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -68,4 +84,83 @@
     </section>
     <!-- /.content -->
 </section>
-<?= $this->endSection('content') ?>
+<script type="text/javascript">
+    var table;
+
+    function report() {
+        var tgl_awal = $('#tgl_awal').val();
+        var tgl_akhir = $('#tgl_akhir').val();
+        var brand = $('#brand').val();
+
+        $('#tabel-div').prop('hidden', true);
+        $('#tabel').DataTable().clear().destroy();
+        table = $('#tabel').DataTable({
+            processing: true, //Feature control the processing indicator.
+            serverSide: true, //Feature control DataTables' server-side processing mode.
+            order: [], //Initial no order.
+            autowidth: true,
+            ordering: false,
+            searching: false,
+            paging: false,
+            info: false,
+            // Load data for the table's content from an Ajax source
+            ajax: {
+                "url": "<?php echo site_url('rekap_pemakaian/list') ?>",
+                "type": "POST",
+                "data": function(data) {
+                    data.tgl_awal = tgl_awal;
+                    data.tgl_akhir = tgl_akhir;
+                    data.brand = brand;
+                }
+            },
+            "columnDefs": [{
+                "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+                "className": 'text-right'
+            }]
+        });
+        $('#tabel-div').prop('hidden', false);
+    }
+    $('.tanggal').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd",
+        defaultDate: new Date(),
+    });
+
+    var date = new Date();
+    var tahun_awal = date.getFullYear();
+    tahun_awal = tahun_awal + "-01-01";
+    var tahun_akhir = date.getFullYear();
+    tahun_akhir = tahun_akhir + "-12-31";
+
+    function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    $("#tgl_awal").datepicker("setDate", tahun_awal);
+    $("#tgl_akhir").datepicker("setDate", tahun_akhir);
+
+    function reload() {
+        table.ajax.reload(null, false);
+    }
+</script>
+<?= $this->endSection('content'); ?>
+
+<?= $this->section('css') ?>
+<!-- DataTables -->
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/tambahan/datepicker/dist/css/bootstrap-datepicker.min.css">
+<?= $this->endSection('css') ?>
+
+<?= $this->section('js') ?>
+<!-- DataTables -->
+<script src="<?= base_url(''); ?>/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(''); ?>/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url(''); ?>/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url(''); ?>/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- date-picker -->
+<script src="<?= base_url(''); ?>/assets/tambahan/datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<?= $this->endSection('js') ?>
