@@ -29,7 +29,7 @@ class PembelianBayarkredit extends Model
         $this->dt = $this->db->table('vw_pembelian_kredit');
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
-            $this->dt->like('brand_id', $request->getPost('brandd'));
+            $this->dt->like('brand_name', $request->getPost('brandd'));
         }
         if ($request->getPost('ketlunas')) {
             $this->dt->where('ket_lunas', $request->getPost('ketlunas'));

@@ -36,9 +36,9 @@
                                 <div class="col-md-2">
                                     <select id="brandd" class="form-control form-control-sm">
                                         <option value="">Pilih Brand</option>
-                                        <option value="1">Perdana</option>
-                                        <option value="2">Paramita</option>
-                                        <option value="3">Pai</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
