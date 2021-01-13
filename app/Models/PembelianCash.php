@@ -13,7 +13,7 @@ class PembelianCash extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_barang.nama_barang', 'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang', 'qty', 'harga', 'total');
+    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.created_at', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_barang.nama_barang', 'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang', 'qty', 'harga', 'total');
     protected $column_search = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_barang.nama_barang', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang');
     protected $order = array('pembelian_cash.tgl_nota' => 'desc');
 
@@ -32,7 +32,7 @@ class PembelianCash extends Model
             ->join('master_unit', 'master_unit.id_nopol=pembelian_cash.nopol_id', 'left')
             ->join('master_barang', 'master_barang.id_barang=pembelian_cash.barang_id', 'left')
             ->join('vw_pembelian_cash', 'vw_pembelian_cash.notaorder_id=pembelian_cash.nota_order', 'left')
-            ->select('pembelian_cash.*,pembelian_cash.id_cash,pembelian_cash.tgl_reimburst,pembelian_cash.tgl_nota,master_driver.nama,master_unit.nopol,master_unit.brand_name,master_barang.nama_barang,vw_pembelian_cash.notaorder_id');
+            ->select('pembelian_cash.*,pembelian_cash.id_cash,pembelian_cash.tgl_reimburst,pembelian_cash.created_at,pembelian_cash.tgl_nota,master_driver.nama,master_unit.nopol,master_unit.brand_name,master_barang.nama_barang,vw_pembelian_cash.notaorder_id');
         $this->dt->where('pembelian_cash.deleted_at', null);
         $request = \Config\Services::request();
         if ($request->getPost('brandd')) {
