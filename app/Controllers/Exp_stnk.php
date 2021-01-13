@@ -24,6 +24,7 @@ class Exp_stnk extends BaseController
             $row = array();
             $row[] = $no;
             $row[] = $r->nopol;
+            $row[] = $r->kode_nopol;
             if ($r->exp_stnk == null) {
                 $row[] = '';
             } else {

@@ -65,11 +65,12 @@ class MasterUnit extends Model
     {
         $sql = "SELECT
         master_unit.nopol AS nopol,
+        master_unit.nopol AS kode_nopol,
         master_unit.exp_stnk as exp_stnk,
         master_unit.exp_stnk_tahun as exp_stnk_tahun,
         master_unit.brand_name as brand_name
         FROM master_unit
-        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
+        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
         $query = $this->db->query($sql, array());
         return $query;
     }
@@ -78,7 +79,7 @@ class MasterUnit extends Model
         $sql = "SELECT
         COUNT(*) AS total
         FROM master_unit
-        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
+        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
         $query = $this->db->query($sql, array());
         return $query;
     }
@@ -89,7 +90,7 @@ class MasterUnit extends Model
         master_unit.exp_kir as exp_kir,
         master_unit.brand_name as brand_name
         FROM master_unit
-        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
+        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
         $query = $this->db->query($sql, array());
         return $query;
     }
@@ -98,7 +99,7 @@ class MasterUnit extends Model
         $sql = "SELECT
         COUNT(*) AS total
         FROM master_unit
-        WHERE -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
+        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
         $query = $this->db->query($sql, array());
         return $query;
     }
