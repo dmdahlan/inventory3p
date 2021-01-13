@@ -20,19 +20,6 @@ class Rekap_pembeliancash extends BaseController
         $report = $this->rekapcash->rekaphutang($tgl_awal, $tgl_akhir, $brand)->getResult();
 
         $data = array();
-        $jan = 0;
-        $feb = 0;
-        $mar = 0;
-        $apr = 0;
-        $mei = 0;
-        $jun = 0;
-        $jul = 0;
-        $agt = 0;
-        $sep = 0;
-        $okt = 0;
-        $nop = 0;
-        $des = 0;
-        $grandtotal = 0;
         foreach ($report as $r) {
             $row = array();
             $row[] = 'TOTAL PEMBELIAN CASH';
