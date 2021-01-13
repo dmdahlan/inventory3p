@@ -65,7 +65,7 @@ class MasterUnit extends Model
     {
         $sql = "SELECT
         master_unit.nopol AS nopol,
-        master_unit.nopol AS kode_nopol,
+        master_unit.kode_nopol AS kode_nopol,
         master_unit.exp_stnk as exp_stnk,
         master_unit.exp_stnk_tahun as exp_stnk_tahun,
         master_unit.brand_name as brand_name
