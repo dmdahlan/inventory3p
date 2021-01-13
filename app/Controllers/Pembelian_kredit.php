@@ -32,7 +32,7 @@ class Pembelian_kredit extends BaseController
             $row[] = $r->brand_name;
             $row[] = $r->nopol;
             $row[] = $r->nota_supp;
-            $row[] = $r->nota_order;
+            $row[] = '<a class="text-blue" href="javascript:void(0)" onclick="edit_kredit(' . "'" . $r->id_kredit . "'" . ')">' . $r->nota_order;
             $row[] = $r->nama_barang;
             $row[] = $r->qty;
             $row[] = $this->rupiah($r->harga);

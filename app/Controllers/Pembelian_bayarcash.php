@@ -36,7 +36,13 @@ class Pembelian_bayarcash extends BaseController
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama;
             $row[] = $r->brand_name;
-            $row[] = $r->nota_order;
+            if ($r->tgl_bayar1 == '') {
+                $row[] =
+                    '<a class="text-blue" href="javascript:void(0)" onclick="tambah_bayar(' . "'" . $r->id_cash . "'" . ')">' . $r->nota_order;
+            } else {
+                $row[] =
+                    '<a class="text-blue" href="javascript:void(0)" onclick="edit_bayar(' . "'" . $r->id_cash . "'" . ')">' . $r->nota_order;
+            }
             $row[] = $this->rupiah($r->total);
             if ($r->tgl_bayar1 == null) {
                 $row[] = '';

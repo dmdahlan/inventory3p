@@ -27,7 +27,14 @@ class Pembelian_bayarkredit extends BaseController
             $row[] = $no;
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->supplier;
-            $row[] = $r->nota_order;
+            $row[] = $r->brand_name;
+            if ($r->tgl_bayar1 == '') {
+                $row[] =
+                    '<a class="text-blue" href="javascript:void(0)" onclick="tambah_bayar(' . "'" . $r->id_kredit . "'" . ')">' . $r->nota_order;
+            } else {
+                $row[] =
+                    '<a class="text-blue" href="javascript:void(0)" onclick="edit_bayar(' . "'" . $r->id_kredit . "'" . ')">' . $r->nota_order;
+            }
             $row[] = $this->rupiah($r->total);
             if ($r->tgl_bayar1 == null) {
                 $row[] = '';
@@ -61,7 +68,7 @@ class Pembelian_bayarkredit extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', '', '', '', $this->rupiah($hutang), ''
+            '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', '', '', '', $this->rupiah($hutang), ''
         );
         $output = array(
             "draw" => @$_POST['draw'],

@@ -62,6 +62,7 @@
                                         <th>NO</th>
                                         <th>TGL NOTA</th>
                                         <th>SUPPLIER</th>
+                                        <th>BRAND</th>
                                         <th>NOTA ORDER</th>
                                         <th>TOTAL</th>
                                         <th>TGL BAYAR</th>
