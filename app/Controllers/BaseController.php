@@ -72,6 +72,7 @@ class BaseController extends Controller
 		$this->pemakaianbarang				= new \App\Models\PemakaianBarang;
 
 		$this->rekappakai					= new \App\Models\RekapPemakaian;
+		$this->memoread						= new \App\Models\Memo;
 	}
 	function rupiah($angka)
 	{

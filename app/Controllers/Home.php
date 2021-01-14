@@ -10,7 +10,9 @@ class Home extends BaseController
 		$data = [
 			'title'			=> 'Home',
 			'totalstnk'			=> $this->masterunit->totalexpstnk()->getRowArray(),
-			'totalkir'			=> $this->masterunit->totalexpkir()->getRowArray()
+			'totalkir'			=> $this->masterunit->totalexpkir()->getRowArray(),
+			'totalmemo'			=> $this->memoread->view_memo()
+
 		];
 		return view('welcome_message', $data);
 	}
