@@ -56,11 +56,11 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>TGL BAYAR</th>
                                         <th>NOPOL</th>
                                         <th>BRAND</th>
                                         <th>KET</th>
                                         <th>EXPIRED</th>
+                                        <th>TGL BAYAR</th>
                                         <th>NOMINAL</th>
                                         <th>VIA</th>
                                         <th>BANK</th>
