@@ -25,7 +25,11 @@ class Pembelian_cash extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = '<a class="text-blue" href="javascript:void(0)" onclick="edit_cash(' . "'" . $r->id_cash . "'" . ')">' . Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
+            if ($r->notaorder_id != null) {
+                $row[] = Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
+            } else {
+                $row[] = '<a class="text-blue" href="javascript:void(0)" onclick="edit_cash(' . "'" . $r->id_cash . "'" . ')">' . Time::parse($r->created_at)->toLocalizedString('dd-MMM-yy');
+            }
             if ($r->tgl_reimburst == null) {
                 $row[] = '';
             } else {
