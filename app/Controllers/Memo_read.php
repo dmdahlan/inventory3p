@@ -8,7 +8,8 @@ class Memo_read extends BaseController
     {
         $data = [
             'title'         => 'Memo',
-            'read_memo'     => $this->memoread->readmemo()
+            'read_memo'     => $this->memoread->readmemo(),
+            'totalmemo'            => $this->memoread->view_memo()
         ];
         return view('data/vw_bacamemo', $data);
     }
