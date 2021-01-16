@@ -218,6 +218,9 @@
 
     function edit_memo(id) {
         method = 'update';
+        $(".select2").select2({
+            theme: "bootstrap4"
+        });
         $('#btnSavememo').text('Update');
         $.ajax({
             url: '<?= site_url('memo_all/edit/') ?>' + id,
