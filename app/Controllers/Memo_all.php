@@ -98,9 +98,9 @@ class Memo_all extends BaseController
             echo json_encode(['status' => FALSE]);
         }
     }
-    public function getsupplier()
+    public function getnama()
     {
-        echo json_encode($this->memoread->orderBy('supplier', 'ASC')->findAll());
+        echo json_encode($this->adminlogin->orderBy('email', 'ASC')->findAll());
     }
     public function _validate($method)
     {

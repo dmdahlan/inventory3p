@@ -118,7 +118,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <input type="hidden" id="id" name="id">
-                            <input class="form-control" id="to_id" name="to_id" placeholder="To:">
+                            <select class="form-control select2" id="to_id" name="to_id" placeholder="To:"></select>
                         </div>
                         <div class="form-group">
                             <input class="form-control" id="subject" name="subject" placeholder="Subject:">
@@ -159,6 +159,7 @@
                 "type": "POST",
             }
         });
+        init_select();
     });
 
     function reload_table() {
@@ -168,6 +169,9 @@
     function tambah() {
         method = 'save';
         $('#md-form-pesan').modal('show');
+        $(".select2").select2({
+            theme: "bootstrap4"
+        });
     }
 
     function simpan() {
@@ -295,6 +299,20 @@
         });
     }
 
+    function init_select() {
+        let dropdown_nopol = $('#to_id');
+        dropdown_nopol.empty();
+        dropdown_nopol.append('<option value="">Pilih Email</option>');
+        dropdown_nopol.prop('selectedIndex', 0);
+        const url_nopol = '<?= base_url('memo_all/getnama/') ?>';
+        // Populate dropdown with list
+        $.getJSON(url_nopol, function(data) {
+            $.each(data, function(key, entry) {
+                dropdown_nopol.append($('<option></option>').attr('value', entry.id).text(entry.email));
+            })
+        });
+    }
+
     function alertsukses() {
         const Toast = Swal.mixin({
             toast: true,
@@ -329,6 +347,10 @@
 <link rel="stylesheet" href="<?= base_url(''); ?>/assets/tambahan/sweetalert2/dist/sweetalert2.min.css">
 <!-- summernote -->
 <link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/summernote/summernote-bs4.min.css">
+
+<!-- Select2 -->
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="<?= base_url(''); ?>/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <?= $this->endSection('css') ?>
 
 <?= $this->section('js') ?>
@@ -343,4 +365,6 @@
 <script src="<?= base_url(''); ?>/assets/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(''); ?>/assets/dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url(''); ?>/assets/plugins/select2/js/select2.full.min.js"></script>
 <?= $this->endSection('js') ?>

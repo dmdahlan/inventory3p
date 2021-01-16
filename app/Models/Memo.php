@@ -68,6 +68,7 @@ class Memo extends Model
         return $this->db->table('memo')
             ->where('memo.deleted_at', null)
             ->where('memo.ket_memo', null)
+            ->where('to_id', user()->id)
             ->countAllResults();
     }
     public function readmemo()
@@ -77,6 +78,7 @@ class Memo extends Model
             ->select('memo.*,users.username,memo.created_at')
             ->where('memo.deleted_at', null)
             ->where('memo.ket_memo', null)
+            ->where('to_id', user()->id)
             ->get()->getResultArray();
     }
     public function memook($id)

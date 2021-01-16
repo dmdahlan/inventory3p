@@ -45,6 +45,7 @@ class BaseController extends Controller
 		$this->validation 					= \Config\Services::validation();
 		$this->db 							= \Config\Database::connect();
 
+		$this->adminlogin 					= new \App\Models\AdminLogin;
 		$this->adminmenu 					= new \App\Models\AdminMenu;
 		$this->adminrole 					= new \App\Models\AdminRole;
 		$this->adminuser 					= new \App\Models\AdminUser;
