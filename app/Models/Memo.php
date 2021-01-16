@@ -28,8 +28,8 @@ class Memo extends Model
     private function _get_datatables_query()
     {
         $this->dt = $this->db->table('memo')
-            ->join('users', 'users.id=memo.from_id', 'left')
-            ->select('memo.*,users.username as from,users.username as to,memo.created_at');
+            ->join('users', 'users.id=memo.to_id', 'left')
+            ->select('memo.*,users.username,memo.created_at');
         $this->dt->where('memo.deleted_at', null);
         $i = 0;
         foreach ($this->column_search as $item) {
