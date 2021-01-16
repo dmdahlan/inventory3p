@@ -196,7 +196,7 @@
                     $('.is-invalid').removeClass('is-invalid');
                     $('#md-form-pesan').modal('hide');
                     alertsukses();
-                    reload_table();
+                    location.reload();
                 } else {
                     for (var i = 0; i < data.inputerror.length; i++) {
                         $('[name="' + data.inputerror[i] + '"]').parent().addClass('has-error');
@@ -292,7 +292,7 @@
                     dataType: "JSON",
                     success: function(data) {
                         swal.fire('Selesai', 'Memo tela selesai', 'success');
-                        reload_table();
+                        location.reload();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         swal.fire("Gagal", "Memo Batal Selesai", "error");
