@@ -6,13 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="text-dark">Memo</h5>
+                    <h5 class="text-dark">Memo Terkirim</h5>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Memo</a></li>
-                        <li class="breadcrumb-item active">Memo</li>
+                        <li class="breadcrumb-item active">Memo Terikirim</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -70,29 +70,31 @@
             </div>
             <!-- /.col -->
             <div class="col-md-10">
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">Inbox</h3>
-                        <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <div class="table-responsive mailbox-messages table-sm" style="font-size: 14px;">
-                            <table id="table" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>To</th>
-                                        <th>Pesan</th>
-                                        <th>Tgl Kirim</th>
-                                        <th>Opsi</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <!-- /.table -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Sent Item</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table table-responsive table-sm" style="font-size: 14px;">
+                                <table id="table" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
+                                    <thead>
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>TO</th>
+                                            <th>PESAN</th>
+                                            <th>TGL KIRIM</th>
+                                            <th>OPSI</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.mail-box-messages -->
+                        <!-- /.card -->
                     </div>
+                    <!-- /.col -->
                 </div>
                 <!-- /.card -->
             </div>
@@ -273,7 +275,7 @@
 
     function selesai(id) {
         swal.fire({
-            title: 'Apakah Anda Yakin ?',
+            title: 'Memo Selesai ?',
             text: 'Anda Tidak Akan Bisa Merecover Kembali Memo Yang sudah selesai !',
             icon: 'warning',
             showCancelButton: true,

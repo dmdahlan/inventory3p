@@ -88,4 +88,9 @@ class Memo extends Model
             ->where('id_memo', $id)
             ->update();
     }
+    public function count_pesan($user)
+    {
+        $query = $this->dz = $this->db->table('memo')->where('from_id', $user)->where('ket_memo', null);
+        return $query->countAllResults();
+    }
 }

@@ -57,21 +57,20 @@
             <!-- Right navbar links -->
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <!-- Notifications Dropdown Menu -->
+                <?php
+                $user = user()->id;
+                $db      = \Config\Database::connect();
+                $totalpesan = $db->table('memo')->where('from_id', $user)->where('ket_memo', null)->countAllResults();
+                ?>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge"></span>
+                    <a class="nav-link" href="<?= base_url('memo_all') ?>">
+                        <i class="far fa-envelope"></i>
+                        <?php if ($totalpesan == 0) : ?>
+                            <span class="badge badge-warning navbar-badge"></span>
+                        <?php else : ?>
+                            <span class="badge badge-warning navbar-badge"><?= $totalpesan ?></span>
+                        <?php endif; ?>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header"></span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
                 </li>
                 <!-- user menu -->
                 <li class="nav-item dropdown user user-menu">
