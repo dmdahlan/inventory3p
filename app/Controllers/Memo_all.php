@@ -21,7 +21,7 @@ class Memo_all extends BaseController
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = $r->username;
+            $row[] = $r->to;
             $row[] = $r->isi_memo;
             $row[] = $r->created_at;
             if ($r->ket_memo == 1) {

@@ -29,7 +29,7 @@ class Memo extends Model
     {
         $this->dt = $this->db->table('memo')
             ->join('users', 'users.id=memo.from_id', 'left')
-            ->select('memo.*,users.username,memo.created_at');
+            ->select('memo.*,users.username as from,users.username as to,memo.created_at');
         $this->dt->where('memo.deleted_at', null);
         $i = 0;
         foreach ($this->column_search as $item) {

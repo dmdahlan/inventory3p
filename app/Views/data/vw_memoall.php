@@ -77,12 +77,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
-                        <div class="table-responsive mailbox-messages">
-                            <table id="table" class="table table-hover table-striped">
+                        <div class="table-responsive mailbox-messages table-sm" style="font-size: 14px;">
+                            <table id="table" class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Pengrim</th>
+                                        <th>To</th>
                                         <th>Pesan</th>
                                         <th>Tgl Kirim</th>
                                         <th>Opsi</th>
@@ -228,7 +228,7 @@
             dataType: 'JSON',
             success: function(data) {
                 $('#id').val(data.id_memo);
-                $('#to_id').val(data.to_id);
+                $('#to_id').val(data.to_id).change();
                 $('#subject').val(data.subject);
                 $('#isi_memo').val(data.isi_memo);
 
