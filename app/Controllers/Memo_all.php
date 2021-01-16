@@ -13,7 +13,8 @@ class Memo_all extends BaseController
     }
     public function datamemo()
     {
-        $list = $this->memoread->get_datatables();
+        $user = user()->id;
+        $list = $this->memoread->get_datatables($user);
         $data = array();
         $no = @$_POST['start'];
 
@@ -39,8 +40,8 @@ class Memo_all extends BaseController
         }
         $output = array(
             "draw" => @$_POST['draw'],
-            "recordsTotal" => $this->memoread->count_all(),
-            "recordsFiltered" => $this->memoread->count_filtered(),
+            "recordsTotal" => $this->memoread->count_all($user),
+            "recordsFiltered" => $this->memoread->count_filtered($user),
             "data" => $data,
         );
         //output to json format

@@ -17,20 +17,20 @@ class Memo extends Model
     protected $column_search = array('id_memo', 'username', 'isi_memo', 'memo.created_at');
     protected $order = array('ket_memo' => 'asc');
 
-    function get_datatables()
+    function get_datatables($user)
     {
-        $this->_get_datatables_query();
+        $this->_get_datatables_query($user);
         if (@$_POST['length'] != -1)
             $this->dt->limit(@$_POST['length'], @$_POST['start']);
         $query = $this->dt->get();
         return $query->getResult();
     }
-    private function _get_datatables_query()
+    private function _get_datatables_query($user)
     {
         $this->dt = $this->db->table('memo')
             ->join('users', 'users.id=memo.to_id', 'left')
             ->select('memo.*,users.username,memo.created_at');
-        $this->dt->where('memo.deleted_at', null);
+        $this->dt->where('memo.deleted_at', null)->where('from_id', $user);
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {
@@ -53,14 +53,14 @@ class Memo extends Model
             $this->dt->orderBy(key($order), $order[key($order)]);
         }
     }
-    function count_filtered()
+    function count_filtered($user)
     {
-        $this->_get_datatables_query();
-        return $this->dt->countAllResults();
+        $this->_get_datatables_query($user);
+        return $this->dt->countAllResults($user);
     }
-    public function count_all()
+    public function count_all($user)
     {
-        $query = $this->dt->where('deleted_at', null);
+        $query = $this->dt->where('deleted_at', null)->where('from_id', $user);
         return $query->countAllResults();
     }
     public function view_memo()
