@@ -22,7 +22,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <a class="btn btn-primary btn-block mb-3" onclick="tambah()">Tulis Pesan</a>
                 <div class="card">
                     <div class="card-header">
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <!-- /.col -->
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">Inbox</h3>
