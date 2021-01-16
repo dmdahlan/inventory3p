@@ -36,13 +36,13 @@
                     <div class="card-body p-0">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item active">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('memo_read') ?>" class="nav-link active">
                                     <i class="fas fa-inbox"></i> Inbox
                                     <span class="badge bg-primary float-right"></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('memo_sent') ?>" class="nav-link">
                                     <i class="far fa-envelope"></i> Sent
                                 </a>
                             </li>

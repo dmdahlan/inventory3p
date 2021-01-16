@@ -60,10 +60,10 @@
                 <?php
                 $user = user()->id;
                 $db      = \Config\Database::connect();
-                $totalpesan = $db->table('memo')->where('from_id', $user)->where('ket_memo', null)->countAllResults();
+                $totalpesan = $db->table('memo')->where('deleted_at', null)->where('from_id', $user)->where('ket_memo', null)->countAllResults();
                 ?>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="<?= base_url('memo_all') ?>">
+                    <a class="nav-link" href="<?= base_url('memo_sent') ?>">
                         <i class="far fa-envelope"></i>
                         <?php if ($totalpesan == 0) : ?>
                             <span class="badge badge-warning navbar-badge"></span>

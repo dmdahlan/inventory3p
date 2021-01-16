@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-class Memo_all extends BaseController
+class Memo_sent extends BaseController
 {
     public function index()
     {
         $data = [
             'title'         => 'Memo'
         ];
-        return view('data/vw_memoall', $data);
+        return view('data/vw_memosent', $data);
     }
     public function datamemo()
     {

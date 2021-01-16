@@ -37,13 +37,13 @@
                     <div class="card-body p-0">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item active">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('memo_read') ?>" class="nav-link">
                                     <i class="fas fa-inbox"></i> Inbox
                                     <span class="badge bg-primary float-right"></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('memo_sent') ?>" class="nav-link active">
                                     <i class="far fa-envelope"></i> Sent
                                 </a>
                             </li>
@@ -157,7 +157,7 @@
             "ordering": true,
 
             ajax: {
-                "url": "memo_all/datamemo",
+                "url": "memo_sent/datamemo",
                 "type": "POST",
             }
         });
@@ -178,9 +178,9 @@
 
     function simpan() {
         if (method == 'save') {
-            url = '<?= site_url('memo_all/save') ?>';
+            url = '<?= site_url('memo_sent/save') ?>';
         } else {
-            url = '<?= site_url('memo_all/update') ?>';
+            url = '<?= site_url('memo_sent/update') ?>';
         }
         $.ajax({
             url: url,
@@ -225,7 +225,7 @@
         });
         $('#btnSavememo').text('Update');
         $.ajax({
-            url: '<?= site_url('memo_all/edit/') ?>' + id,
+            url: '<?= site_url('memo_sent/edit/') ?>' + id,
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
@@ -256,7 +256,7 @@
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: "<?php echo site_url('memo_all/delete') ?>/" + id,
+                    url: "<?php echo site_url('memo_sent/delete') ?>/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function(data) {
@@ -287,7 +287,7 @@
         }).then((willDelete) => {
             if (willDelete.value) {
                 $.ajax({
-                    url: "<?php echo site_url('memo_all/selesai') ?>/" + id,
+                    url: "<?php echo site_url('memo_sent/selesai') ?>/" + id,
                     type: "POST",
                     dataType: "JSON",
                     success: function(data) {
@@ -309,7 +309,7 @@
         dropdown_nopol.empty();
         dropdown_nopol.append('<option value="">Pilih Email</option>');
         dropdown_nopol.prop('selectedIndex', 0);
-        const url_nopol = '<?= base_url('memo_all/getnama/') ?>';
+        const url_nopol = '<?= base_url('memo_sent/getnama/') ?>';
         // Populate dropdown with list
         $.getJSON(url_nopol, function(data) {
             $.each(data, function(key, entry) {
