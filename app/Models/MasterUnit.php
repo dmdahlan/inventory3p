@@ -29,6 +29,16 @@ class MasterUnit extends Model
     {
         $this->dt = $this->db->table('master_unit');
         $this->dt->where('deleted_at', null);
+        $request = \Config\Services::request();
+        if ($request->getPost('brand')) {
+            $this->dt->where('brand_name', $request->getPost('brand'));
+        }
+        if ($request->getPost('stnk')) {
+            $this->dt->like('exp_stnk', $request->getPost('stnk'));
+        }
+        if ($request->getPost('kir')) {
+            $this->dt->like('exp_kir', $request->getPost('kir'));
+        }
         $i = 0;
         foreach ($this->column_search as $item) {
             if (@$_POST['search']['value']) {

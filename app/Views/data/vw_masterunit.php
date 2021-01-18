@@ -27,10 +27,24 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <a href="" class="btn btn-info btn-sm" data-toggle="modal" onclick="tambah()">Tambah</a>
-                                    <button class="btn btn-info btn-sm" onclick="refresh()"> <span>Refresh</span></button>
                                 </div>
+                                <div class="col-md-2">
+                                    <select id="brandd" class="form-control form-control-sm">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="perdana">Perdana</option>
+                                        <option value="paramita">Paramita</option>
+                                        <option value="pai">Pai</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="stnk" placeholder="tgl stnk" class="form-control tanggall form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="kir" placeholder="tgl kir" class="form-control tanggall form-control-sm" type="text" autocomplete="off">
+                                </div>
+                                <button class="btn btn-info btn-sm" onclick="refresh()"> <span>Refresh</span></button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -157,8 +171,22 @@
             ajax: {
                 "url": "master_unit/dataunit",
                 "type": "POST",
+                "data": function(data) {
+                    data.stnk = $('#stnk').val();
+                    data.kir = $('#kir').val();
+                    data.brand = $('#brandd').val();
+                },
             }
         });
+    });
+    $('#brandd').change(function() {
+        table.ajax.reload();
+    });
+    $('#stnk').change(function() {
+        table.ajax.reload();
+    });
+    $('#kir').change(function() {
+        table.ajax.reload();
     });
 
     function batal() {
@@ -169,6 +197,9 @@
     }
 
     function refresh() {
+        document.getElementById("brandd").value = "";
+        document.getElementById("stnk").value = "";
+        document.getElementById("kir").value = "";
         reload_table();
     }
 
@@ -304,6 +335,13 @@
         autoclose: true,
         todayHighlight: true,
         format: "dd-mm-yyyy"
+    });
+    $('.tanggall').datepicker({
+        startView: "months",
+        minViewMode: "months",
+        format: 'yyyy-mm'
+    }).on('change', function() {
+        $('.datepicker').hide();
     });
 </script>
 <?= $this->endSection('content') ?>
