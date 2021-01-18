@@ -15,7 +15,7 @@ class Exp_stnk extends BaseController
     }
     public function datastnk()
     {
-        $stnk = $this->masterunit->expstnk()->getResult();
+        $stnk = $this->masterunit->expstnk();
         $data = array();
         $no = @$_POST['start'];
 

@@ -63,16 +63,31 @@ class MasterUnit extends Model
     }
     public function expstnk()
     {
-        $sql = "SELECT
-        master_unit.nopol AS nopol,
-        master_unit.kode_nopol AS kode_nopol,
-        master_unit.exp_stnk as exp_stnk,
-        master_unit.exp_stnk_tahun as exp_stnk_tahun,
-        master_unit.brand_name as brand_name
-        FROM master_unit
-        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk)";
-        $query = $this->db->query($sql, array());
-        return $query;
+        $request = \Config\Services::request();
+        if ($request->getPost('brand') == '') {
+            $sql = "SELECT
+            master_unit.nopol AS nopol,
+            master_unit.kode_nopol AS kode_nopol,
+            master_unit.exp_stnk as exp_stnk,
+            master_unit.exp_stnk_tahun as exp_stnk_tahun,
+            master_unit.brand_name as brand_name
+            FROM master_unit
+            WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk) AND master_unit.brand_name is not null ";
+            $query = $this->db->query($sql, array())->getResult();
+            return $query;
+        } else {
+            $merek = $request->getPost('brand');
+            $sql = "SELECT
+            master_unit.nopol AS nopol,
+            master_unit.kode_nopol AS kode_nopol,
+            master_unit.exp_stnk as exp_stnk,
+            master_unit.exp_stnk_tahun as exp_stnk_tahun,
+            master_unit.brand_name as brand_name
+            FROM master_unit
+            WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk) AND master_unit.brand_name ='$merek' ";
+            $query = $this->db->query($sql, array())->getResult();
+            return $query;
+        }
     }
     public function totalexpstnk()
     {
