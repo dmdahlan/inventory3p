@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class PembayaranStnk extends Model
 {
     protected $table = 'pembayaran_stnk';
-    protected $allowedFields = ['nopol_id', 'tgl_bayar', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank'];
+    protected $allowedFields = ['nopol_id', 'tgl_bayar', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank', 'nominal_simulasi', 'nominal_pengurusan'];
     protected $id = 'id_bayarstnk';
     protected $primaryKey = 'id_bayarstnk';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('id_bayarstnk', 'tgl_bayar', 'nopol', 'brand_name', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank');
-    protected $column_search = array('id_bayarstnk', 'tgl_bayar', 'nopol', 'brand_name', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank');
+    protected $column_order = array('id_bayarstnk', 'tgl_bayar', 'nopol', 'brand_name', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank',  'nominal_pengurusan', 'nominal_simulasi', null);
+    protected $column_search = array('id_bayarstnk', 'tgl_bayar', 'nopol', 'brand_name', 'stnk_kir', 'expired', 'nominal_bayar', 'via', 'bank', 'nominal_simulasi', 'nominal_pengurusan');
     protected $order = array('tgl_bayar' => 'asc');
 
     function get_datatables()

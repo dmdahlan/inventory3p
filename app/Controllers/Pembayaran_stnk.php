@@ -35,6 +35,10 @@ class Pembayaran_stnk extends BaseController
             $row[] = $this->rupiah($r->nominal_bayar);
             $row[] = $r->via;
             $row[] = $r->bank;
+            $row[] = $this->rupiah($r->nominal_pengurusan);
+            $row[] = $this->rupiah($r->nominal_simulasi);
+            $jasa = $r->nominal_pengurusan - $r->nominal_simulasi;
+            $row[] = $this->rupiah($jasa);
             $row[] = '
                     <a class="btn btn-warning btn-xs" href="javascript:void(0)" title="Edit" onclick="edit_bayar(' . "'" . $r->id_bayarstnk . "'" . ')">Edit</a>
                     <a class="btn btn-danger btn-xs" href="javascript:void(0)" title="Hapus" onclick="hapus_bayar(' . "'" . $r->id_bayarstnk . "'" . ')">Hapus</a>
@@ -43,7 +47,7 @@ class Pembayaran_stnk extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', ''
+            '', '', '', '', '', 'TOTAL', $this->rupiah($total), '', '', '', '', '', ''
         );
         $output = array(
             "draw" => @$_POST['draw'],
@@ -75,6 +79,8 @@ class Pembayaran_stnk extends BaseController
             'nominal_bayar'         => $this->request->getPost('nominal'),
             'via'                   => $this->request->getPost('via'),
             'bank'                  => $this->request->getPost('bank'),
+            'nominal_pengurusan'    => $this->request->getPost('nominal_pengurusan'),
+            'nominal_simulasi'      => $this->request->getPost('nominal_simulasi'),
         ];
 
         if ($this->pembayaranstnk->save($data)) {
@@ -109,6 +115,8 @@ class Pembayaran_stnk extends BaseController
             'nominal_bayar'         => $this->request->getPost('nominal'),
             'via'                   => $this->request->getPost('via'),
             'bank'                  => $this->request->getPost('bank'),
+            'nominal_pengurusan'    => $this->request->getPost('nominal_pengurusan'),
+            'nominal_simulasi'      => $this->request->getPost('nominal_simulasi'),
         ];
 
         if ($this->pembayaranstnk->save($data)) {

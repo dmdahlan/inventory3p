@@ -64,6 +64,9 @@
                                         <th>NOMINAL</th>
                                         <th>VIA</th>
                                         <th>BANK</th>
+                                        <th>VIA BP MAJID</th>
+                                        <th>SIMULASI</th>
+                                        <th>JASA</th>
                                         <th>OPSI</th>
                                     </tr>
                                 </thead>
@@ -98,7 +101,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <input type="hidden" id="id" name="id">
-                                    <label class="form-label">Tgl Bayar</label>
+                                    <label class="form-label">TGL BAYAR</label>
                                     <input id="tgl_bayar" name="tgl_bayar" class="form-control tanggal" placeholder="Tgl Bayar">
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -138,7 +141,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Via</label>
+                                    <label class="form-label">VIA</label>
                                     <select id="via" name="via" class="form-control">
                                         <option value="">Pilih</option>
                                         <option value="psp">PSP</option>
@@ -153,7 +156,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Bank</label>
+                                    <label class="form-label">BANK</label>
                                     <select id="bank" name="bank" class="form-control">
                                         <option value="">Pilih</option>
                                         <option value="danamon">DANAMON</option>
@@ -164,6 +167,22 @@
                                         <option value="kas">KAS</option>
                                         <option value="bri">BRI</option>
                                     </select>
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">PAK MAJID</label>
+                                    <input id="nominal_pengurusann" name="nominal_pengurusann" class="form-control uang" placeholder="Nominal">
+                                    <input type="hidden" name="nominal_pengurusan" id="nominal_pengurusan">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">SIMULASI</label>
+                                    <input id="nominal_simulasii" name="nominal_simulasii" class="form-control uang" placeholder="Nominal">
+                                    <input type="hidden" name="nominal_simulasi" id="nominal_simulasi">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -321,6 +340,10 @@
                 $('#nominall').val(data.nominal_bayar);
                 $('#via').val(data.via);
                 $('#bank').val(data.bank);
+                $('#nominal_pengurusan').val(data.nominal_pengurusan);
+                $('#nominal_pengurusann').val(data.nominal_pengurusan);
+                $('#nominal_simulasi').val(data.nominal_simulasi);
+                $('#nominal_simulasii').val(data.nominal_simulasi);
 
                 $('#md-form-unit').modal('show');
                 $('#modal-title').text('Edit Nopol Pembayaran STNK');
@@ -375,14 +398,24 @@
             })
         });
     }
+    $('.uang').mask('000.000.000.000', {
+        reverse: true
+    });
     var nominall = document.querySelector('input[name="nominall"]');
     var nominal = document.querySelector('input[name="nominal"]');
     nominall.onkeyup = function() {
         nominal.value = this.value.replace(/\./g, '');
     }
-    $('.uang').mask('000.000.000.000', {
-        reverse: true
-    });
+    var nominal_pengurusann = document.querySelector('input[name="nominal_pengurusann"]');
+    var nominal_pengurusan = document.querySelector('input[name="nominal_pengurusan"]');
+    nominal_pengurusann.onkeyup = function() {
+        nominal_pengurusan.value = this.value.replace(/\./g, '');
+    }
+    var nominal_simulasii = document.querySelector('input[name="nominal_simulasii"]');
+    var nominal_simulasi = document.querySelector('input[name="nominal_simulasi"]');
+    nominal_simulasii.onkeyup = function() {
+        nominal_simulasi.value = this.value.replace(/\./g, '');
+    }
     $('.tanggal').datepicker({
         autoclose: true,
         todayHighlight: true,
