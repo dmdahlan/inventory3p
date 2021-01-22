@@ -59,7 +59,7 @@ class Pembelian_cash extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), $this->rupiah($total), ''
+            '', '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), $this->rupiah($total), ''
         );
         $output = array(
             "draw" => @$_POST['draw'],
