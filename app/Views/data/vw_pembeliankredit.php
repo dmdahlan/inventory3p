@@ -281,7 +281,10 @@
             "order": [], //Initial no order.
             "autowidth": true,
             "ordering": true,
-
+            "lengthMenu": [
+                [10, 100, 500, 1500],
+                [10, 100, 500, 1500]
+            ],
             ajax: {
                 "url": "<?= base_url('pembelian_kredit/datakredit') ?>",
                 "type": "POST",
