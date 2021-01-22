@@ -82,7 +82,8 @@ class MasterUnit extends Model
             master_unit.exp_stnk_tahun as exp_stnk_tahun,
             master_unit.brand_name as brand_name
             FROM master_unit
-            WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk) AND master_unit.brand_name is not null ";
+            WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_stnk) AND master_unit.brand_name is not null 
+            order by master_unit.exp_stnk ASC ";
             $query = $this->db->query($sql, array())->getResult();
             return $query;
         } else {
@@ -115,7 +116,8 @@ class MasterUnit extends Model
         master_unit.exp_kir as exp_kir,
         master_unit.brand_name as brand_name
         FROM master_unit
-        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_kir)";
+        WHERE master_unit.deleted_at is null && -8<DATEDIFF(CURDATE(),master_unit.exp_kir)
+        ORDER BY master_unit.exp_kir ASC";
         $query = $this->db->query($sql, array());
         return $query;
     }
