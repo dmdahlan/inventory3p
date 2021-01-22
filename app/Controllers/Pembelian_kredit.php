@@ -135,6 +135,10 @@ class Pembelian_kredit extends BaseController
     {
         echo json_encode($this->mastersupplier->orderBy('supplier', 'ASC')->findAll());
     }
+    public function getbarang()
+    {
+        echo json_encode($this->masterbarang->orderBy('nama_barang', 'ASC')->findAll());
+    }
     public function _validate($method)
     {
         if (!$this->validate($this->_getRulesValidation($method))) {

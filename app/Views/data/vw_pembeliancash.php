@@ -378,7 +378,7 @@
         dropdown_barang.empty();
         dropdown_barang.append('<option value="">Pilih barang</option>');
         dropdown_barang.prop('selectedIndex', 0);
-        const url_barang = '<?= base_url('master_barang/getbarang/') ?>';
+        const url_barang = '<?= base_url('pembelian_cash/getbarang/') ?>';
         // Populate dropdown with list
         $.getJSON(url_barang, function(data) {
             $.each(data, function(key, entry) {
