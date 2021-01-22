@@ -60,7 +60,6 @@
                                         <th>TGL REIMBURS</th>
                                         <th>TGL NOTA</th>
                                         <th>NAMA TOKO</th>
-                                        <th>NAMA BARANG</th>
                                         <th>BRAND</th>
                                         <th>NOPOL</th>
                                         <th>DRIVER</th>

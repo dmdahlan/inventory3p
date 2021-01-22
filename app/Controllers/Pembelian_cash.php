@@ -37,7 +37,6 @@ class Pembelian_cash extends BaseController
             }
             $row[] = Time::parse($r->tgl_nota)->toLocalizedString('dd-MMM-yy');
             $row[] = $r->nama_toko;
-            $row[] = $r->nama_barang;
             $row[] = $r->brand_name;
             $row[] = $r->nopol;
             $row[] = $r->nama;

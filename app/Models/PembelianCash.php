@@ -13,7 +13,7 @@ class PembelianCash extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.created_at', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_barang.nama_barang', 'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang', 'qty', 'harga', 'total');
+    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.created_at', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko',  'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'master_barang.nama_barang', 'qty', 'harga', 'total');
     protected $column_search = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_barang.nama_barang', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang');
     protected $order = array('pembelian_cash.tgl_nota' => 'desc');
 
