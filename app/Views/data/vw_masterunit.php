@@ -167,6 +167,8 @@
             "order": [], //Initial no order.
             "autowidth": true,
             "ordering": true,
+            "scrollY": 350,
+            "scrollX": true,
 
             ajax: {
                 "url": "master_unit/dataunit",
