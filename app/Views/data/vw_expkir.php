@@ -27,6 +27,14 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
+                                <div class="col-md-2">
+                                    <select id="brandd" class="form-control form-control-sm" type="text">
+                                        <option value="">Pilih Brand</option>
+                                        <option value="Perdana">Perdana</option>
+                                        <option value="Paramita">Paramita</option>
+                                        <option value="Pai">Pai</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-5">
                                     <button class="btn btn-info btn-sm" onclick="refresh()"> <span>Refresh</span></button>
                                 </div>
@@ -73,8 +81,14 @@
             ajax: {
                 "url": "<?= base_url('exp_kir/datakir') ?>",
                 "type": "POST",
+                "data": function(data) {
+                    data.brandd = $('#brandd').val();
+                }
             }
         });
+    });
+    $('#brandd').change(function() {
+        table.ajax.reload();
     });
 
     function reload_table() {
@@ -82,8 +96,10 @@
     }
 
     function refresh() {
+        document.getElementById("brand").value = "";
         reload_table();
     }
+
     $('.tanggal').datepicker({
         autoclose: true,
         todayHighlight: true,

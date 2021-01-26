@@ -14,6 +14,14 @@
             display: none;
         }
     }
+
+    th {
+        border: 1px solid black;
+    }
+
+    td {
+        border: 1px solid black;
+    }
 </style>
 <section class="content-wrapper">
     <div class="content-wrapper">
@@ -93,15 +101,15 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table table-responsive table-sm" style="font-size: 14px;">
-                                <table class="table table-bordered table-hover table-striped js-basic-example dataTable nowrap cell-border" cellspacing="0" width="100%" role="grid">
+                                <table class="table" width="100%" style="border: 1px solid black">
                                     <thead>
-                                        <tr class="">
-                                            <th>NO</th>
-                                            <th>NAMA BARANG</th>
-                                            <th>QTY</th>
-                                            <th>HARGA</th>
-                                            <th>JUMLAH</th>
-                                            <th>KETERANGAN</th>
+                                        <tr>
+                                            <th style="border: 1px solid black">NO</th>
+                                            <th style="border: 1px solid black">NAMA BARANG</th>
+                                            <th style="border: 1px solid black">QTY</th>
+                                            <th style="border: 1px solid black">HARGA</th>
+                                            <th style="border: 1px solid black">JUMLAH</th>
+                                            <th style="border: 1px solid black">KETERANGAN</th>
                                         </tr>
                                     </thead>
                                     <tbody>

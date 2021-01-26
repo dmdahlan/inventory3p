@@ -15,11 +15,11 @@ class Exp_kir extends BaseController
     }
     public function datakir()
     {
-        $stnk = $this->masterunit->expkir()->getResult();
+        $kir = $this->masterunit->expkir();
         $data = array();
         $no = @$_POST['start'];
 
-        foreach ($stnk as $r) {
+        foreach ($kir as $r) {
             $no++;
             $row = array();
             $row[] = $no;
