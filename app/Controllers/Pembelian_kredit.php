@@ -43,6 +43,7 @@ class Pembelian_kredit extends BaseController
             $row[] = $this->rupiah($r->disc);
             $row[] = $this->rupiah($r->pembelianppn);
             $row[] = $this->rupiah($r->total);
+            $row[] = $r->ket_kredit;
             if ($r->notaorder_id != null) {
                 $row[] = '';
             } else {
@@ -57,7 +58,7 @@ class Pembelian_kredit extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), '', '', $this->rupiah($total), ''
+            '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), '', '', $this->rupiah($total), '', ''
         );
         $output = array(
             "draw" => @$_POST['draw'],
@@ -83,6 +84,7 @@ class Pembelian_kredit extends BaseController
             'disc'                  => $this->request->getPost('disc'),
             'pembelianppn'          => $this->request->getPost('ppn'),
             'total'                 => $this->request->getPost('total'),
+            'ket_kredit'            => $this->request->getPost('ket_kredit'),
         ];
         if ($this->pembeliankredit->save($data)) {
             echo json_encode(['status' => TRUE]);
@@ -111,6 +113,7 @@ class Pembelian_kredit extends BaseController
             'disc'                  => $this->request->getPost('disc'),
             'pembelianppn'          => $this->request->getPost('ppn'),
             'total'                 => $this->request->getPost('total'),
+            'ket_kredit'            => $this->request->getPost('ket_kredit'),
         ];
 
         if ($this->pembeliankredit->save($data)) {

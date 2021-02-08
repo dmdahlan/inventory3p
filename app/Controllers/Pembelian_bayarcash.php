@@ -97,7 +97,7 @@ class Pembelian_bayarcash extends BaseController
         else
             $tgl_bayar2 = null;
         $data = [
-            'cash_id'       => $this->request->getVar('cash_id'),
+            'cash_id'         => $this->request->getVar('cash_id'),
             'notaorder_id'    => $this->request->getVar('notaorder_id'),
             'tgl_bayar1'      => time::parse($this->request->getVar('tgl_bayar1')),
             'bank1'           => $this->request->getVar('bank1'),

@@ -293,6 +293,7 @@
         document.getElementById("tglakhir").value = "";
         document.getElementById("brandd").value = "";
         document.getElementById("ketlunas").value = "";
+        $("input[type=hidden]").val('');
         reload_table();
     }
 

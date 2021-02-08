@@ -26,6 +26,8 @@ class Migratepembayarankredit extends Migration
 			'deleted_at' 	    => ['type' => 'DATETIME', 'null' => true],
 		]);
 		$this->forge->addKey('id_bayarkredit', true);
+		$this->forge->addUniqueKey('kredit_id');
+		$this->forge->addUniqueKey('notaorder_id');
 		$this->forge->createTable('pembayaran_kredit');
 	}
 

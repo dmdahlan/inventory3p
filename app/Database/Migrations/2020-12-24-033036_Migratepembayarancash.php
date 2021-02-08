@@ -27,6 +27,8 @@ class Migratepembayarancash extends Migration
 			'deleted_at' 	    => ['type' => 'DATETIME', 'null' => true],
 		]);
 		$this->forge->addKey('id_bayarcash', true);
+		$this->forge->addUniqueKey('cash_id');
+		$this->forge->addUniqueKey('notaorder_id');
 		$this->forge->createTable('pembayaran_cash');
 	}
 

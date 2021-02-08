@@ -69,6 +69,7 @@
                                         <th>DISC</th>
                                         <th>PPN</th>
                                         <th>TOTAL</th>
+                                        <th>KETERANGAN</th>
                                         <th>OPSI</th>
                                     </tr>
                                 </thead>
@@ -186,10 +187,17 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Tax</label>
+                                    <label class="form-label">TAX</label>
                                     <input id="tax" name="tax" class="form-control" type="text">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="form-label">KETERANGAN</label>
+                                    <input id="ket_kredit" name="ket_kredit" class="form-control" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -399,6 +407,7 @@
                 // $('#ppnnn').val(data.pembelianppn);
                 $('#total').val(data.total);
                 $('#totall').val(data.total);
+                $('#ket_kredit').val(data.ket_kredit);
 
                 $('#md-form-kredit').modal('show');
                 $('#modal-title').text('Edit pembelian kredit');
