@@ -16,6 +16,7 @@ class Migratemasterunit extends Migration
 			'exp_stnk' 			=> ['type' => 'DATE', 'null' => true],
 			'exp_kir' 			=> ['type' => 'DATE', 'null' => true],
 			'exp_stnk_tahun' 	=> ['type' => 'DATE', 'null' => true],
+			'tahun_pembuatan' 	=> ['type' => 'VARCHAR', 'constraint' => '50', 'null' => true],
 			'ket_nopol'     	=> ['type' => 'VARCHAR', 'constraint' => '100', 'null' => true],
 			'created_at' 	    => ['type' => 'DATETIME', 'null' => true],
 			'updated_at' 	    => ['type' => 'DATETIME', 'null' => true],

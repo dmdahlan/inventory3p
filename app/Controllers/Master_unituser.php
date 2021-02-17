@@ -40,7 +40,7 @@ class Master_unituser extends BaseController
             } else {
                 $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-yy');
             }
-
+            $row[] = $r->tahun_pembuatan;
             $row[] = $r->brand_name;
             $row[] = $r->ket_nopol;
             $data[] = $row;

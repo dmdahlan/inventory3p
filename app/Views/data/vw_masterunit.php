@@ -58,6 +58,7 @@
                                         <th>EXP STNK</th>
                                         <th>EXP 5 TAHUN</th>
                                         <th>EXP KIR</th>
+                                        <th>TAHUN PEMBUATAN</th>
                                         <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                         <th>OPSI</th>
@@ -94,15 +95,15 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <input type="hidden" id="id" name="id">
-                                    <label class="form-label">Nopol</label>
+                                    <label class="form-label">NOPOL</label>
                                     <input id="nopol" name="nopol" class="form-control" placeholder="Nopol" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">A/N NAMA</label>
-                                    <input id="kode_nopol" name="kode_nopol" class="form-control" placeholder="Kode nopol" type="text">
+                                    <input id="kode_nopol" name="kode_nopol" class="form-control" placeholder="A/N NAMA" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -129,7 +130,14 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Brand</label>
+                                    <label class="form-label">PEMBUATAN</label>
+                                    <input id="tahun_pembuatan" name="tahun_pembuatan" class="form-control tahun" placeholder="Tahun Buat">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-label">BRAND</label>
                                     <select id="brand_name" name="brand_name" class="form-control">
                                         <option value="">Pilih Brand</option>
                                         <option value="perdana">Perdana</option>
@@ -140,7 +148,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Keterangan</label>
+                                    <label class="form-label">KETERANGAN</label>
                                     <input id="ket_nopol" name="ket_nopol" class="form-control" placeholder="Keteangan" type="text">
                                     <span class="help-block text-danger"></span>
                                 </div>
@@ -291,6 +299,7 @@
                 $('#exp_stnk').val(data.exp_stnk);
                 $('#exp_kir').val(data.exp_kir);
                 $('#exp_stnk_tahun').val(data.exp_stnk_tahun);
+                $('#tahun_pembuatan').val(data.tahun_pembuatan);
                 $('#brand_name').val(data.brand_name);
                 $('#ket_nopol').val(data.ket_nopol);
 
@@ -344,6 +353,12 @@
         format: 'yyyy-mm'
     }).on('change', function() {
         $('.datepicker').hide();
+    });
+    $('.tahun').datepicker({
+        autoclose: true,
+        format: " yyyy",
+        viewMode: "years",
+        minViewMode: "years"
     });
 </script>
 <?= $this->endSection('content') ?>

@@ -40,7 +40,7 @@ class Master_unit extends BaseController
             } else {
                 $row[] = Time::parse($r->exp_kir)->toLocalizedString('dd-MMM-yy');
             }
-
+            $row[] = $r->tahun_pembuatan;
             $row[] = $r->brand_name;
             $row[] = $r->ket_nopol;
             $row[] = '
@@ -76,11 +76,13 @@ class Master_unit extends BaseController
         } else {
             $exp_stnk_tahun = null;
         }
+
         $data = [
             'nopol'            => $this->request->getPost('nopol'),
             'kode_nopol'       => $this->request->getPost('kode_nopol'),
             'exp_stnk'         => $exp_stnk,
             'exp_kir'          => $exp_kir,
+            'tahun_pembuatan'  => $this->request->getPost('tahun_pembuatan'),
             'exp_stnk_tahun'   => $exp_stnk_tahun,
             'brand_name'       => $this->request->getPost('brand_name'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
@@ -121,6 +123,7 @@ class Master_unit extends BaseController
             'exp_stnk'         => $exp_stnk,
             'exp_kir'          => $exp_kir,
             'exp_stnk_tahun'   => $exp_stnk_tahun,
+            'tahun_pembuatan'  => $this->request->getPost('tahun_pembuatan'),
             'brand_name'       => $this->request->getPost('brand_name'),
             'ket_nopol'        => $this->request->getPost('ket_nopol')
         ];

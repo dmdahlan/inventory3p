@@ -43,6 +43,7 @@
                                         <th>EXP STNK</th>
                                         <th>EXP 5 TAHUN</th>
                                         <th>EXP KIR</th>
+                                        <th>TAHUN</th>
                                         <th>BRAND</th>
                                         <th>KETERANGAN</th>
                                     </tr>
