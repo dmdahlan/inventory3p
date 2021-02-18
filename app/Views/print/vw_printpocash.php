@@ -102,6 +102,7 @@
                                     <thead>
                                         <tr>
                                             <th style="border: 1px solid black">NO</th>
+                                            <th style="border: 1px solid black">TGL NOTA</th>
                                             <th style="border: 1px solid black">NAMA BARANG</th>
                                             <th style="border: 1px solid black">QTY</th>
                                             <th style="border: 1px solid black">HARGA</th>
@@ -115,10 +116,16 @@
                                         $qty = 0;
                                         $harga = 0;
                                         $total = 0;
+                                        function tanggal($tanggal)
+                                        {
+                                            $hasil = date('d-M-Y', strtotime($tanggal));
+                                            return $hasil;
+                                        }
                                         ?>
                                         <?php foreach ($po as $p) : ?>
                                             <tr>
                                                 <td><?= $i++ ?></td>
+                                                <td><?= tanggal($p['tgl_nota']) ?></td>
                                                 <td><?= $p['nama_barang'] ?></td>
                                                 <td><?= $p['qty'] ?></td>
                                                 <td class="text-right"><?= number_format($p['harga'], 0, ',', '.') ?></td>
@@ -130,7 +137,7 @@
                                             <?php $total += $p['total'] ?>
                                         <?php endforeach ?>
                                         <tr>
-                                            <td colspan="2" class="text-center">Total</td>
+                                            <td colspan="3" class="text-center">Total</td>
                                             <td><?= number_format($qty, 0, ',', '.') ?></td>
                                             <td class="text-right"><?= number_format($harga, 0, ',', '.') ?></td>
                                             <td class="text-right"><?= number_format($total, 0, ',', '.') ?></td>
