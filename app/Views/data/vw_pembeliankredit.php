@@ -270,9 +270,9 @@
         var harga = getharga.split(".").join("");
         var disc = getdisc.split(".").join("");
 
-        var total = qtyy * harga - disc;
-        var ppnx = total * tax / 100;
-        var grand = total + ppnx;
+        var total = parseInt(qtyy * harga - disc);
+        var ppnx = parseInt(total * tax / 100);
+        var grand = parseInt(total + ppnx);
 
         var currencytotal = currencyIDR(grand, '');
         var currencyppn = currencyIDR(ppnx, '');
