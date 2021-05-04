@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class PembelianKredit extends Model
 {
     protected $table = 'pembelian_kredit';
-    protected $allowedFields = ['tgl_nota', 'supplier_id', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'qty', 'harga', 'disc', 'pembelianppn', 'total', 'ket_kredit'];
+    protected $allowedFields = ['tgl_nota', 'supplier_id', 'nopol_id', 'nota_supp', 'nota_order', 'barang_id', 'rincian_kredit', 'qty', 'harga', 'disc', 'pembelianppn', 'total', 'ket_kredit'];
     protected $id = 'id_kredit';
     protected $primaryKey = 'id_kredit';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('pembelian_kredit.id_kredit', 'pembelian_kredit.created_at', 'pembelian_kredit.tgl_nota', 'master_supplier.supplier', 'master_unit.brand_name', 'master_unit.nopol', 'pembelian_kredit.nota_supp', 'pembelian_kredit.nota_order', 'master_barang.nama_barang', 'pembelian_kredit.qty', 'pembelian_kredit.harga', 'pembelian_kredit.disc', 'pembelian_kredit.pembelianppn', 'pembelian_kredit.total', 'ket_kredit');
-    protected $column_search = array('pembelian_kredit.id_kredit', 'pembelian_kredit.tgl_nota', 'master_supplier.supplier', 'master_unit.brand_name', 'master_unit.nopol', 'pembelian_kredit.nota_supp', 'pembelian_kredit.nota_order', 'master_barang.nama_barang', 'pembelian_kredit.qty', 'pembelian_kredit.harga', 'pembelian_kredit.disc', 'pembelian_kredit.pembelianppn', 'pembelian_kredit.total', 'ket_kredit');
+    protected $column_order = array('pembelian_kredit.id_kredit', 'pembelian_kredit.created_at', 'pembelian_kredit.tgl_nota', 'master_supplier.supplier', 'master_unit.brand_name', 'master_unit.nopol', 'pembelian_kredit.nota_supp', 'pembelian_kredit.nota_order', 'master_barang.nama_barang', 'pembelian_kredit.rincian_kredit', 'pembelian_kredit.qty', 'pembelian_kredit.harga', 'pembelian_kredit.disc', 'pembelian_kredit.pembelianppn', 'pembelian_kredit.total', 'ket_kredit');
+    protected $column_search = array('pembelian_kredit.id_kredit', 'pembelian_kredit.tgl_nota', 'master_supplier.supplier', 'master_unit.brand_name', 'master_unit.nopol', 'pembelian_kredit.nota_supp', 'pembelian_kredit.nota_order', 'master_barang.nama_barang', 'pembelian_kredit.rincian_kredit', 'pembelian_kredit.qty', 'pembelian_kredit.harga', 'pembelian_kredit.disc', 'pembelian_kredit.pembelianppn', 'pembelian_kredit.total', 'ket_kredit');
     protected $order = array('pembelian_kredit.tgl_nota' => 'desc');
 
     function get_datatables()

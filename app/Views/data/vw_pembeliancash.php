@@ -65,6 +65,7 @@
                                         <th>DRIVER</th>
                                         <th>REIMBURSEMENT</th>
                                         <th>NAMA BARANG</th>
+                                        <th>RINCIAN</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>
                                         <th>TOTAL</th>
@@ -149,6 +150,13 @@
                                     <label class="form-label">NAMA BARANG</label>
                                     <select id="barang_id" name="barang_id" class="form-control select2">
                                     </select>
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">RINCIAN BARANG</label>
+                                    <input id="rincian_cash" name="rincian_cash" class="form-control" placeholder="Rincian">
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
@@ -307,6 +315,7 @@
                 $('#driver_id').val(data.driver_id).change();
                 $('#nota_order').val(data.nota_order);
                 $('#barang_id').val(data.barang_id).change();
+                $('#rincian_cash').val(data.rincian_cash);
                 $('#qty').val(data.qty);
                 $('#qtyy').val(data.qty);
                 $('#harga').val(data.harga);

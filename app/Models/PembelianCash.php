@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class PembelianCash extends Model
 {
     protected $table = 'pembelian_cash';
-    protected $allowedFields = ['tgl_reimburst', 'tgl_nota', 'nama_toko', 'nopol_id', 'driver_id', 'nota_order', 'barang_id', 'qty', 'harga', 'total'];
+    protected $allowedFields = ['tgl_reimburst', 'tgl_nota', 'nama_toko', 'nopol_id', 'driver_id', 'nota_order', 'barang_id', 'rincian_cash', 'qty', 'harga', 'total'];
     protected $id = 'id_cash';
     protected $primaryKey = 'id_cash';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.created_at', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko',  'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'master_barang.nama_barang', 'qty', 'harga', 'total');
-    protected $column_search = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_barang.nama_barang', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang');
+    protected $column_order = array('pembelian_cash.id_cash', 'pembelian_cash.created_at', 'pembelian_cash.tgl_reimburst', 'pembelian_cash.tgl_nota', 'nama_toko',  'master_unit.brand_name', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'master_barang.nama_barang', 'rincian_cash', 'qty', 'harga', 'total');
+    protected $column_search = array('pembelian_cash.id_cash', 'pembelian_cash.tgl_nota', 'nama_toko', 'master_unit.brand_name', 'master_barang.nama_barang', 'pembelian_cash.rincian_cash', 'master_unit.nopol', 'master_driver.nama', 'pembelian_cash.nota_order', 'nama_barang');
     protected $order = array('pembelian_cash.tgl_nota' => 'desc');
 
     function get_datatables()

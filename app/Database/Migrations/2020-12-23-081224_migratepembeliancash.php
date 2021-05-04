@@ -18,6 +18,7 @@ class Migratepembeliancash extends Migration
 			'driver_id'   		=> ['type' => 'INT', 'constraint' => 11, 'null' => true],
 			'nota_order'   		=> ['type' => 'VARCHAR', 'constraint' => 50, 'null' => true],
 			'barang_id'   		=> ['type' => 'INT', 'constraint' => 11, 'null' => true],
+			'rincian_cash'  	=> ['type' => 'VARCHAR', 'constraint' => 225, 'null' => true],
 			'qty'   			=> ['type' => 'INT', 'constraint' => 11, 'null' => true],
 			'harga'   			=> ['type' => 'INT', 'constraint' => 11, 'null' => true],
 			'total'   			=> ['type' => 'INT', 'constraint' => 11, 'null' => true],

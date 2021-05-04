@@ -64,6 +64,7 @@
                                         <th>NOTA SUPP</th>
                                         <th>NO ORDER</th>
                                         <th>NAMA BARANG</th>
+                                        <th>RINCIAN</th>
                                         <th>QTY</th>
                                         <th>HARGA</th>
                                         <th>DISC</th>
@@ -147,6 +148,13 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">RINCIAN BARANG</label>
+                                    <input id="rincian_kredit" name="rincian_kredit" class="form-control" placeholder="Rincian">
+                                    <span class="help-block text-danger"></span>
+                                </div>
+                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="form-label">QTY</label>
@@ -194,7 +202,7 @@
                                     <span class="help-block text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <label class="form-label">KETERANGAN</label>
                                     <input id="ket_kredit" name="ket_kredit" class="form-control" type="text">
@@ -396,6 +404,7 @@
                 $('#nota_supp').val(data.nota_supp);
                 $('#nota_order').val(data.nota_order);
                 $('#barang_id').val(data.barang_id).change();
+                $('#rincian_kredit').val(data.rincian_kredit);
                 $('#qty').val(data.qty);
                 $('#qtyy').val(data.qty);
                 $('#harga').val(data.harga);

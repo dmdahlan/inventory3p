@@ -38,6 +38,7 @@ class Pembelian_kredit extends BaseController
                 $row[] = '<a class="text-blue" href="javascript:void(0)" onclick="edit_kredit(' . "'" . $r->id_kredit . "'" . ')">' . $r->nota_order;
             }
             $row[] = $r->nama_barang;
+            $row[] = $r->rincian_kredit;
             $row[] = $r->qty;
             $row[] = $this->rupiah($r->harga);
             $row[] = $this->rupiah($r->disc);
@@ -58,7 +59,7 @@ class Pembelian_kredit extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), '', '', $this->rupiah($total), '', ''
+            '', '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), '', '', $this->rupiah($total), '', ''
         );
         $output = array(
             "draw" => @$_POST['draw'],
@@ -79,6 +80,7 @@ class Pembelian_kredit extends BaseController
             'nota_supp'             => $this->request->getPost('nota_supp'),
             'nota_order'            => $this->request->getPost('nota_order'),
             'barang_id'             => $this->request->getPost('barang_id'),
+            'rincian_kredit'        => $this->request->getPost('rincian_kredit'),
             'qty'                   => $this->request->getPost('qty'),
             'harga'                 => $this->request->getPost('harga'),
             'disc'                  => $this->request->getPost('disc'),
@@ -108,6 +110,7 @@ class Pembelian_kredit extends BaseController
             'nota_supp'             => $this->request->getPost('nota_supp'),
             'nota_order'            => $this->request->getPost('nota_order'),
             'barang_id'             => $this->request->getPost('barang_id'),
+            'rincian_kredit'        => $this->request->getPost('rincian_kredit'),
             'qty'                   => $this->request->getPost('qty'),
             'harga'                 => $this->request->getPost('harga'),
             'disc'                  => $this->request->getPost('disc'),

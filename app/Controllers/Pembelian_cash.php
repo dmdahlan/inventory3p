@@ -42,6 +42,7 @@ class Pembelian_cash extends BaseController
             $row[] = $r->nama;
             $row[] = $r->nota_order;
             $row[] = $r->nama_barang;
+            $row[] = $r->rincian_cash;
             $row[] = $r->qty;
             $row[] = $this->rupiah($r->harga);
             $row[] = $this->rupiah($r->total);
@@ -59,7 +60,7 @@ class Pembelian_cash extends BaseController
             $data[] = $row;
         }
         $data[] = array(
-            '', '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), $this->rupiah($total), ''
+            '', '', '', '', '', '', '', '', '', '', 'TOTAL', $this->rupiah($qty), $this->rupiah($harga), $this->rupiah($total), ''
         );
         $output = array(
             "draw" => @$_POST['draw'],
@@ -86,6 +87,7 @@ class Pembelian_cash extends BaseController
             'driver_id'             => $this->request->getPost('driver_id'),
             'nota_order'            => $this->request->getPost('nota_order'),
             'barang_id'             => $this->request->getPost('barang_id'),
+            'rincian_cash'          => $this->request->getPost('rincian_cash'),
             'qty'                   => $this->request->getPost('qty'),
             'harga'                 => $this->request->getPost('harga'),
             'total'                 => $this->request->getPost('total'),
@@ -117,6 +119,7 @@ class Pembelian_cash extends BaseController
             'driver_id'             => $this->request->getPost('driver_id'),
             'nota_order'            => $this->request->getPost('nota_order'),
             'barang_id'             => $this->request->getPost('barang_id'),
+            'rincian_cash'          => $this->request->getPost('rincian_cash'),
             'qty'                   => $this->request->getPost('qty'),
             'harga'                 => $this->request->getPost('harga'),
             'total'                 => $this->request->getPost('total'),
